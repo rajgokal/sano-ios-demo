@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
+		3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
+		3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47D14D34E5300F853B9 /* CoreGraphics.framework */; };
+		3541B48414D34E5300F853B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3541B48214D34E5300F853B9 /* InfoPlist.strings */; };
+		3541B48614D34E5300F853B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48514D34E5300F853B9 /* main.m */; };
+		3541B48A14D34E5300F853B9 /* SanoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48914D34E5300F853B9 /* SanoAppDelegate.m */; };
+		3541B48D14D34E5300F853B9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */; };
+		3541B49014D34E5300F853B9 /* SanoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48F14D34E5300F853B9 /* SanoViewController.m */; };
+		3541B49814D34E5300F853B9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B49714D34E5300F853B9 /* SenTestingKit.framework */; };
+		3541B49914D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
+		3541B49A14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
+		3541B4A214D34E5300F853B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3541B4A014D34E5300F853B9 /* InfoPlist.strings */; };
+		3541B4A514D34E5300F853B9 /* SanoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B4A414D34E5300F853B9 /* SanoTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3541B49B14D34E5300F853B9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3541B46C14D34E5300F853B9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3541B47414D34E5300F853B9;
+			remoteInfo = Sano;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		3541B47514D34E5300F853B9 /* Sano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sano.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3541B47914D34E5300F853B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3541B47B14D34E5300F853B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3541B47D14D34E5300F853B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3541B48114D34E5300F853B9 /* Sano-Info.plist */ = {isa = PBXFileReference; path = "Sano-Info.plist"; sourceTree = "<group>"; };
+		3541B48314D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3541B48514D34E5300F853B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3541B48714D34E5300F853B9 /* Sano-Prefix.pch */ = {isa = PBXFileReference; path = "Sano-Prefix.pch"; sourceTree = "<group>"; };
+		3541B48814D34E5300F853B9 /* SanoAppDelegate.h */ = {isa = PBXFileReference; path = SanoAppDelegate.h; sourceTree = "<group>"; };
+		3541B48914D34E5300F853B9 /* SanoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoAppDelegate.m; sourceTree = "<group>"; };
+		3541B48C14D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3541B48E14D34E5300F853B9 /* SanoViewController.h */ = {isa = PBXFileReference; path = SanoViewController.h; sourceTree = "<group>"; };
+		3541B48F14D34E5300F853B9 /* SanoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoViewController.m; sourceTree = "<group>"; };
+		3541B49614D34E5300F853B9 /* SanoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SanoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3541B49714D34E5300F853B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		3541B49F14D34E5300F853B9 /* SanoTests-Info.plist */ = {isa = PBXFileReference; path = "SanoTests-Info.plist"; sourceTree = "<group>"; };
+		3541B4A114D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3541B4A314D34E5300F853B9 /* SanoTests.h */ = {isa = PBXFileReference; path = SanoTests.h; sourceTree = "<group>"; };
+		3541B4A414D34E5300F853B9 /* SanoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3541B47214D34E5300F853B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */,
+				3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */,
+				3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3541B49214D34E5300F853B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B49814D34E5300F853B9 /* SenTestingKit.framework in Frameworks */,
+				3541B49914D34E5300F853B9 /* UIKit.framework in Frameworks */,
+				3541B49A14D34E5300F853B9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3541B46A14D34E5300F853B9 = {
+			isa = PBXGroup;
+			children = (
+				3541B47F14D34E5300F853B9 /* Sano */,
+				3541B49D14D34E5300F853B9 /* SanoTests */,
+				3541B47814D34E5300F853B9 /* Frameworks */,
+				3541B47614D34E5300F853B9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3541B47614D34E5300F853B9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3541B47514D34E5300F853B9 /* Sano.app */,
+				3541B49614D34E5300F853B9 /* SanoTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3541B47814D34E5300F853B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3541B47914D34E5300F853B9 /* UIKit.framework */,
+				3541B47B14D34E5300F853B9 /* Foundation.framework */,
+				3541B47D14D34E5300F853B9 /* CoreGraphics.framework */,
+				3541B49714D34E5300F853B9 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3541B47F14D34E5300F853B9 /* Sano */ = {
+			isa = PBXGroup;
+			children = (
+				3541B48814D34E5300F853B9 /* SanoAppDelegate.h */,
+				3541B48914D34E5300F853B9 /* SanoAppDelegate.m */,
+				3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */,
+				3541B48E14D34E5300F853B9 /* SanoViewController.h */,
+				3541B48F14D34E5300F853B9 /* SanoViewController.m */,
+				3541B48014D34E5300F853B9 /* Supporting Files */,
+			);
+			path = Sano;
+			sourceTree = "<group>";
+		};
+		3541B48014D34E5300F853B9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3541B48114D34E5300F853B9 /* Sano-Info.plist */,
+				3541B48214D34E5300F853B9 /* InfoPlist.strings */,
+				3541B48514D34E5300F853B9 /* main.m */,
+				3541B48714D34E5300F853B9 /* Sano-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3541B49D14D34E5300F853B9 /* SanoTests */ = {
+			isa = PBXGroup;
+			children = (
+				3541B4A314D34E5300F853B9 /* SanoTests.h */,
+				3541B4A414D34E5300F853B9 /* SanoTests.m */,
+				3541B49E14D34E5300F853B9 /* Supporting Files */,
+			);
+			path = SanoTests;
+			sourceTree = "<group>";
+		};
+		3541B49E14D34E5300F853B9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3541B49F14D34E5300F853B9 /* SanoTests-Info.plist */,
+				3541B4A014D34E5300F853B9 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3541B47414D34E5300F853B9 /* Sano */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3541B4A814D34E5300F853B9 /* Build configuration list for PBXNativeTarget "Sano" */;
+			buildPhases = (
+				3541B47114D34E5300F853B9 /* Sources */,
+				3541B47214D34E5300F853B9 /* Frameworks */,
+				3541B47314D34E5300F853B9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Sano;
+			productName = Sano;
+			productReference = 3541B47514D34E5300F853B9 /* Sano.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3541B49514D34E5300F853B9 /* SanoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3541B4AB14D34E5300F853B9 /* Build configuration list for PBXNativeTarget "SanoTests" */;
+			buildPhases = (
+				3541B49114D34E5300F853B9 /* Sources */,
+				3541B49214D34E5300F853B9 /* Frameworks */,
+				3541B49314D34E5300F853B9 /* Resources */,
+				3541B49414D34E5300F853B9 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3541B49C14D34E5300F853B9 /* PBXTargetDependency */,
+			);
+			name = SanoTests;
+			productName = SanoTests;
+			productReference = 3541B49614D34E5300F853B9 /* SanoTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3541B46C14D34E5300F853B9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = 3541B46F14D34E5300F853B9 /* Build configuration list for PBXProject "Sano" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3541B46A14D34E5300F853B9;
+			productRefGroup = 3541B47614D34E5300F853B9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3541B47414D34E5300F853B9 /* Sano */,
+				3541B49514D34E5300F853B9 /* SanoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3541B47314D34E5300F853B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B48414D34E5300F853B9 /* InfoPlist.strings in Resources */,
+				3541B48D14D34E5300F853B9 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3541B49314D34E5300F853B9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B4A214D34E5300F853B9 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3541B49414D34E5300F853B9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3541B47114D34E5300F853B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B48614D34E5300F853B9 /* main.m in Sources */,
+				3541B48A14D34E5300F853B9 /* SanoAppDelegate.m in Sources */,
+				3541B49014D34E5300F853B9 /* SanoViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3541B49114D34E5300F853B9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3541B4A514D34E5300F853B9 /* SanoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3541B49C14D34E5300F853B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3541B47414D34E5300F853B9 /* Sano */;
+			targetProxy = 3541B49B14D34E5300F853B9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3541B48214D34E5300F853B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3541B48314D34E5300F853B9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3541B48C14D34E5300F853B9 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		3541B4A014D34E5300F853B9 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3541B4A114D34E5300F853B9 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3541B4A614D34E5300F853B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3541B4A714D34E5300F853B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3541B4A914D34E5300F853B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				INFOPLIST_FILE = "Sano/Sano-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3541B4AA14D34E5300F853B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				INFOPLIST_FILE = "Sano/Sano-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		3541B4AC14D34E5300F853B9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sano.app/Sano";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				INFOPLIST_FILE = "SanoTests/SanoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3541B4AD14D34E5300F853B9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Sano.app/Sano";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				INFOPLIST_FILE = "SanoTests/SanoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3541B46F14D34E5300F853B9 /* Build configuration list for PBXProject "Sano" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3541B4A614D34E5300F853B9 /* Debug */,
+				3541B4A714D34E5300F853B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3541B4A814D34E5300F853B9 /* Build configuration list for PBXNativeTarget "Sano" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3541B4A914D34E5300F853B9 /* Debug */,
+				3541B4AA14D34E5300F853B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		3541B4AB14D34E5300F853B9 /* Build configuration list for PBXNativeTarget "SanoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3541B4AC14D34E5300F853B9 /* Debug */,
+				3541B4AD14D34E5300F853B9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3541B46C14D34E5300F853B9 /* Project object */;
+}
