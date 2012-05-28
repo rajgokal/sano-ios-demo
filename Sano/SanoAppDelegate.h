@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyManager.h"
 
 @interface SanoAppDelegate : UIResponder <UIApplicationDelegate>
 

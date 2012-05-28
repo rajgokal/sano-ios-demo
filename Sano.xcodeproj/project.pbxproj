@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBA1506BE5200C99CAD /* AlertsViewController.m */; };
+		351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBD1506D09200C99CAD /* AlertsCell.m */; };
+		35214CE415671D5600430E29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35214CE315671D5600430E29 /* QuartzCore.framework */; };
+		352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352E5A0C15069627003DB356 /* OnboardingViewController.m */; };
 		3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
 		3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
 		3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47D14D34E5300F853B9 /* CoreGraphics.framework */; };
@@ -14,12 +18,34 @@
 		3541B48614D34E5300F853B9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48514D34E5300F853B9 /* main.m */; };
 		3541B48A14D34E5300F853B9 /* SanoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48914D34E5300F853B9 /* SanoAppDelegate.m */; };
 		3541B48D14D34E5300F853B9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */; };
-		3541B49014D34E5300F853B9 /* SanoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B48F14D34E5300F853B9 /* SanoViewController.m */; };
 		3541B49814D34E5300F853B9 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B49714D34E5300F853B9 /* SenTestingKit.framework */; };
 		3541B49914D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
 		3541B49A14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
 		3541B4A214D34E5300F853B9 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3541B4A014D34E5300F853B9 /* InfoPlist.strings */; };
 		3541B4A514D34E5300F853B9 /* SanoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B4A414D34E5300F853B9 /* SanoTests.m */; };
+		3541B4B014D34F0000F853B9 /* SanoDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B4AF14D34F0000F853B9 /* SanoDashboardViewController.m */; };
+		3541B4B314D3511600F853B9 /* SanoSubstanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B4B214D3511600F853B9 /* SanoSubstanceViewController.m */; };
+		3541B4B614D3515600F853B9 /* Substance.m in Sources */ = {isa = PBXBuildFile; fileRef = 3541B4B514D3515600F853B9 /* Substance.m */; };
+		3585078614FD66A500D4548B /* Indicator Spot - Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 3585078514FD66A500D4548B /* Indicator Spot - Red.png */; };
+		3585078914FD66BE00D4548B /* Indicator Spot - Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 3585078814FD66BE00D4548B /* Indicator Spot - Green.png */; };
+		35D62B86150533930014C99E /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D62B85150533930014C99E /* MyManager.m */; };
+		35D62B8E150597980014C99E /* EditSubstancesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D62B8D150597980014C99E /* EditSubstancesCell.m */; };
+		35D62B91150598430014C99E /* EditDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D62B90150598430014C99E /* EditDashboardViewController.m */; };
+		35E2521B1559A3E0007556AC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E2521A1559A3E0007556AC /* libsqlite3.dylib */; };
+		35ED12FA14D365A700D6E92B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12F914D365A700D6E92B /* Default.png */; };
+		35ED12FF14D3773B00D6E92B /* Sodium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FC14D3773B00D6E92B /* Sodium.png */; };
+		35ED130014D3773B00D6E92B /* Calcium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FD14D3773B00D6E92B /* Calcium.png */; };
+		35ED130114D3773B00D6E92B /* Glucose.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FE14D3773B00D6E92B /* Glucose.png */; };
+		35ED130914D3775C00D6E92B /* Creatinine.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130314D3775C00D6E92B /* Creatinine.png */; };
+		35ED130A14D3775C00D6E92B /* BUN.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130414D3775C00D6E92B /* BUN.png */; };
+		35ED130B14D3775C00D6E92B /* Chloride.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130514D3775C00D6E92B /* Chloride.png */; };
+		35ED130C14D3775C00D6E92B /* CO2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130614D3775C00D6E92B /* CO2.png */; };
+		35ED130D14D3775C00D6E92B /* Potassium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130714D3775C00D6E92B /* Potassium.png */; };
+		35ED131014D3980300D6E92B /* View.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130F14D3980300D6E92B /* View.png */; };
+		35F1F6CA14FDC228002A112A /* Indicator Spot - Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */; };
+		35F1F6D214FDD4E6002A112A /* SubstancesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F1F6D114FDD4E6002A112A /* SubstancesCell.m */; };
+		35F1F6D614FDE1B6002A112A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6D514FDE1B6002A112A /* Icon.png */; };
+		35F1F6D814FDE1FD002A112A /* IconRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6D714FDE1FD002A112A /* IconRetina.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,25 +59,60 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		351CBFB91506BE5200C99CAD /* AlertsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsViewController.h; sourceTree = "<group>"; };
+		351CBFBA1506BE5200C99CAD /* AlertsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsViewController.m; sourceTree = "<group>"; };
+		351CBFBC1506D09200C99CAD /* AlertsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsCell.h; sourceTree = "<group>"; };
+		351CBFBD1506D09200C99CAD /* AlertsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsCell.m; sourceTree = "<group>"; };
+		35214CE315671D5600430E29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		352E5A0B15069627003DB356 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
+		352E5A0C15069627003DB356 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		3541B47514D34E5300F853B9 /* Sano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3541B47914D34E5300F853B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3541B47B14D34E5300F853B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3541B47D14D34E5300F853B9 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3541B48114D34E5300F853B9 /* Sano-Info.plist */ = {isa = PBXFileReference; path = "Sano-Info.plist"; sourceTree = "<group>"; };
+		3541B48114D34E5300F853B9 /* Sano-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Sano-Info.plist"; sourceTree = "<group>"; };
 		3541B48314D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3541B48514D34E5300F853B9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3541B48714D34E5300F853B9 /* Sano-Prefix.pch */ = {isa = PBXFileReference; path = "Sano-Prefix.pch"; sourceTree = "<group>"; };
-		3541B48814D34E5300F853B9 /* SanoAppDelegate.h */ = {isa = PBXFileReference; path = SanoAppDelegate.h; sourceTree = "<group>"; };
+		3541B48714D34E5300F853B9 /* Sano-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Sano-Prefix.pch"; sourceTree = "<group>"; };
+		3541B48814D34E5300F853B9 /* SanoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SanoAppDelegate.h; sourceTree = "<group>"; };
 		3541B48914D34E5300F853B9 /* SanoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoAppDelegate.m; sourceTree = "<group>"; };
 		3541B48C14D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		3541B48E14D34E5300F853B9 /* SanoViewController.h */ = {isa = PBXFileReference; path = SanoViewController.h; sourceTree = "<group>"; };
-		3541B48F14D34E5300F853B9 /* SanoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoViewController.m; sourceTree = "<group>"; };
 		3541B49614D34E5300F853B9 /* SanoTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SanoTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3541B49714D34E5300F853B9 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		3541B49F14D34E5300F853B9 /* SanoTests-Info.plist */ = {isa = PBXFileReference; path = "SanoTests-Info.plist"; sourceTree = "<group>"; };
+		3541B49F14D34E5300F853B9 /* SanoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SanoTests-Info.plist"; sourceTree = "<group>"; };
 		3541B4A114D34E5300F853B9 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3541B4A314D34E5300F853B9 /* SanoTests.h */ = {isa = PBXFileReference; path = SanoTests.h; sourceTree = "<group>"; };
+		3541B4A314D34E5300F853B9 /* SanoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SanoTests.h; sourceTree = "<group>"; };
 		3541B4A414D34E5300F853B9 /* SanoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SanoTests.m; sourceTree = "<group>"; };
+		3541B4AE14D34F0000F853B9 /* SanoDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SanoDashboardViewController.h; sourceTree = "<group>"; };
+		3541B4AF14D34F0000F853B9 /* SanoDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SanoDashboardViewController.m; sourceTree = "<group>"; };
+		3541B4B114D3511600F853B9 /* SanoSubstanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SanoSubstanceViewController.h; sourceTree = "<group>"; };
+		3541B4B214D3511600F853B9 /* SanoSubstanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SanoSubstanceViewController.m; sourceTree = "<group>"; };
+		3541B4B414D3515600F853B9 /* Substance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Substance.h; sourceTree = "<group>"; };
+		3541B4B514D3515600F853B9 /* Substance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Substance.m; sourceTree = "<group>"; };
+		3585078514FD66A500D4548B /* Indicator Spot - Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Indicator Spot - Red.png"; sourceTree = "<group>"; };
+		3585078814FD66BE00D4548B /* Indicator Spot - Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Indicator Spot - Green.png"; sourceTree = "<group>"; };
+		35D62B84150533930014C99E /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
+		35D62B85150533930014C99E /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
+		35D62B8C150597980014C99E /* EditSubstancesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditSubstancesCell.h; sourceTree = "<group>"; };
+		35D62B8D150597980014C99E /* EditSubstancesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditSubstancesCell.m; sourceTree = "<group>"; };
+		35D62B8F150598430014C99E /* EditDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDashboardViewController.h; sourceTree = "<group>"; };
+		35D62B90150598430014C99E /* EditDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDashboardViewController.m; sourceTree = "<group>"; };
+		35E2521A1559A3E0007556AC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		35ED12F914D365A700D6E92B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		35ED12FC14D3773B00D6E92B /* Sodium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sodium.png; sourceTree = "<group>"; };
+		35ED12FD14D3773B00D6E92B /* Calcium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calcium.png; sourceTree = "<group>"; };
+		35ED12FE14D3773B00D6E92B /* Glucose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glucose.png; sourceTree = "<group>"; };
+		35ED130314D3775C00D6E92B /* Creatinine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Creatinine.png; sourceTree = "<group>"; };
+		35ED130414D3775C00D6E92B /* BUN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BUN.png; sourceTree = "<group>"; };
+		35ED130514D3775C00D6E92B /* Chloride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chloride.png; sourceTree = "<group>"; };
+		35ED130614D3775C00D6E92B /* CO2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2.png; sourceTree = "<group>"; };
+		35ED130714D3775C00D6E92B /* Potassium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Potassium.png; sourceTree = "<group>"; };
+		35ED130F14D3980300D6E92B /* View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = View.png; sourceTree = "<group>"; };
+		35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Indicator Spot - Yellow.png"; sourceTree = "<group>"; };
+		35F1F6D014FDD4E6002A112A /* SubstancesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstancesCell.h; sourceTree = "<group>"; };
+		35F1F6D114FDD4E6002A112A /* SubstancesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubstancesCell.m; sourceTree = "<group>"; };
+		35F1F6D514FDE1B6002A112A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		35F1F6D714FDE1FD002A112A /* IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconRetina.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +120,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35214CE415671D5600430E29 /* QuartzCore.framework in Frameworks */,
+				35E2521B1559A3E0007556AC /* libsqlite3.dylib in Frameworks */,
 				3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */,
 				3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */,
 				3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */,
@@ -81,6 +144,9 @@
 		3541B46A14D34E5300F853B9 = {
 			isa = PBXGroup;
 			children = (
+				35E2521A1559A3E0007556AC /* libsqlite3.dylib */,
+				35F1F6D714FDE1FD002A112A /* IconRetina.png */,
+				35F1F6D514FDE1B6002A112A /* Icon.png */,
 				3541B47F14D34E5300F853B9 /* Sano */,
 				3541B49D14D34E5300F853B9 /* SanoTests */,
 				3541B47814D34E5300F853B9 /* Frameworks */,
@@ -100,6 +166,7 @@
 		3541B47814D34E5300F853B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				35214CE315671D5600430E29 /* QuartzCore.framework */,
 				3541B47914D34E5300F853B9 /* UIKit.framework */,
 				3541B47B14D34E5300F853B9 /* Foundation.framework */,
 				3541B47D14D34E5300F853B9 /* CoreGraphics.framework */,
@@ -114,8 +181,26 @@
 				3541B48814D34E5300F853B9 /* SanoAppDelegate.h */,
 				3541B48914D34E5300F853B9 /* SanoAppDelegate.m */,
 				3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */,
-				3541B48E14D34E5300F853B9 /* SanoViewController.h */,
-				3541B48F14D34E5300F853B9 /* SanoViewController.m */,
+				35D62B84150533930014C99E /* MyManager.h */,
+				35D62B85150533930014C99E /* MyManager.m */,
+				3541B4B414D3515600F853B9 /* Substance.h */,
+				3541B4B514D3515600F853B9 /* Substance.m */,
+				352E5A0B15069627003DB356 /* OnboardingViewController.h */,
+				352E5A0C15069627003DB356 /* OnboardingViewController.m */,
+				3541B4B114D3511600F853B9 /* SanoSubstanceViewController.h */,
+				3541B4B214D3511600F853B9 /* SanoSubstanceViewController.m */,
+				3541B4AE14D34F0000F853B9 /* SanoDashboardViewController.h */,
+				3541B4AF14D34F0000F853B9 /* SanoDashboardViewController.m */,
+				35D62B8F150598430014C99E /* EditDashboardViewController.h */,
+				35D62B90150598430014C99E /* EditDashboardViewController.m */,
+				351CBFB91506BE5200C99CAD /* AlertsViewController.h */,
+				351CBFBA1506BE5200C99CAD /* AlertsViewController.m */,
+				35F1F6D014FDD4E6002A112A /* SubstancesCell.h */,
+				35F1F6D114FDD4E6002A112A /* SubstancesCell.m */,
+				351CBFBC1506D09200C99CAD /* AlertsCell.h */,
+				351CBFBD1506D09200C99CAD /* AlertsCell.m */,
+				35D62B8C150597980014C99E /* EditSubstancesCell.h */,
+				35D62B8D150597980014C99E /* EditSubstancesCell.m */,
 				3541B48014D34E5300F853B9 /* Supporting Files */,
 			);
 			path = Sano;
@@ -124,6 +209,7 @@
 		3541B48014D34E5300F853B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				35ED130E14D3776B00D6E92B /* Images */,
 				3541B48114D34E5300F853B9 /* Sano-Info.plist */,
 				3541B48214D34E5300F853B9 /* InfoPlist.strings */,
 				3541B48514D34E5300F853B9 /* main.m */,
@@ -149,6 +235,26 @@
 				3541B4A014D34E5300F853B9 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		35ED130E14D3776B00D6E92B /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */,
+				3585078814FD66BE00D4548B /* Indicator Spot - Green.png */,
+				3585078514FD66A500D4548B /* Indicator Spot - Red.png */,
+				35ED130314D3775C00D6E92B /* Creatinine.png */,
+				35ED130414D3775C00D6E92B /* BUN.png */,
+				35ED130514D3775C00D6E92B /* Chloride.png */,
+				35ED130614D3775C00D6E92B /* CO2.png */,
+				35ED130714D3775C00D6E92B /* Potassium.png */,
+				35ED12FC14D3773B00D6E92B /* Sodium.png */,
+				35ED12FD14D3773B00D6E92B /* Calcium.png */,
+				35ED12FE14D3773B00D6E92B /* Glucose.png */,
+				35ED12F914D365A700D6E92B /* Default.png */,
+				35ED130F14D3980300D6E92B /* View.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +329,21 @@
 			files = (
 				3541B48414D34E5300F853B9 /* InfoPlist.strings in Resources */,
 				3541B48D14D34E5300F853B9 /* MainStoryboard.storyboard in Resources */,
+				35ED12FA14D365A700D6E92B /* Default.png in Resources */,
+				35ED12FF14D3773B00D6E92B /* Sodium.png in Resources */,
+				35ED130014D3773B00D6E92B /* Calcium.png in Resources */,
+				35ED130114D3773B00D6E92B /* Glucose.png in Resources */,
+				35ED130914D3775C00D6E92B /* Creatinine.png in Resources */,
+				35ED130A14D3775C00D6E92B /* BUN.png in Resources */,
+				35ED130B14D3775C00D6E92B /* Chloride.png in Resources */,
+				35ED130C14D3775C00D6E92B /* CO2.png in Resources */,
+				35ED130D14D3775C00D6E92B /* Potassium.png in Resources */,
+				35ED131014D3980300D6E92B /* View.png in Resources */,
+				3585078614FD66A500D4548B /* Indicator Spot - Red.png in Resources */,
+				3585078914FD66BE00D4548B /* Indicator Spot - Green.png in Resources */,
+				35F1F6CA14FDC228002A112A /* Indicator Spot - Yellow.png in Resources */,
+				35F1F6D614FDE1B6002A112A /* Icon.png in Resources */,
+				35F1F6D814FDE1FD002A112A /* IconRetina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -259,7 +380,16 @@
 			files = (
 				3541B48614D34E5300F853B9 /* main.m in Sources */,
 				3541B48A14D34E5300F853B9 /* SanoAppDelegate.m in Sources */,
-				3541B49014D34E5300F853B9 /* SanoViewController.m in Sources */,
+				3541B4B014D34F0000F853B9 /* SanoDashboardViewController.m in Sources */,
+				3541B4B314D3511600F853B9 /* SanoSubstanceViewController.m in Sources */,
+				3541B4B614D3515600F853B9 /* Substance.m in Sources */,
+				35F1F6D214FDD4E6002A112A /* SubstancesCell.m in Sources */,
+				35D62B86150533930014C99E /* MyManager.m in Sources */,
+				35D62B8E150597980014C99E /* EditSubstancesCell.m in Sources */,
+				35D62B91150598430014C99E /* EditDashboardViewController.m in Sources */,
+				352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */,
+				351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */,
+				351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +489,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**";
 				INFOPLIST_FILE = "Sano/Sano-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,7 +502,9 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
+				HEADER_SEARCH_PATHS = "/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**";
 				INFOPLIST_FILE = "Sano/Sano-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -420,7 +554,7 @@
 				3541B4A714D34E5300F853B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		3541B4A814D34E5300F853B9 /* Build configuration list for PBXNativeTarget "Sano" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +563,7 @@
 				3541B4AA14D34E5300F853B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 		3541B4AB14D34E5300F853B9 /* Build configuration list for PBXNativeTarget "SanoTests" */ = {
 			isa = XCConfigurationList;
@@ -437,6 +572,7 @@
 				3541B4AD14D34E5300F853B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

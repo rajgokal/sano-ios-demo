@@ -1,13 +1,13 @@
 //
-//  SanoViewController.h
+//  SubstanceDashboard.h
 //  Sano
 //
-//  Created by Raj Gokal on 1/27/12.
+//  Created by Raj Gokal on 2/2/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface SanoViewController : UIViewController
+@interface SubstanceDashboard : UITableViewCell
 
 @end
