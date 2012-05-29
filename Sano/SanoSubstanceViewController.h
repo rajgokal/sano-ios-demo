@@ -15,6 +15,8 @@
 
 @property (nonatomic, strong) Substance *currentSubstance;
 
+@property (nonatomic, weak) CPTXYGraph *graph;
+
 @property (weak, nonatomic) IBOutlet UIImageView *currentImage;
 
 @end

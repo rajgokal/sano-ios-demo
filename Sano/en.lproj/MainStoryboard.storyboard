@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11D50d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Alerts View Controller - Alerts-->
         <scene sceneID="cze-Be-JnZ">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA7-h9-6Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,6 +89,7 @@
             </objects>
             <point key="canvasLocation" x="1165" y="190"/>
         </scene>
+        <!--Sano Dashboard View Controller - Metabolic Panel-->
         <scene sceneID="DAU-9f-r7l">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOe-Hd-LZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -180,6 +183,7 @@
             </objects>
             <point key="canvasLocation" x="1557" y="191"/>
         </scene>
+        <!--Onboarding View Controller - Settings-->
         <scene sceneID="Jhd-Uc-4cU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLf-2e-0Ck" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,6 +277,7 @@
             </objects>
             <point key="canvasLocation" x="1557" y="791"/>
         </scene>
+        <!--Onboarding View Controller - Disease Data-->
         <scene sceneID="qSq-5a-WI3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GgB-RW-Ini" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -398,6 +403,7 @@
             </objects>
             <point key="canvasLocation" x="1953" y="791"/>
         </scene>
+        <!--View Controller-->
         <scene sceneID="KKe-X9-f98">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hl4-1e-nI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -463,6 +469,7 @@
             </objects>
             <point key="canvasLocation" x="1953" y="1399"/>
         </scene>
+        <!--Edit Dashboard View Controller - Edit-->
         <scene sceneID="pA3-aO-btM">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sub-lC-61N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -538,18 +545,22 @@
             </objects>
             <point key="canvasLocation" x="2359" y="1399"/>
         </scene>
+        <!--Sano Substance View Controller - Detail-->
         <scene sceneID="gd0-cw-TL9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjL-B9-Pdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="WrM-dG-lcw" customClass="SanoSubstanceViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ldn-JP-OmW">
+                    <view key="view" contentMode="scaleToFill" id="ldn-JP-OmW" customClass="CPTGraphHostingView">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" id="Tls-aF-JRB">
                                 <rect key="frame" x="0.0" y="-10" width="320" height="436"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" none="YES"/>
+                                </accessibility>
                                 <gestureRecognizers/>
                             </imageView>
                         </subviews>
@@ -565,6 +576,7 @@
             </objects>
             <point key="canvasLocation" x="1943" y="191"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Cj1-BE-M4v">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGd-zz-kNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -597,6 +609,9 @@
         </class>
         <class className="AlertsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsViewController.h"/>
+        </class>
+        <class className="CPTGraphHostingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
         </class>
         <class className="EditDashboardViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDashboardViewController.h"/>
