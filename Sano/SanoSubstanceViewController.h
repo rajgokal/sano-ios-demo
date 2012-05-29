@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "Substance.h"
 #import "MyManager.h"
+#import "CorePlot-CocoaTouch.h"
 
-@interface SanoSubstanceViewController : UIViewController
+@interface SanoSubstanceViewController : UIViewController <CPTPlotDataSource>
 
 @property (nonatomic, strong) Substance *currentSubstance;
 

@@ -46,6 +46,7 @@
 		35F1F6D214FDD4E6002A112A /* SubstancesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F1F6D114FDD4E6002A112A /* SubstancesCell.m */; };
 		35F1F6D614FDE1B6002A112A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6D514FDE1B6002A112A /* Icon.png */; };
 		35F1F6D814FDE1FD002A112A /* IconRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6D714FDE1FD002A112A /* IconRetina.png */; };
+		A1E7886115751935007A86FE /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E7885D15751904007A86FE /* libCorePlot-CocoaTouch.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3541B47414D34E5300F853B9;
 			remoteInfo = Sano;
+		};
+		A1E7885C15751904007A86FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = BC9B83470FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
+		};
+		A1E7885F1575191A007A86FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = BC9B83460FB8A0A40035D8DA;
+			remoteInfo = "CorePlot-CocoaTouch";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -113,6 +128,7 @@
 		35F1F6D114FDD4E6002A112A /* SubstancesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubstancesCell.m; sourceTree = "<group>"; };
 		35F1F6D514FDE1B6002A112A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		35F1F6D714FDE1FD002A112A /* IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconRetina.png; sourceTree = "<group>"; };
+		A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +140,7 @@
 				35E2521B1559A3E0007556AC /* libsqlite3.dylib in Frameworks */,
 				3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */,
 				3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */,
+				A1E7886115751935007A86FE /* libCorePlot-CocoaTouch.a in Frameworks */,
 				3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,6 +168,7 @@
 				3541B49D14D34E5300F853B9 /* SanoTests */,
 				3541B47814D34E5300F853B9 /* Frameworks */,
 				3541B47614D34E5300F853B9 /* Products */,
+				A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -257,6 +275,14 @@
 			name = Images;
 			sourceTree = "<group>";
 		};
+		A1E7885415751903007A86FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7885D15751904007A86FE /* libCorePlot-CocoaTouch.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -271,6 +297,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				A1E788601575191A007A86FE /* PBXTargetDependency */,
 			);
 			name = Sano;
 			productName = Sano;
@@ -314,6 +341,12 @@
 			mainGroup = 3541B46A14D34E5300F853B9;
 			productRefGroup = 3541B47614D34E5300F853B9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A1E7885415751903007A86FE /* Products */;
+					ProjectRef = A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3541B47414D34E5300F853B9 /* Sano */,
@@ -321,6 +354,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A1E7885D15751904007A86FE /* libCorePlot-CocoaTouch.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libCorePlot-CocoaTouch.a";
+			remoteRef = A1E7885C15751904007A86FE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3541B47314D34E5300F853B9 /* Resources */ = {
@@ -409,6 +452,11 @@
 			target = 3541B47414D34E5300F853B9 /* Sano */;
 			targetProxy = 3541B49B14D34E5300F853B9 /* PBXContainerItemProxy */;
 		};
+		A1E788601575191A007A86FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CorePlot-CocoaTouch";
+			targetProxy = A1E7885F1575191A007A86FE /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -489,7 +537,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
-				HEADER_SEARCH_PATHS = "/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**";
+				HEADER_SEARCH_PATHS = (
+					"/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**",
+					"\"${PROJECT_DIR}/../core-plot/framework\"/**",
+				);
 				INFOPLIST_FILE = "Sano/Sano-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -502,7 +553,10 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Sano/Sano-Prefix.pch";
-				HEADER_SEARCH_PATHS = "/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**";
+				HEADER_SEARCH_PATHS = (
+					"/Users/Raj/Documents/Work/CorePlot_1.0/Source/framework/**",
+					"\"${PROJECT_DIR}/../core-plot/framework\"/**",
+				);
 				INFOPLIST_FILE = "Sano/Sano-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
