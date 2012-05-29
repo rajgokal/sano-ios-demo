@@ -15,7 +15,7 @@
 @synthesize graph = _graph;
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return (NSUInteger) 51;
+    return (NSUInteger) 151;
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot 
@@ -73,14 +73,21 @@
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
     hostingView.hostedGraph = self.graph;
+    CGColorSpaceRef rgbColorspace = CGColorSpaceCreateDeviceRGB();
+    CGFloat values[4] = {1.0, 0.0, 0.0, 1.0}; 
+    CGColorRef red = CGColorCreate(rgbColorspace, values); 
+    CGColorSpaceRelease(rgbColorspace);
+    
+    CPTColor *color = [[CPTColor alloc] initWithCGColor:CGColorCreate(rgbColorspace, values)];
+    self.graph.fill = [CPTFill fillWithColor:color];
     self.graph.paddingLeft = 20.0;
     self.graph.paddingTop = 20.0;
     self.graph.paddingRight = 20.0;
     self.graph.paddingBottom = 20.0;
-    
+
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-6) length:CPTDecimalFromFloat(12)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-5) length:CPTDecimalFromFloat(30)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-5) length:CPTDecimalFromFloat(50)];
 
     
     CPTScatterPlot *xSquaredPlot = [[CPTScatterPlot alloc]
@@ -88,9 +95,9 @@
     xSquaredPlot.identifier = @"X Squared Plot";
     xSquaredPlot.dataSource = self;
 
-    CPTPlotSymbol *greenCirclePlotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
+    CPTPlotSymbol *greenCirclePlotSymbol = [CPTPlotSymbol diamondPlotSymbol];
     greenCirclePlotSymbol.fill = [CPTFill fillWithColor:[CPTColor greenColor]];
-    greenCirclePlotSymbol.size = CGSizeMake(2.0, 2.0);
+    greenCirclePlotSymbol.size = CGSizeMake(4.0, 4.0);
     xSquaredPlot.plotSymbol = greenCirclePlotSymbol;
     
     [self.graph addPlot:xSquaredPlot];
