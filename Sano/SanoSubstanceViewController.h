@@ -13,10 +13,12 @@
 
 @interface SanoSubstanceViewController : UIViewController <CPTPlotDataSource>
 
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer;
+
+- (IBAction)handleTap:(UITapGestureRecognizer *) recognizer;
+
 @property (nonatomic, strong) Substance *currentSubstance;
 
 @property (nonatomic, weak) CPTXYGraph *graph;
-
-@property (weak, nonatomic) IBOutlet UIImageView *currentImage;
 
 @end

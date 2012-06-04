@@ -11,7 +11,6 @@
 @implementation SanoSubstanceViewController
 
 @synthesize currentSubstance;
-@synthesize currentImage;
 @synthesize graph = _graph;
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
@@ -52,6 +51,19 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
+    NSLog(@"handling pan");
+    CGPoint translation = [recognizer translationInView:self.view];
+    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x, 
+                                         recognizer.view.center.y + translation.y);
+    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
+    
+}
+
+- (IBAction)handleTap:(UITapGestureRecognizer *)recognizer {
+    NSLog(@"handling tap");
+}
+
 #pragma mark - View lifecycle
 
 /*
@@ -73,18 +85,23 @@
     
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
     hostingView.hostedGraph = self.graph;
-    CGColorSpaceRef rgbColorspace = CGColorSpaceCreateDeviceRGB();
-    CGFloat values[4] = {1.0, 0.0, 0.0, 1.0}; 
-    CGColorRef red = CGColorCreate(rgbColorspace, values); 
-    CGColorSpaceRelease(rgbColorspace);
+//    CGColorSpaceRef rgbColorspace = CGColorSpaceCreateDeviceRGB();
+//    CGFloat values[4] = {0.9, 0.9, 0.9, 1.0};
+//    CGColorSpaceRelease(rgbColorspace);
+//    
+//    CPTColor *color = [[CPTColor alloc] initWithCGColor:CGColorCreate(rgbColorspace, values)];
+//    self.graph.fill = [CPTFill fillWithColor:color];
+//    self.graph.paddingLeft = 20.0;
+//    self.graph.paddingTop = 20.0;
+//    self.graph.paddingRight = 20.0;
+//    self.graph.paddingBottom = 20.0;
     
-    CPTColor *color = [[CPTColor alloc] initWithCGColor:CGColorCreate(rgbColorspace, values)];
-    self.graph.fill = [CPTFill fillWithColor:color];
-    self.graph.paddingLeft = 20.0;
-    self.graph.paddingTop = 20.0;
-    self.graph.paddingRight = 20.0;
-    self.graph.paddingBottom = 20.0;
-
+    CPTTheme *theme = [CPTTheme themeNamed:kCPTStocksTheme];
+    [self.graph applyTheme:theme];
+    
+//    CPTAxis * axis = self.graph.axisSet.axes.lastObject;
+//    axis.majorIntervalLength = (NSDecima ) 10.0;
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-6) length:CPTDecimalFromFloat(12)];
     plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(-5) length:CPTDecimalFromFloat(50)];
@@ -107,7 +124,6 @@
 - (void)viewDidUnload
 {
 //    [self setCurrentMolecule:nil];
-    [self setCurrentImage:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -116,7 +132,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end
