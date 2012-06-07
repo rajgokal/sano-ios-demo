@@ -556,22 +556,15 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="Dfo-p3-cs4" appends="YES" id="L6k-LP-j56"/>
+                            <outletCollection property="gestureRecognizers" destination="GQ5-ca-0kX" appends="YES" id="A5e-4f-XTI"/>
                         </connections>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="OrR-fe-B7C"/>
                 </viewController>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="WHR-Fi-GKD">
+                <tapGestureRecognizer id="GQ5-ca-0kX">
                     <connections>
-                        <action selector="handlePan:" destination="WrM-dG-lcw" id="LA9-51-XZW"/>
-                        <outlet property="delegate" destination="74Z-cT-Acp" id="FWT-wz-nUw"/>
-                    </connections>
-                </panGestureRecognizer>
-                <tapGestureRecognizer id="Dfo-p3-cs4">
-                    <connections>
-                        <action selector="handleTap:" destination="WrM-dG-lcw" id="FXd-8X-fse"/>
-                        <outlet property="delegate" destination="74Z-cT-Acp" id="mAH-Mc-oaW"/>
+                        <action selector="handleTap:" destination="WrM-dG-lcw" id="gBJ-c0-Yvc"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -645,7 +638,6 @@
         <class className="SanoSubstanceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoSubstanceViewController.h"/>
             <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
                 <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
             </relationships>
         </class>

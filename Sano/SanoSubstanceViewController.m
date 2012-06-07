@@ -10,111 +10,48 @@
 
 @implementation SanoSubstanceViewController
 
+@synthesize dataForPlot;
 @synthesize currentSubstance;
-@synthesize graph = _graph;
-@synthesize dataForPlot = _dataForPlot;
 
--(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
-    return [self.dataForPlot count];
-}
-
--(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
-    NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-    NSNumber *num = [[self.dataForPlot objectAtIndex:index] valueForKey:key];
-    
-    // Green plot gets shifted above the blue
-    if ( [(NSString *)plot.identifier isEqualToString:@"Green Plot"] ) {
-        if ( fieldEnum == CPTScatterPlotFieldY ) {
-            num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-        }
-    }
-    return num;
-}
- 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
-    NSLog(@"handling pan");
-    CGPoint translation = [recognizer translationInView:self.view];
-    recognizer.view.center = CGPointMake(recognizer.view.center.x + translation.x, 
-                                         recognizer.view.center.y + translation.y);
-    [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
-    
-}
-
-- (IBAction)handleTap:(UITapGestureRecognizer *)recognizer {
-    NSLog(@"handling tap");
-}
-
-#pragma mark - View lifecycle
-
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-
-
-
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    // Create graph from theme
+    graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
-    [self.graph applyTheme:theme];
+    [graph applyTheme:theme];
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
-
-    hostingView.hostedGraph = self.graph;
+    hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
+    hostingView.hostedGraph     = graph;
     
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
+    graph.paddingLeft   = 0.0;
+    graph.paddingTop    = 0.0;
+    graph.paddingRight  = 0.0;
+    graph.paddingBottom = 0.0;
     
+    // Setup plot space
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(2.0)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(3.0)];
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(4.0)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(4.0)];
     
     // Axes
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     x.majorIntervalLength         = CPTDecimalFromString(@"0.5");
-    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
+    x.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     x.minorTicksPerInterval       = 2;
-    NSArray *exclusionRanges = [NSArray arrayWithObjects:
-                                [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.99) length:CPTDecimalFromFloat(0.02)],
-                                [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.99) length:CPTDecimalFromFloat(0.02)],
-                                [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(2.99) length:CPTDecimalFromFloat(0.02)],
-                                nil];
-    x.labelExclusionRanges = exclusionRanges;
     
     CPTXYAxis *y = axisSet.yAxis;
     y.majorIntervalLength         = CPTDecimalFromString(@"0.5");
     y.minorTicksPerInterval       = 5;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"2");
-    exclusionRanges               = [NSArray arrayWithObjects:
-                                     [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.99) length:CPTDecimalFromFloat(0.02)],
-                                     [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.99) length:CPTDecimalFromFloat(0.02)],
-                                     [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(3.99) length:CPTDecimalFromFloat(0.02)],
-                                     nil];
-    y.labelExclusionRanges = exclusionRanges;
+    y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     y.delegate             = self;
     
     // Create a blue plot area
@@ -126,7 +63,7 @@
     boundLinePlot.dataLineStyle = lineStyle;
     boundLinePlot.identifier    = @"Blue Plot";
     boundLinePlot.dataSource    = self;
-    [self.graph addPlot:boundLinePlot];
+    [graph addPlot:boundLinePlot];
     
     // Do a blue gradient
     CPTColor *areaColor1       = [CPTColor colorWithComponentRed:0.3 green:0.3 blue:1.0 alpha:0.8];
@@ -150,10 +87,19 @@
     lineStyle                        = [CPTMutableLineStyle lineStyle];
     lineStyle.lineWidth              = 3.f;
     lineStyle.lineColor              = [CPTColor greenColor];
-    lineStyle.dashPattern            = [NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0f], [NSNumber numberWithFloat:5.0f], nil];
+//    lineStyle.dashPattern            = [NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0f], [NSNumber numberWithFloat:5.0f], nil];
     dataSourceLinePlot.dataLineStyle = lineStyle;
     dataSourceLinePlot.identifier    = @"Green Plot";
     dataSourceLinePlot.dataSource    = self;
+    
+    // Add plot symbols
+    CPTMutableLineStyle *greenLineStyle = [CPTMutableLineStyle lineStyle];
+    greenLineStyle.lineColor = [CPTColor blackColor];
+    CPTPlotSymbol *greenPlotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
+    greenPlotSymbol.fill          = [CPTFill fillWithColor:[CPTColor blueColor]];
+    greenPlotSymbol.lineStyle     = greenLineStyle;
+    greenPlotSymbol.size          = CGSizeMake(10.0, 10.0);
+    dataSourceLinePlot.plotSymbol = greenPlotSymbol;
     
     // Put an area gradient under the plot above
     CPTColor *areaColor       = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
@@ -165,10 +111,10 @@
     
     // Animate in the new plot, as an example
     dataSourceLinePlot.opacity = 0.0f;
-    [self.graph addPlot:dataSourceLinePlot];
+    [graph addPlot:dataSourceLinePlot];
     
     CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    fadeInAnimation.duration            = 1.0f;
+    fadeInAnimation.duration            = 2.0f;
     fadeInAnimation.removedOnCompletion = NO;
     fadeInAnimation.fillMode            = kCAFillModeForwards;
     fadeInAnimation.toValue             = [NSNumber numberWithFloat:1.0];
@@ -178,26 +124,109 @@
     NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
     NSUInteger i;
     for ( i = 0; i < 60; i++ ) {
-        id x = [NSNumber numberWithFloat:1 + i * 0.05];
+        id x = [NSNumber numberWithFloat:i * 0.05];
         id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
         [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
     }
     self.dataForPlot = contentArray;
     
+#ifdef PERFORMANCE_TEST
+    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
+#endif
 }
 
-- (void)viewDidUnload
+-(void)changePlotRange
 {
-//    [self setCurrentMolecule:nil];
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    // Setup plot space
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    
+    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
+    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+#pragma mark -
+#pragma mark Plot Data Source Methods
+
+-(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-    // Return YES for supported orientations
-    return YES;//(interfaceOrientation == UIInterfaceOrientationPortrait);
+    return [dataForPlot count];
 }
 
+-(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
+{
+    NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+    NSNumber *num = [[dataForPlot objectAtIndex:index] valueForKey:key];
+    
+    // Green plot gets shifted above the blue
+    if ( [(NSString *)plot.identifier isEqualToString:@"Green Plot"] ) {
+        if ( fieldEnum == CPTScatterPlotFieldY ) {
+            num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
+        }
+    }
+    return num;
+}
+
+#pragma mark -
+#pragma mark Axis Delegate Methods
+
+-(BOOL)axis:(CPTAxis *)axis shouldUpdateAxisLabelsAtLocations:(NSSet *)locations
+{
+    static CPTTextStyle *positiveStyle = nil;
+    static CPTTextStyle *negativeStyle = nil;
+    
+    NSNumberFormatter *formatter = axis.labelFormatter;
+    CGFloat labelOffset          = axis.labelOffset;
+    NSDecimalNumber *zero        = [NSDecimalNumber zero];
+    
+    NSMutableSet *newLabels = [NSMutableSet set];
+    
+    for ( NSDecimalNumber *tickLocation in locations ) {
+        CPTTextStyle *theLabelTextStyle;
+        
+        if ( [tickLocation isGreaterThanOrEqualTo:zero] ) {
+            if ( !positiveStyle ) {
+                CPTMutableTextStyle *newStyle = [axis.labelTextStyle mutableCopy];
+                newStyle.color = [CPTColor greenColor];
+                positiveStyle  = newStyle;
+            }
+            theLabelTextStyle = positiveStyle;
+        }
+        else {
+            if ( !negativeStyle ) {
+                CPTMutableTextStyle *newStyle = [axis.labelTextStyle mutableCopy];
+                newStyle.color = [CPTColor redColor];
+                negativeStyle  = newStyle;
+            }
+            theLabelTextStyle = negativeStyle;
+        }
+        
+        NSString *labelString       = [formatter stringForObjectValue:tickLocation];
+        CPTTextLayer *newLabelLayer = [[CPTTextLayer alloc] initWithText:labelString style:theLabelTextStyle];
+        
+        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
+        newLabel.tickLocation = tickLocation.decimalValue;
+        newLabel.offset       = labelOffset;
+        
+        [newLabels addObject:newLabel];
+    }
+    
+    axis.axisLabels = newLabels;
+    
+    return NO;
+}
+
+- (IBAction)handleTap:(UITapGestureRecognizer *)sender {
+    NSLog(@"handling tap");
+    NSLog(dataForPlot.description);
+    
+    id x = [[dataForPlot lastObject] objectForKey:@"x"];
+    NSNumber *nextX = [NSNumber numberWithDouble:[x doubleValue] + 1];
+    id y = [[dataForPlot lastObject] objectForKey:@"y"];
+    NSNumber *nextY = [NSNumber numberWithDouble:[y doubleValue] + 1];
+    
+    
+    
+    [dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
+    [graph reloadData];
+}
 @end
