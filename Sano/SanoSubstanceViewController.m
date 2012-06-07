@@ -18,6 +18,38 @@
     return YES;
 }
 
+-(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis {
+    NSArray *copy = [dataForPlot copy];
+    NSArray *sortedCopy = [copy sortedArrayUsingComparator:^(id a, id b){
+        id first = [a objectForKey:@"x"];
+        id second = [b objectForKey:@"x"];
+        if (extrema == @"min") {
+            return [first compare:second];
+        }
+        else {
+            return [second compare:first];
+        }
+    }];
+
+    return [[sortedCopy.lastObject objectForKey:@"x"] doubleValue];
+}
+
+-(double) minXValue {
+    return [self extrema:@"min" ForAxis:@"x"];
+}
+
+-(double) minYValue {
+    return [self extrema:@"min" ForAxis:@"x"];
+}
+
+-(double) maxXValue {
+    return [self extrema:@"min" ForAxis:@"x"];
+}
+
+-(double) maxYValue {
+    return [self extrema:@"min" ForAxis:@"x"];
+}
+
 -(void)viewDidLoad
 {
     [super viewDidLoad];
@@ -130,9 +162,8 @@
     }
     self.dataForPlot = contentArray;
     
-#ifdef PERFORMANCE_TEST
-    [NSTimer scheduledTimerWithTimeInterval:2.0 target:self selector:@selector(changePlotRange) userInfo:nil repeats:YES];
-#endif
+
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
 }
 
 -(void)changePlotRange
@@ -217,16 +248,22 @@
 
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender {
     NSLog(@"handling tap");
-    NSLog(dataForPlot.description);
-    
+    NSLog([NSNumber numberWithDouble:[self minXValue]].description);
+//    [self addDataPoint];
+    // select the data point
+}
+
+-(void)addDataPoint {
     id x = [[dataForPlot lastObject] objectForKey:@"x"];
-    NSNumber *nextX = [NSNumber numberWithDouble:[x doubleValue] + 1];
+    NSNumber *nextX = [NSNumber numberWithDouble:[x doubleValue] + 0.05];
     id y = [[dataForPlot lastObject] objectForKey:@"y"];
-    NSNumber *nextY = [NSNumber numberWithDouble:[y doubleValue] + 1];
+    NSNumber *nextY = [NSNumber numberWithDouble:[y doubleValue] + rand()/(float)RAND_MAX - 0.5];
     
     
     
     [dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
     [graph reloadData];
+    
 }
+
 @end
