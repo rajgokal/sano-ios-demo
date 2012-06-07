@@ -21,4 +21,6 @@
 
 @property (nonatomic, weak) CPTXYGraph *graph;
 
+@property (nonatomic, weak) NSMutableArray * dataForPlot;
+
 @end
