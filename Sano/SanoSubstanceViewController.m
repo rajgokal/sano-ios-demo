@@ -18,20 +18,34 @@
     return YES;
 }
 
+-(CGPoint)plotSpace:(CPTPlotSpace *)space willDisplaceBy:(CGPoint)displacement
+{
+    return CGPointMake(displacement.x, 0);
+}
+
+-(CPTPlotRange *)plotSpace:(CPTPlotSpace *)space willChangePlotRangeTo:(CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
+{
+    NSLog(@"in willChangePlotRangeTo");
+    if (coordinate == CPTCoordinateY) {
+        newRange = ((CPTXYPlotSpace*)space).yRange;
+    }
+    return newRange;
+}
+
 -(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis {
     NSArray *copy = [dataForPlot copy];
-    NSArray *sortedCopy = [copy sortedArrayUsingComparator:^(id a, id b){
-        id first = [a objectForKey:@"x"];
-        id second = [b objectForKey:@"x"];
-        if (extrema == @"min") {
-            return [first compare:second];
-        }
-        else {
-            return [second compare:first];
-        }
-    }];
 
-    return [[sortedCopy.lastObject objectForKey:@"x"] doubleValue];
+    NSArray *sortedCopy = [copy sortedArrayUsingComparator:^(id a, id b){
+        id first = [a objectForKey:axis];
+        id second = [b objectForKey:axis];
+        return [first compare:second];
+    }];
+    if (extrema == @"max") {
+        return [[sortedCopy.lastObject objectForKey:axis] doubleValue];
+    }
+    else {
+        return [[[sortedCopy objectAtIndex:1] objectForKey:axis] doubleValue];
+    }
 }
 
 -(double) minXValue {
@@ -39,20 +53,30 @@
 }
 
 -(double) minYValue {
-    return [self extrema:@"min" ForAxis:@"x"];
+    return [self extrema:@"min" ForAxis:@"y"];
 }
 
 -(double) maxXValue {
-    return [self extrema:@"min" ForAxis:@"x"];
+    return [self extrema:@"max" ForAxis:@"x"];
 }
 
 -(double) maxYValue {
-    return [self extrema:@"min" ForAxis:@"x"];
+    return [self extrema:@"max" ForAxis:@"y"];
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Add some initial data
+    NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
+    NSUInteger i;
+    for ( i = 0; i < 60; i++ ) {
+        id x = [NSNumber numberWithFloat:i * 0.05];
+        id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
+        [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
+    }
+    self.dataForPlot = contentArray;    
     
     // Create graph from theme
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
@@ -67,11 +91,19 @@
     graph.paddingRight  = 0.0;
     graph.paddingBottom = 0.0;
     
+    double minX = [self minXValue];
+    double minY = [self minYValue];
+    double maxX = [self maxXValue];
+    double maxY = 4.0;//[self maxYValue];
+    double xLength = maxX - minX;
+    double yLength = maxY - minY;
+
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(4.0)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(1.0) length:CPTDecimalFromFloat(4.0)];
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) minX - 0.5) length:CPTDecimalFromFloat((float) xLength + 2)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) minY - 1) length:CPTDecimalFromFloat((float) yLength + 1)];
+    plotSpace.delegate = self;
     
     // Axes
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
@@ -150,30 +182,27 @@
     fadeInAnimation.removedOnCompletion = NO;
     fadeInAnimation.fillMode            = kCAFillModeForwards;
     fadeInAnimation.toValue             = [NSNumber numberWithFloat:1.0];
-    [dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];
-    
-    // Add some initial data
-    NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
-    NSUInteger i;
-    for ( i = 0; i < 60; i++ ) {
-        id x = [NSNumber numberWithFloat:i * 0.05];
-        id y = [NSNumber numberWithFloat:1.2 * rand() / (float)RAND_MAX + 1.2];
-        [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil]];
-    }
-    self.dataForPlot = contentArray;
-    
+    [dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];    
 
     [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
 }
 
--(void)changePlotRange
-{
-    // Setup plot space
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
-    
-    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
-    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat(0.0) length:CPTDecimalFromFloat(3.0 + 2.0 * rand() / RAND_MAX)];
-}
+//-(void)changePlotRange
+//{
+//    // Setup plot space
+//    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+//    double minX = [self minXValue];
+//    double minY = [self minYValue];
+//    double maxX = [self maxXValue];
+//    double maxY = [self maxYValue];
+//    double xLength = maxX - minX;
+//    double yLength = maxY - minY;
+//    
+//    plotSpace.xRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float)minX) length:CPTDecimalFromFloat((float)xLength)];
+//    plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float)minY) length:CPTDecimalFromFloat((float)yLength)];
+//    NSLog(@"in changePlotRange");
+//    plotSpace.delegate = self.plotSpaceDelegate;
+//}
 
 #pragma mark -
 #pragma mark Plot Data Source Methods
@@ -248,7 +277,7 @@
 
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender {
     NSLog(@"handling tap");
-    NSLog([NSNumber numberWithDouble:[self minXValue]].description);
+    NSLog(@"%a", [NSNumber numberWithDouble:[self minXValue]]);
 //    [self addDataPoint];
     // select the data point
 }
@@ -263,6 +292,7 @@
     
     [dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
     [graph reloadData];
+//    [self changePlotRange];
     
 }
 
