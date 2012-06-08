@@ -19,6 +19,8 @@
     NSMutableArray *dataForPlot;
 }
 
+- (void) addDataPoint;
+
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender;
 
 @property (nonatomic, strong) NSMutableArray *dataForPlot;
