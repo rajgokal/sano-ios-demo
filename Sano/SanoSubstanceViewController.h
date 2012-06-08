@@ -11,7 +11,7 @@
 #import "MyManager.h"
 #import "CorePlot-CocoaTouch.h"
 
-@interface SanoSubstanceViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate, CPTPlotSpaceDelegate>
+@interface SanoSubstanceViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate, CPTPlotSpaceDelegate, CPTPlotDelegate>
 
 {
     CPTXYGraph *graph;
