@@ -16,4 +16,6 @@ build/*
 *.perspectivev3
 *.pbxuser
 *.xcworkspace
+Sano.xcodeproj/project.pbxproj
+Sano.xcodeproj/project.xcworkspace/xcuserdata/Raj.xcuserdatad/UserInterfaceState.xcuserstate
 xcuserdata
