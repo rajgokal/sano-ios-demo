@@ -51,7 +51,44 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
 {
-    self.selectedIndex = index;
+    if ( symbolTextAnnotation ) {
+        [graph.plotAreaFrame.plotArea removeAnnotation:symbolTextAnnotation];
+        symbolTextAnnotation = nil;
+    }
+    
+    // Setup a style for the annotation
+    CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
+    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
+    hitAnnotationTextStyle.fontSize = 16.0f;
+    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
+    
+    // Determine point of symbol in plot coordinates
+    NSNumber *x          = [[dataForPlot objectAtIndex:index] valueForKey:@"x"];
+    NSNumber *y          = [[dataForPlot objectAtIndex:index] valueForKey:@"y"];
+    NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
+    
+    // Add annotation
+    // First make a string for the y value
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setMaximumFractionDigits:2];
+    NSString *yString = [formatter stringFromNumber:y];
+    
+    // Now add the annotation to the plot area
+    CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:yString style:hitAnnotationTextStyle];
+    symbolTextAnnotation              = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    symbolTextAnnotation.contentLayer = textLayer;
+    symbolTextAnnotation.displacement = CGPointMake(0.0f, 20.0f);
+    [graph.plotAreaFrame.plotArea addAnnotation:symbolTextAnnotation];
+
+}
+
+-(BOOL)plotSpace:(CPTPlotSpace *)space shouldHandlePointingDeviceDownEvent:(id)event atPoint:(CGPoint)point
+{
+    if ( symbolTextAnnotation ) {
+        [graph.plotAreaFrame.plotArea removeAnnotation:symbolTextAnnotation];
+        symbolTextAnnotation = nil;
+    }
+    return YES;
 }
 
 -(CGPoint)plotSpace:(CPTPlotSpace *)space willDisplaceBy:(CGPoint)displacement
@@ -150,18 +187,20 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void)setupAxes {
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
-    x.majorIntervalLength         = CPTDecimalFromString(@"2.5");
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble([self minYValue] - 0.3);
+    x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     x.minorTicksPerInterval       = 2;
+    x.preferredNumberOfMajorTicks = 6;
     
     CPTXYAxis *y = axisSet.yAxis;
-    y.majorIntervalLength         = CPTDecimalFromString(@"0.5");
-    y.minorTicksPerInterval       = 5;
     y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     y.labelOffset                 = -35;
     y.delegate             = self;
-    // Create the acceptable threshold guide
+    y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
+    y.preferredNumberOfMajorTicks = 4;
+    y.minorTicksPerInterval       = 5;
     
+    // Create the acceptable threshold guide
     CPTFill *fill = [CPTFill fillWithColor:[CPTColor grayColor]];
     CPTPlotRange *fillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble([self midYValue] - 0.2) length:CPTDecimalFromDouble([self midYValue] + 0.2)];
     
@@ -185,18 +224,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     dataSourceLinePlot.plotSymbolMarginForHitDetection = 5.0;
     
     [graph addPlot:dataSourceLinePlot];
-    
-    // Create a plot for the selection marker
-    CPTScatterPlot *selectionPlot = [[CPTScatterPlot alloc] init];
-    selectionPlot.identifier     = SELECTION_PLOT;
-    
-    lineStyle                   = [dataSourceLinePlot.dataLineStyle mutableCopy];
-    lineStyle.lineWidth         = 3.0;
-    lineStyle.lineColor         = [CPTColor redColor];
-    selectionPlot.dataLineStyle = lineStyle;
-    selectionPlot.dataSource = self;
-    
-    [graph addPlot:selectionPlot];
 
     // Add plot symbols
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
@@ -206,6 +233,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(1.0, 1.0);
     dataSourceLinePlot.plotSymbol = plotSymbol;
+
 }
 
 -(void)viewDidLoad
@@ -216,51 +244,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     [self setupAxes];
     [self setupScatterPlots];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];    
-    
-    // Begin Green plot
-    
-    // Create a green plot area
-//    CPTScatterPlot *dataSourceLinePlot = [[CPTScatterPlot alloc] init];
-//    lineStyle                        = [CPTMutableLineStyle lineStyle];
-//    lineStyle.lineWidth              = 3.f;
-//    lineStyle.lineColor              = [CPTColor greenColor];
-//    dataSourceLinePlot.dataLineStyle = lineStyle;
-//    dataSourceLinePlot.identifier    = @"Green Plot";
-//    dataSourceLinePlot.dataSource    = self;
-//    dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
-    
-    // Add plot symbols
-//    CPTMutableLineStyle *greenLineStyle = [CPTMutableLineStyle lineStyle];
-//    greenLineStyle.lineColor = [CPTColor blackColor];
-//    CPTPlotSymbol *greenPlotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-//    greenPlotSymbol.fill          = [CPTFill fillWithColor:[CPTColor blueColor]];
-//    greenPlotSymbol.lineStyle     = greenLineStyle;
-//    greenPlotSymbol.size          = CGSizeMake(1.0, 1.0);
-//    dataSourceLinePlot.plotSymbol = greenPlotSymbol;
-    
-    // Put an area gradient under the plot above
-//    CPTColor *areaColor       = [CPTColor colorWithComponentRed:0.3 green:1.0 blue:0.3 alpha:0.8];
-//    CPTGradient *areaGradient = [CPTGradient gradientWithBeginningColor:areaColor endingColor:[CPTColor clearColor]];
-//    areaGradient.angle               = -90.0f;
-//    areaGradientFill                 = [CPTFill fillWithGradient:areaGradient];
-//    dataSourceLinePlot.areaFill      = areaGradientFill;
-//    dataSourceLinePlot.areaBaseValue = CPTDecimalFromString(@"1.75");
-    
-//    // Animate in the new plot, as an example
-//    dataSourceLinePlot.opacity = 0.0f;
-//    [graph addPlot:dataSourceLinePlot];
-//    
-//    CABasicAnimation *fadeInAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-//    fadeInAnimation.duration            = 2.0f;
-//    fadeInAnimation.removedOnCompletion = NO;
-//    fadeInAnimation.fillMode            = kCAFillModeForwards;
-//    fadeInAnimation.toValue             = [NSNumber numberWithFloat:1.0];
-//    [dataSourceLinePlot addAnimation:fadeInAnimation forKey:@"animateOpacity"];    
-
-    // End Green plot
-    
-
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
 }
 
 #pragma mark -
@@ -332,12 +316,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     return num;
 }
 
-- (IBAction)handleTap:(UITapGestureRecognizer *)sender {
-    NSLog(@"handling tap");
-
-    CGPoint location = [sender locationOfTouch:0 inView:self.view];
-    NSLog(@"%@", NSStringFromCGPoint(location));
-
+-(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index
+{
+    return nil;
 }
 
 -(void)addDataPoint {

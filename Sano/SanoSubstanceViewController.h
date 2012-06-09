@@ -15,11 +15,9 @@
 
 {
     CPTXYGraph *graph;
-    
+    CPTPlotSpaceAnnotation *symbolTextAnnotation;    
     NSMutableArray *dataForPlot;
 }
-
-- (IBAction)handleTap:(UITapGestureRecognizer *)sender;
 
 @property (nonatomic, strong) NSMutableArray *dataForPlot;
 @property (nonatomic, weak) Substance *currentSubstance;

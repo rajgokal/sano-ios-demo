@@ -555,18 +555,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="GQ5-ca-0kX" appends="YES" id="A5e-4f-XTI"/>
-                        </connections>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detail" id="OrR-fe-B7C"/>
                 </viewController>
-                <tapGestureRecognizer id="GQ5-ca-0kX">
-                    <connections>
-                        <action selector="handleTap:" destination="WrM-dG-lcw" id="gBJ-c0-Yvc"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1943" y="191"/>
         </scene>
@@ -637,9 +629,6 @@
         </class>
         <class className="SanoSubstanceViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoSubstanceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handleTap:" candidateClass="UITapGestureRecognizer"/>
-            </relationships>
         </class>
         <class className="SubstancesCell" superclassName="UITableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstancesCell.h"/>
