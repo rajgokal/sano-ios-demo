@@ -8,23 +8,50 @@
 
 #import "SanoSubstanceViewController.h"
 
+static NSString *const MAIN_PLOT      = @"Scatter Plot";
+static NSString *const SELECTION_PLOT = @"Selection Plot";
+
+@interface SanoSubstanceViewController()
+
+-(void) addDataPoint;
+-(void) setupGraph;
+-(void) setupAxes;
+-(void) initializeData;
+-(void) setupScatterPlots;
+-(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis;
+-(double) minXValue;
+-(double) minYValue;
+-(double) maxXValue;
+-(double) maxYValue;
+-(double) midXValue;
+-(double) midYValue;
+
+@property (nonatomic, readwrite) NSUInteger selectedIndex;
+
+@end
+
 @implementation SanoSubstanceViewController
 
 @synthesize dataForPlot;
 @synthesize currentSubstance;
+@synthesize selectedIndex;
+
+-(void)setSelectedIndex:(NSUInteger)newIndex
+{
+    if ( selectedIndex != newIndex ) {
+        selectedIndex = newIndex;
+        [[graph plotWithIdentifier:SELECTION_PLOT] reloadData];
+    }
+}
 
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
 }
 
--(BOOL)plotSpace:(CPTPlotSpace *)space shouldHandlePointingDeviceUpEvent:(UIEvent *)event atPoint:(CGPoint)point {
-    NSLog(@"foo");
-    return true;
-}
-
--(void) plot:(CPTPlot *)plot dataLabelWasSelectedAtRecordIndex:(NSUInteger)index {
-    NSLog(@"hi");
+-(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
+{
+    self.selectedIndex = index;
 }
 
 -(CGPoint)plotSpace:(CPTPlotSpace *)space willDisplaceBy:(CGPoint)displacement
@@ -74,26 +101,29 @@
     return [self extrema:@"max" ForAxis:@"y"];
 }
 
--(void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    // Add some initial data
+-(double) midYValue {
+    return ([self maxYValue] - [self minYValue])/2;
+}
+
+-(double) midXValue {
+    return ([self maxXValue] - [self minXValue])/2;
+}
+
+-(void) initializeData {
     NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
     NSUInteger i;
-
+    
     NSNumber *mid = [NSNumber numberWithDouble:((currentSubstance.max - currentSubstance.min)/2)];
-    NSLog([mid description]);
-
+    
     [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], @"x", mid, @"y", nil]];
     self.dataForPlot = contentArray;
     
     for ( i = 0; i < 20; i++ ) {
         [self addDataPoint];        
     }
+}
 
-    
-    // Create graph from theme
+-(void) setupGraph {
     graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
     [graph applyTheme:theme];
@@ -106,25 +136,22 @@
     graph.paddingRight  = 0.0;
     graph.paddingBottom = 0.0;
     
-    double minX = [self minXValue];
-    double minY = [self minYValue];
-    double maxX = [self maxXValue];
-    double maxY = [self maxYValue];
-    double xLength = maxX - minX;
-    double yLength = maxY - minY;
-
+    double xLength = [self maxXValue] - [self minXValue];
+    double yLength = [self maxYValue] - [self minYValue];
+    
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) minX - 0.5) length:CPTDecimalFromFloat((float) xLength + 2)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) minY - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
-    plotSpace.delegate = self;
-    
-    // Axes
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue] - 0.5) length:CPTDecimalFromFloat((float) xLength + 2)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minYValue] - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
+    plotSpace.delegate = self;    
+}
+
+-(void)setupAxes {
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     x.majorIntervalLength         = CPTDecimalFromString(@"2.5");
-    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(minY - 0.3);
+    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble([self minYValue] - 0.3);
     x.minorTicksPerInterval       = 2;
     
     CPTXYAxis *y = axisSet.yAxis;
@@ -133,33 +160,44 @@
     y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
     y.labelOffset                 = -35;
     y.delegate             = self;
+    // Create the acceptable threshold guide
     
-    // Create a blue plot area
-    CPTScatterPlot *boundLinePlot  = [[CPTScatterPlot alloc] init];
+    CPTFill *fill = [CPTFill fillWithColor:[CPTColor grayColor]];
+    CPTPlotRange *fillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble([self midYValue] - 0.2) length:CPTDecimalFromDouble([self midYValue] + 0.2)];
+    
+    [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:fillRange fill:fill]];    
+}
+
+-(void)setupScatterPlots {
+    CPTScatterPlot *dataSourceLinePlot  = [[CPTScatterPlot alloc] init];
+    
+    dataSourceLinePlot.identifier = MAIN_PLOT;
+    
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit        = 1.0f;
     lineStyle.lineWidth         = 3.0f;
     lineStyle.lineColor         = [CPTColor blueColor];
-    boundLinePlot.dataLineStyle = lineStyle;
-    boundLinePlot.identifier    = @"Blue Plot";
-    boundLinePlot.dataSource    = self;
-    boundLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
-    [graph addPlot:boundLinePlot];
+    dataSourceLinePlot.dataLineStyle = lineStyle;
     
-    // Create the acceptable threshold guide
-    CPTFill *fill = [CPTFill fillWithColor:[CPTColor grayColor]];
-    CPTPlotRange *fillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble([mid doubleValue] - 0.2) length:CPTDecimalFromDouble([mid doubleValue] + 0.2)];
+    dataSourceLinePlot.dataSource    = self;
+    dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
+    dataSourceLinePlot.delegate = self;
+    dataSourceLinePlot.plotSymbolMarginForHitDetection = 5.0;
     
-    [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:fillRange fill:fill]];
+    [graph addPlot:dataSourceLinePlot];
     
-    // Do a blue gradient
-//    CPTColor *areaColor1       = [CPTColor colorWithComponentRed:0.3 green:0.3 blue:1.0 alpha:0.8];
-//    CPTGradient *areaGradient1 = [CPTGradient gradientWithBeginningColor:areaColor1 endingColor:[CPTColor clearColor]];
-//    areaGradient1.angle = -90.0f;
-//    CPTFill *areaGradientFill = [CPTFill fillWithGradient:areaGradient1];
-//    boundLinePlot.areaFill      = areaGradientFill;
-//    boundLinePlot.areaBaseValue = [[NSDecimalNumber zero] decimalValue];
+    // Create a plot for the selection marker
+    CPTScatterPlot *selectionPlot = [[CPTScatterPlot alloc] init];
+    selectionPlot.identifier     = SELECTION_PLOT;
     
+    lineStyle                   = [dataSourceLinePlot.dataLineStyle mutableCopy];
+    lineStyle.lineWidth         = 3.0;
+    lineStyle.lineColor         = [CPTColor redColor];
+    selectionPlot.dataLineStyle = lineStyle;
+    selectionPlot.dataSource = self;
+    
+    [graph addPlot:selectionPlot];
+
     // Add plot symbols
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
     symbolLineStyle.lineColor = [CPTColor blackColor];
@@ -167,7 +205,18 @@
     plotSymbol.fill          = [CPTFill fillWithColor:[CPTColor blueColor]];
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(1.0, 1.0);
-    boundLinePlot.plotSymbol = plotSymbol;
+    dataSourceLinePlot.plotSymbol = plotSymbol;
+}
+
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self initializeData];
+    [self setupGraph];
+    [self setupAxes];
+    [self setupScatterPlots];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];    
     
     // Begin Green plot
     
@@ -211,7 +260,7 @@
 
     // End Green plot
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
+
 }
 
 #pragma mark -
@@ -224,74 +273,71 @@
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
 {
-    NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-    NSNumber *num = [[dataForPlot objectAtIndex:index] valueForKey:key];
+    NSNumber *num = nil;
     
-    // Green plot gets shifted above the blue
-//    if ( [(NSString *)plot.identifier isEqualToString:@"Green Plot"] ) {
-//        if ( fieldEnum == CPTScatterPlotFieldY ) {
-//            num = [NSNumber numberWithDouble:[num doubleValue] + 1.0];
-//        }
-//    }
-//    
-//    if (fieldEnum == CPTScatterPlotFieldY) num = [NSNumber numberWithDouble:[num doubleValue]
-    return num;
-}
-
-#pragma mark -
-#pragma mark Axis Delegate Methods
-
--(BOOL)axis:(CPTAxis *)axis shouldUpdateAxisLabelsAtLocations:(NSSet *)locations
-{
-    static CPTTextStyle *positiveStyle = nil;
-    static CPTTextStyle *negativeStyle = nil;
-    
-    NSNumberFormatter *formatter = axis.labelFormatter;
-    CGFloat labelOffset          = axis.labelOffset;
-    NSDecimalNumber *zero        = [NSDecimalNumber zero];
-    
-    NSMutableSet *newLabels = [NSMutableSet set];
-    
-    for ( NSDecimalNumber *tickLocation in locations ) {
-        CPTTextStyle *theLabelTextStyle;
-        
-        if ( [tickLocation isGreaterThanOrEqualTo:zero] ) {
-            if ( !positiveStyle ) {
-                CPTMutableTextStyle *newStyle = [axis.labelTextStyle mutableCopy];
-                newStyle.color = [CPTColor greenColor];
-                positiveStyle  = newStyle;
-            }
-            theLabelTextStyle = positiveStyle;
-        }
-        else {
-            if ( !negativeStyle ) {
-                CPTMutableTextStyle *newStyle = [axis.labelTextStyle mutableCopy];
-                newStyle.color = [CPTColor redColor];
-                negativeStyle  = newStyle;
-            }
-            theLabelTextStyle = negativeStyle;
-        }
-        
-        NSString *labelString       = [formatter stringForObjectValue:tickLocation];
-        CPTTextLayer *newLabelLayer = [[CPTTextLayer alloc] initWithText:labelString style:theLabelTextStyle];
-        
-        CPTAxisLabel *newLabel = [[CPTAxisLabel alloc] initWithContentLayer:newLabelLayer];
-        newLabel.tickLocation = tickLocation.decimalValue;
-        newLabel.offset       = labelOffset;
-        
-        [newLabels addObject:newLabel];
+    if ( [(NSString *)plot.identifier isEqualToString:MAIN_PLOT] ) {    
+        NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
+        num = [[dataForPlot objectAtIndex:index] valueForKey:key];
     }
-    
-    axis.axisLabels = newLabels;
-    
-    return NO;
+    else if ( [(NSString *)plot.identifier isEqualToString:SELECTION_PLOT] ) {    
+        CPTXYPlotSpace *thePlotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+        
+        switch ( fieldEnum ) {
+            case CPTScatterPlotFieldX:
+                switch ( index ) {
+                    case 0:
+                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalXRange.minLimit];
+                        break;
+                        
+                    case 1:
+                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalXRange.maxLimit];
+                        break;
+                        
+                    case 2:
+                    case 3:
+                    case 4:
+                        num = [[self.dataForPlot objectAtIndex:self.selectedIndex] valueForKey:@"x"];
+                        break;
+                        
+                    default:
+                        break;
+                }
+                break;
+                
+            case CPTScatterPlotFieldY:
+                switch ( index ) {
+                    case 0:
+                    case 1:
+                    case 2:
+                        num = [[self.dataForPlot objectAtIndex:self.selectedIndex] valueForKey:@"y"];
+                        break;
+                        
+                    case 3:
+                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalYRange.maxLimit];
+                        break;
+                        
+                    case 4:
+                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalYRange.minLimit];
+                        break;
+                        
+                    default:
+                        break;
+                }
+                break;
+                
+            default:
+                break;
+        }
+    }
+    return num;
 }
 
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender {
     NSLog(@"handling tap");
 
-//    [self addDataPoint];
-    // select the data point
+    CGPoint location = [sender locationOfTouch:0 inView:self.view];
+    NSLog(@"%@", NSStringFromCGPoint(location));
+
 }
 
 -(void)addDataPoint {

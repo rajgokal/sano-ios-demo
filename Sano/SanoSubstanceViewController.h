@@ -11,15 +11,13 @@
 #import "MyManager.h"
 #import "CorePlot-CocoaTouch.h"
 
-@interface SanoSubstanceViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate, CPTPlotSpaceDelegate, CPTPlotDelegate>
+@interface SanoSubstanceViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate, CPTPlotSpaceDelegate, CPTPlotDelegate, CPTScatterPlotDelegate>
 
 {
     CPTXYGraph *graph;
     
     NSMutableArray *dataForPlot;
 }
-
-- (void) addDataPoint;
 
 - (IBAction)handleTap:(UITapGestureRecognizer *)sender;
 
