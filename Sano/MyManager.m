@@ -22,6 +22,7 @@
 @synthesize creatinine;
 @synthesize substances;
 @synthesize alerts;
+@synthesize metrics;
 
 #pragma mark Singleton Methods
 
@@ -136,6 +137,38 @@ static MyManager *sharedManager = nil;
     [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
     [self.substances addObject:sub];
+    
+    metrics = [[NSMutableArray alloc] initWithCapacity:8];
+    
+    Metric *met = [[Metric alloc]init];
+    [met setName:@"Energy"];
+    [met setScore:0.5];
+    
+    [self.metrics addObject:met];
+    
+    met = [[Metric alloc]init];
+    [met setName:@"Alertness"];
+    [met setScore:0.6];
+    
+    [self.metrics addObject:met];
+    
+    met = [[Metric alloc]init];
+    [met setName:@"Nutrition"];
+    [met setScore:0.7];
+    
+    [self.metrics addObject:met];
+    
+    met = [[Metric alloc]init];
+    [met setName:@"Fitness"];
+    [met setScore:0.8];
+    
+    [self.metrics addObject:met];
+    
+    met = [[Metric alloc]init];
+    [met setName:@"Longevity"];
+    [met setScore:0.9];
+    
+    [self.metrics addObject:met];
     
     alerts = [[NSMutableArray alloc] initWithCapacity:1];
     for (id current in self.substances) {

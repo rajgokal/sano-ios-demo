@@ -7,11 +7,14 @@
 //
 
 #import <foundation/Foundation.h>
+#import "Metric.h"
+
 
 @interface MyManager : NSObject {
     NSString *someProperty;
     NSMutableArray *substances;
     NSMutableArray *alerts;
+    NSMutableArray *metrics;    
     int glucose;
     int calcium;
     int sodium;
@@ -25,6 +28,7 @@
 @property (nonatomic, retain) NSString *someProperty;
 @property (nonatomic, retain) NSMutableArray *substances;
 @property (nonatomic, strong) NSMutableArray *alerts;
+@property (nonatomic, strong) NSMutableArray *metrics;
 @property (nonatomic, assign) int glucose;
 @property (nonatomic, assign) int calcium;
 @property (nonatomic, assign) int sodium;
