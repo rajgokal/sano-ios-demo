@@ -13,13 +13,6 @@
 
 @interface SanoSubstanceViewController : UIViewController<CPTPlotDataSource, CPTAxisDelegate, CPTPlotSpaceDelegate, CPTPlotDelegate, CPTScatterPlotDelegate>
 
-{
-    CPTXYGraph *graph;
-    CPTPlotSpaceAnnotation *symbolTextAnnotation;    
-    NSMutableArray *dataForPlot;
-}
-
-@property (nonatomic, strong) NSMutableArray *dataForPlot;
 @property (nonatomic, weak) Substance *currentSubstance;
 
 @end

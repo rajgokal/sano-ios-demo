@@ -27,20 +27,25 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(double) midYValue;
 
 @property (nonatomic, readwrite) NSUInteger selectedIndex;
+@property (nonatomic, strong) CPTXYGraph *graph;
+@property (nonatomic, strong) NSMutableArray *dataForPlot;
+@property (nonatomic, strong) CPTPlotSpaceAnnotation *symbolTextAnnotation;
 
 @end
 
 @implementation SanoSubstanceViewController
 
-@synthesize dataForPlot;
-@synthesize currentSubstance;
-@synthesize selectedIndex;
+@synthesize dataForPlot = _dataForPlot;
+@synthesize symbolTextAnnotation = _symbolTextAnnotation;
+@synthesize currentSubstance = _currentSubstance;
+@synthesize selectedIndex = _selectedIndex;
+@synthesize graph = _graph;
 
 -(void)setSelectedIndex:(NSUInteger)newIndex
 {
-    if ( selectedIndex != newIndex ) {
-        selectedIndex = newIndex;
-        [[graph plotWithIdentifier:SELECTION_PLOT] reloadData];
+    if ( self.selectedIndex != newIndex ) {
+        self.selectedIndex = newIndex;
+        [[self.graph plotWithIdentifier:SELECTION_PLOT] reloadData];
     }
 }
 
@@ -51,9 +56,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
 {
-    if ( symbolTextAnnotation ) {
-        [graph.plotAreaFrame.plotArea removeAnnotation:symbolTextAnnotation];
-        symbolTextAnnotation = nil;
+    if ( self.symbolTextAnnotation ) {
+        [self.graph.plotAreaFrame.plotArea removeAnnotation:self.symbolTextAnnotation];
+        self.symbolTextAnnotation = nil;
     }
     
     // Setup a style for the annotation
@@ -63,8 +68,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
     
     // Determine point of symbol in plot coordinates
-    NSNumber *x          = [[dataForPlot objectAtIndex:index] valueForKey:@"x"];
-    NSNumber *y          = [[dataForPlot objectAtIndex:index] valueForKey:@"y"];
+    NSNumber *x          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"x"];
+    NSNumber *y          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"y"];
     NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
     
     // Add annotation
@@ -75,18 +80,18 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Now add the annotation to the plot area
     CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:yString style:hitAnnotationTextStyle];
-    symbolTextAnnotation              = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
-    symbolTextAnnotation.contentLayer = textLayer;
-    symbolTextAnnotation.displacement = CGPointMake(0.0f, 20.0f);
-    [graph.plotAreaFrame.plotArea addAnnotation:symbolTextAnnotation];
+    self.symbolTextAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:self.graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    self.symbolTextAnnotation.contentLayer = textLayer;
+    self.symbolTextAnnotation.displacement = CGPointMake(0.0f, 20.0f);
+    [self.graph.plotAreaFrame.plotArea addAnnotation:self.symbolTextAnnotation];
 
 }
 
 -(BOOL)plotSpace:(CPTPlotSpace *)space shouldHandlePointingDeviceDownEvent:(id)event atPoint:(CGPoint)point
 {
-    if ( symbolTextAnnotation ) {
-        [graph.plotAreaFrame.plotArea removeAnnotation:symbolTextAnnotation];
-        symbolTextAnnotation = nil;
+    if ( self.symbolTextAnnotation ) {
+        [self.graph.plotAreaFrame.plotArea removeAnnotation:self.symbolTextAnnotation];
+        self.symbolTextAnnotation = nil;
     }
     return YES;
 }
@@ -98,7 +103,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(CPTPlotRange *)plotSpace:(CPTPlotSpace *)space willChangePlotRangeTo:(CPTPlotRange *)newRange forCoordinate:(CPTCoordinate)coordinate
 {
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     
     if (coordinate == CPTCoordinateX) {
         axisSet.yAxis.orthogonalCoordinateDecimal = newRange.location;
@@ -107,7 +112,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis {
-    NSArray *copy = [dataForPlot copy];
+    NSArray *copy = [self.dataForPlot copy];
 
     NSArray *sortedCopy = [copy sortedArrayUsingComparator:^(id a, id b){
         id first = [a objectForKey:axis];
@@ -150,7 +155,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
     NSUInteger i;
     
-    NSNumber *mid = [NSNumber numberWithDouble:((currentSubstance.max - currentSubstance.min)/2)];
+    NSNumber *mid = [NSNumber numberWithDouble:((self.currentSubstance.max - self.currentSubstance.min)/2)];
     
     [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], @"x", mid, @"y", nil]];
     self.dataForPlot = contentArray;
@@ -161,23 +166,23 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void) setupGraph {
-    graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
+    self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
-    [graph applyTheme:theme];
+    [self.graph applyTheme:theme];
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
-    hostingView.hostedGraph     = graph;
+    hostingView.hostedGraph     = self.graph;
     
-    graph.paddingLeft   = 0.0;
-    graph.paddingTop    = 0.0;
-    graph.paddingRight  = 0.0;
-    graph.paddingBottom = 0.0;
+    self.graph.paddingLeft   = 0.0;
+    self.graph.paddingTop    = 0.0;
+    self.graph.paddingRight  = 0.0;
+    self.graph.paddingBottom = 0.0;
     
     double xLength = [self maxXValue] - [self minXValue];
     double yLength = [self maxYValue] - [self minYValue];
     
     // Setup plot space
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue] - 0.5) length:CPTDecimalFromFloat((float) xLength + 2)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minYValue] - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
@@ -185,7 +190,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)setupAxes {
-    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble([self minYValue] - 0.3);
     x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
@@ -221,9 +226,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     dataSourceLinePlot.dataSource    = self;
     dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
     dataSourceLinePlot.delegate = self;
-    dataSourceLinePlot.plotSymbolMarginForHitDetection = 5.0;
+    dataSourceLinePlot.plotSymbolMarginForHitDetection = 7.0;
     
-    [graph addPlot:dataSourceLinePlot];
+    [self.graph addPlot:dataSourceLinePlot];
 
     // Add plot symbols
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
@@ -252,7 +257,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot
 {
-    return [dataForPlot count];
+    return [self.dataForPlot count];
 }
 
 -(NSNumber *)numberForPlot:(CPTPlot *)plot field:(NSUInteger)fieldEnum recordIndex:(NSUInteger)index
@@ -261,10 +266,10 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     if ( [(NSString *)plot.identifier isEqualToString:MAIN_PLOT] ) {    
         NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
-        num = [[dataForPlot objectAtIndex:index] valueForKey:key];
+        num = [[self.dataForPlot objectAtIndex:index] valueForKey:key];
     }
     else if ( [(NSString *)plot.identifier isEqualToString:SELECTION_PLOT] ) {    
-        CPTXYPlotSpace *thePlotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;
+        CPTXYPlotSpace *thePlotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
         
         switch ( fieldEnum ) {
             case CPTScatterPlotFieldX:
@@ -322,14 +327,14 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)addDataPoint {
-    id x = [[dataForPlot lastObject] objectForKey:@"x"];
+    id x = [[self.dataForPlot lastObject] objectForKey:@"x"];
     NSNumber *nextX = [NSNumber numberWithDouble:[x doubleValue] + 0.5];
-    id y = [[dataForPlot lastObject] objectForKey:@"y"];
+    id y = [[self.dataForPlot lastObject] objectForKey:@"y"];
     NSNumber *nextY = [NSNumber numberWithDouble:[y doubleValue] + rand()/(float)RAND_MAX - 0.5];
     
-    [dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
+    [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
 
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)graph.defaultPlotSpace;        
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;        
 
     // adjust y axis if we go above max value
     if ([nextY doubleValue] > plotSpace.yRange.maxLimitDouble) {
@@ -350,11 +355,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         plotSpace.xRange = newRange;
         
         // move the y axis too 
-        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)graph.axisSet;        
+        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;        
         axisSet.yAxis.orthogonalCoordinateDecimal = newRange.location;
     }
     
-    [graph reloadData];
+    [self.graph reloadData];
 }
 
 @end
