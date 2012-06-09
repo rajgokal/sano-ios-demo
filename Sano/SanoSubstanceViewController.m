@@ -108,6 +108,10 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     if (coordinate == CPTCoordinateX) {
         axisSet.yAxis.orthogonalCoordinateDecimal = newRange.location;
     }
+    else {
+        CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;        
+        newRange = [CPTPlotRange plotRangeWithLocation:(plotSpace.yRange.location) length:(plotSpace.yRange.length)];
+    }
     return newRange;
 }
 
@@ -324,6 +328,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(CPTLayer *)dataLabelForPlot:(CPTPlot *)plot recordIndex:(NSUInteger)index
 {
+    // use default label
     return nil;
 }
 
