@@ -10,6 +10,23 @@
 		351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBA1506BE5200C99CAD /* AlertsViewController.m */; };
 		351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBD1506D09200C99CAD /* AlertsCell.m */; };
 		35214CE415671D5600430E29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35214CE315671D5600430E29 /* QuartzCore.framework */; };
+		35270F731583E096001E0FB2 /* ADVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F5B1583E096001E0FB2 /* ADVViewController.m */; };
+		35270F741583E096001E0FB2 /* ADVPercentProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F5E1583E096001E0FB2 /* ADVPercentProgressBar.m */; };
+		35270F781583E096001E0FB2 /* progress-count.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F651583E096001E0FB2 /* progress-count.png */; };
+		35270F791583E096001E0FB2 /* progress-count@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F661583E096001E0FB2 /* progress-count@2x.png */; };
+		35270F7A1583E096001E0FB2 /* progress-fill-blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F671583E096001E0FB2 /* progress-fill-blue.png */; };
+		35270F7B1583E096001E0FB2 /* progress-fill-blue@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F681583E096001E0FB2 /* progress-fill-blue@2x.png */; };
+		35270F7C1583E096001E0FB2 /* progress-fill-brown.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F691583E096001E0FB2 /* progress-fill-brown.png */; };
+		35270F7D1583E096001E0FB2 /* progress-fill-brown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6A1583E096001E0FB2 /* progress-fill-brown@2x.png */; };
+		35270F7E1583E096001E0FB2 /* progress-fill-green.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6B1583E096001E0FB2 /* progress-fill-green.png */; };
+		35270F7F1583E096001E0FB2 /* progress-fill-green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6C1583E096001E0FB2 /* progress-fill-green@2x.png */; };
+		35270F801583E096001E0FB2 /* progress-fill-red.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6D1583E096001E0FB2 /* progress-fill-red.png */; };
+		35270F811583E096001E0FB2 /* progress-fill-red@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6E1583E096001E0FB2 /* progress-fill-red@2x.png */; };
+		35270F821583E096001E0FB2 /* progress-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F6F1583E096001E0FB2 /* progress-track.png */; };
+		35270F831583E096001E0FB2 /* progress-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F701583E096001E0FB2 /* progress-track@2x.png */; };
+		35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F851583E19F001E0FB2 /* MetricsViewController.m */; };
+		35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F881583E1BA001E0FB2 /* MetricCell.m */; };
+		35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F8B1583E1CD001E0FB2 /* Metric.m */; };
 		352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352E5A0C15069627003DB356 /* OnboardingViewController.m */; };
 		3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
 		3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
@@ -79,6 +96,28 @@
 		351CBFBC1506D09200C99CAD /* AlertsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsCell.h; sourceTree = "<group>"; };
 		351CBFBD1506D09200C99CAD /* AlertsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsCell.m; sourceTree = "<group>"; };
 		35214CE315671D5600430E29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		35270F5A1583E096001E0FB2 /* ADVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADVViewController.h; path = ADVProgressBar/ADVViewController.h; sourceTree = "<group>"; };
+		35270F5B1583E096001E0FB2 /* ADVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADVViewController.m; path = ADVProgressBar/ADVViewController.m; sourceTree = "<group>"; };
+		35270F5D1583E096001E0FB2 /* ADVPercentProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVPercentProgressBar.h; sourceTree = "<group>"; };
+		35270F5E1583E096001E0FB2 /* ADVPercentProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVPercentProgressBar.m; sourceTree = "<group>"; };
+		35270F651583E096001E0FB2 /* progress-count.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-count.png"; sourceTree = "<group>"; };
+		35270F661583E096001E0FB2 /* progress-count@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-count@2x.png"; sourceTree = "<group>"; };
+		35270F671583E096001E0FB2 /* progress-fill-blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-blue.png"; sourceTree = "<group>"; };
+		35270F681583E096001E0FB2 /* progress-fill-blue@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-blue@2x.png"; sourceTree = "<group>"; };
+		35270F691583E096001E0FB2 /* progress-fill-brown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-brown.png"; sourceTree = "<group>"; };
+		35270F6A1583E096001E0FB2 /* progress-fill-brown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-brown@2x.png"; sourceTree = "<group>"; };
+		35270F6B1583E096001E0FB2 /* progress-fill-green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-green.png"; sourceTree = "<group>"; };
+		35270F6C1583E096001E0FB2 /* progress-fill-green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-green@2x.png"; sourceTree = "<group>"; };
+		35270F6D1583E096001E0FB2 /* progress-fill-red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-red.png"; sourceTree = "<group>"; };
+		35270F6E1583E096001E0FB2 /* progress-fill-red@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-fill-red@2x.png"; sourceTree = "<group>"; };
+		35270F6F1583E096001E0FB2 /* progress-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-track.png"; sourceTree = "<group>"; };
+		35270F701583E096001E0FB2 /* progress-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progress-track@2x.png"; sourceTree = "<group>"; };
+		35270F841583E19F001E0FB2 /* MetricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetricsViewController.h; path = Sano/MetricsViewController.h; sourceTree = SOURCE_ROOT; };
+		35270F851583E19F001E0FB2 /* MetricsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetricsViewController.m; path = Sano/MetricsViewController.m; sourceTree = SOURCE_ROOT; };
+		35270F871583E1BA001E0FB2 /* MetricCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetricCell.h; path = ADVProgressBar/MetricCell.h; sourceTree = "<group>"; };
+		35270F881583E1BA001E0FB2 /* MetricCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetricCell.m; path = ADVProgressBar/MetricCell.m; sourceTree = "<group>"; };
+		35270F8A1583E1CD001E0FB2 /* Metric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Metric.h; path = ADVProgressBar/Metric.h; sourceTree = "<group>"; };
+		35270F8B1583E1CD001E0FB2 /* Metric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Metric.m; path = ADVProgressBar/Metric.m; sourceTree = "<group>"; };
 		352E5A0B15069627003DB356 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		352E5A0C15069627003DB356 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		3541B47514D34E5300F853B9 /* Sano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +197,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		35270F551583E096001E0FB2 /* ADVProgressBar */ = {
+			isa = PBXGroup;
+			children = (
+				35270F5C1583E096001E0FB2 /* Classes */,
+				35270F641583E096001E0FB2 /* Resources */,
+			);
+			path = ADVProgressBar;
+			sourceTree = "<group>";
+		};
+		35270F5C1583E096001E0FB2 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				35270F5D1583E096001E0FB2 /* ADVPercentProgressBar.h */,
+				35270F5E1583E096001E0FB2 /* ADVPercentProgressBar.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		35270F641583E096001E0FB2 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				35270F651583E096001E0FB2 /* progress-count.png */,
+				35270F661583E096001E0FB2 /* progress-count@2x.png */,
+				35270F671583E096001E0FB2 /* progress-fill-blue.png */,
+				35270F681583E096001E0FB2 /* progress-fill-blue@2x.png */,
+				35270F691583E096001E0FB2 /* progress-fill-brown.png */,
+				35270F6A1583E096001E0FB2 /* progress-fill-brown@2x.png */,
+				35270F6B1583E096001E0FB2 /* progress-fill-green.png */,
+				35270F6C1583E096001E0FB2 /* progress-fill-green@2x.png */,
+				35270F6D1583E096001E0FB2 /* progress-fill-red.png */,
+				35270F6E1583E096001E0FB2 /* progress-fill-red@2x.png */,
+				35270F6F1583E096001E0FB2 /* progress-track.png */,
+				35270F701583E096001E0FB2 /* progress-track@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		3541B46A14D34E5300F853B9 = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +295,15 @@
 				351CBFBD1506D09200C99CAD /* AlertsCell.m */,
 				35D62B8C150597980014C99E /* EditSubstancesCell.h */,
 				35D62B8D150597980014C99E /* EditSubstancesCell.m */,
+				35270F5A1583E096001E0FB2 /* ADVViewController.h */,
+				35270F5B1583E096001E0FB2 /* ADVViewController.m */,
+				35270F841583E19F001E0FB2 /* MetricsViewController.h */,
+				35270F851583E19F001E0FB2 /* MetricsViewController.m */,
+				35270F871583E1BA001E0FB2 /* MetricCell.h */,
+				35270F881583E1BA001E0FB2 /* MetricCell.m */,
+				35270F8A1583E1CD001E0FB2 /* Metric.h */,
+				35270F8B1583E1CD001E0FB2 /* Metric.m */,
+				35270F551583E096001E0FB2 /* ADVProgressBar */,
 				3541B48014D34E5300F853B9 /* Supporting Files */,
 			);
 			path = Sano;
@@ -387,6 +472,18 @@
 				35F1F6CA14FDC228002A112A /* Indicator Spot - Yellow.png in Resources */,
 				35F1F6D614FDE1B6002A112A /* Icon.png in Resources */,
 				35F1F6D814FDE1FD002A112A /* IconRetina.png in Resources */,
+				35270F781583E096001E0FB2 /* progress-count.png in Resources */,
+				35270F791583E096001E0FB2 /* progress-count@2x.png in Resources */,
+				35270F7A1583E096001E0FB2 /* progress-fill-blue.png in Resources */,
+				35270F7B1583E096001E0FB2 /* progress-fill-blue@2x.png in Resources */,
+				35270F7C1583E096001E0FB2 /* progress-fill-brown.png in Resources */,
+				35270F7D1583E096001E0FB2 /* progress-fill-brown@2x.png in Resources */,
+				35270F7E1583E096001E0FB2 /* progress-fill-green.png in Resources */,
+				35270F7F1583E096001E0FB2 /* progress-fill-green@2x.png in Resources */,
+				35270F801583E096001E0FB2 /* progress-fill-red.png in Resources */,
+				35270F811583E096001E0FB2 /* progress-fill-red@2x.png in Resources */,
+				35270F821583E096001E0FB2 /* progress-track.png in Resources */,
+				35270F831583E096001E0FB2 /* progress-track@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,6 +530,11 @@
 				352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */,
 				351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */,
 				351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */,
+				35270F731583E096001E0FB2 /* ADVViewController.m in Sources */,
+				35270F741583E096001E0FB2 /* ADVPercentProgressBar.m in Sources */,
+				35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */,
+				35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */,
+				35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
