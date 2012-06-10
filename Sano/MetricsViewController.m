@@ -36,6 +36,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -110,6 +111,15 @@
     
     [cell.contentView addSubview:blueprogressBar];
     
+    cell.backgroundView.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    backgroundView.backgroundColor = [ UIColor whiteColor ];
+    cell.backgroundView = backgroundView;
+    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    cell.selectedBackgroundView = selectedBackgroundView;
+    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];    
     return cell;
 }
 

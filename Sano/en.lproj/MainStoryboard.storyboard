@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
     <dependencies>
-        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
     </dependencies>
     <scenes>
-        <!--Alerts View Controller - Alerts-->
         <scene sceneID="cze-Be-JnZ">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA7-h9-6Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -56,7 +54,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="textColor" red="0.0" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -77,7 +75,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Alerts" id="290-Vh-O61">
+                    <navigationItem key="navigationItem" id="290-Vh-O61">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="8lf-eu-NoC">
                             <connections>
                                 <segue destination="HbH-Lj-ktP" kind="push" id="Qdp-UV-CGQ"/>
@@ -89,7 +87,6 @@
             </objects>
             <point key="canvasLocation" x="1165" y="190"/>
         </scene>
-        <!--Sano Dashboard View Controller - Metabolic Panel-->
         <scene sceneID="DAU-9f-r7l">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOe-Hd-LZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,6 +145,7 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="Icon" destination="70x-up-Sxp" id="oZE-KA-GMM"/>
                                     <outlet property="State" destination="Mm9-kv-Pu2" id="FTJ-cM-qiB"/>
@@ -165,7 +163,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Dashboard" id="ufY-gh-UJc">
+                    <navigationItem key="navigationItem" id="ufY-gh-UJc">
                         <barButtonItem key="rightBarButtonItem" title="Alerts" id="dYV-jH-hsd">
                             <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -178,7 +176,6 @@
             </objects>
             <point key="canvasLocation" x="1557" y="191"/>
         </scene>
-        <!--Onboarding View Controller - Settings-->
         <scene sceneID="Jhd-Uc-4cU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLf-2e-0Ck" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -256,7 +253,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Personal Data" id="5FV-Eb-vWf"/>
+                    <navigationItem key="navigationItem" id="5FV-Eb-vWf"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="Height" destination="FJe-BJ-WfZ" id="P5k-o3-awg"/>
@@ -272,7 +269,6 @@
             </objects>
             <point key="canvasLocation" x="1557" y="791"/>
         </scene>
-        <!--Onboarding View Controller - Disease Data-->
         <scene sceneID="qSq-5a-WI3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GgB-RW-Ini" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -392,13 +388,12 @@
                         <color key="backgroundColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Disease Data" id="nhe-2a-rfi"/>
+                    <navigationItem key="navigationItem" id="nhe-2a-rfi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1953" y="791"/>
         </scene>
-        <!--View Controller-->
         <scene sceneID="KKe-X9-f98">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hl4-1e-nI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -464,7 +459,6 @@
             </objects>
             <point key="canvasLocation" x="1953" y="1399"/>
         </scene>
-        <!--Edit Dashboard View Controller - Edit-->
         <scene sceneID="pA3-aO-btM">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sub-lC-61N" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -527,7 +521,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="401-sp-MyL"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Edit Values" id="xqz-Xw-M2S">
+                    <navigationItem key="navigationItem" id="xqz-Xw-M2S">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="udY-cF-hbY">
                             <connections>
                                 <segue destination="9l0-r5-Tab" kind="push" id="6Z5-cQ-Uel"/>
@@ -540,7 +534,6 @@
             </objects>
             <point key="canvasLocation" x="2359" y="1399"/>
         </scene>
-        <!--Sano Substance View Controller - Detail-->
         <scene sceneID="gd0-cw-TL9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjL-B9-Pdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -552,30 +545,29 @@
                         <gestureRecognizers/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Detail" id="OrR-fe-B7C"/>
+                    <navigationItem key="navigationItem" id="OrR-fe-B7C"/>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1943" y="191"/>
         </scene>
-        <!--Metrics View Controller - Metrics-->
         <scene sceneID="NgT-dv-VFW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAm-uf-oxs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="9y4-mq-ykZ" customClass="MetricsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="68" sectionHeaderHeight="22" sectionFooterHeight="22" id="R3A-K2-jUA">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="R3A-K2-jUA">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Metric" rowHeight="68" id="uvi-mr-3Ac" customClass="MetricCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="68"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Metric" rowHeight="83" id="uvi-mr-3Ac" customClass="MetricCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="67"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="8DT-XJ-1bD">
-                                            <rect key="frame" x="20" y="9" width="260" height="21"/>
+                                            <rect key="frame" x="14" y="10" width="260" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -595,7 +587,7 @@
                             <outlet property="delegate" destination="9y4-mq-ykZ" id="VNR-R3-XPe"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Metrics" id="Gxc-0Q-ajp">
+                    <navigationItem key="navigationItem" id="Gxc-0Q-ajp">
                         <barButtonItem key="rightBarButtonItem" title="Alerts" id="35b-8c-UZk">
                             <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
@@ -607,16 +599,15 @@
             </objects>
             <point key="canvasLocation" x="2335" y="188"/>
         </scene>
-        <!--Navigation Controller-->
         <scene sceneID="Cj1-BE-M4v">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGd-zz-kNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="bQa-2I-bkl" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Mwa-gN-fsv">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="Mwa-gN-fsv" customClass="SanoNavigationBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.40000000000000002" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.0" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -627,6 +618,78 @@
             <point key="canvasLocation" x="1165" y="791"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AlertsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Alert" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Suggestion" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="TimeStamp" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AlertsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsViewController.h"/>
+        </class>
+        <class className="CPTGraphHostingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
+        </class>
+        <class className="EditDashboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDashboardViewController.h"/>
+        </class>
+        <class className="EditSubstancesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSubstancesCell.h"/>
+            <relationships>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="outlet" name="Slider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MetricCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MetricsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricsViewController.h"/>
+        </class>
+        <class className="OnboardingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OnboardingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="gender" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="height" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="weight" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SanoDashboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoDashboardViewController.h"/>
+        </class>
+        <class className="SanoNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoNavigationBar.h"/>
+        </class>
+        <class className="SanoSubstanceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoSubstanceViewController.h"/>
+        </class>
+        <class className="SubstancesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstancesCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Icon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="State" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="StateStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -635,7 +698,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="ULj-w3-Ab1"/>
         <segue reference="5hh-vh-FQC"/>
-        <segue reference="3Ua-lh-iJq"/>
         <segue reference="8Kj-sS-fST"/>
+        <segue reference="3Ua-lh-iJq"/>
     </inferredMetricsTieBreakers>
 </document>

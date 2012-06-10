@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad
 {
-    
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
     [super viewDidLoad];
     
@@ -117,6 +117,17 @@
     cell.Unit.text = [current unit];
     cell.State.text = [current stateGrabber];
     cell.StateStatus.text = [current stateStatusGrabber];
+    cell.backgroundView.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    backgroundView.backgroundColor = [ UIColor whiteColor ];
+    cell.backgroundView = backgroundView;
+    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    cell.selectedBackgroundView = selectedBackgroundView;
+    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
+    
+//    for ( UIView* view in cell.contentView.subviews ) 
     
     return cell;
 }

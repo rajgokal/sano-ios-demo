@@ -27,6 +27,11 @@
 		35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F851583E19F001E0FB2 /* MetricsViewController.m */; };
 		35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F881583E1BA001E0FB2 /* MetricCell.m */; };
 		35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F8B1583E1CD001E0FB2 /* Metric.m */; };
+		35270F8F158540C5001E0FB2 /* SanoNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */; };
+		35270F9215854111001E0FB2 /* CustomNavBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F9015854111001E0FB2 /* CustomNavBG@2x.png */; };
+		35270F9315854111001E0FB2 /* CustomNavBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F9115854111001E0FB2 /* CustomNavBG.png */; };
+		35270F9515854A44001E0FB2 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F9415854A44001E0FB2 /* Background.png */; };
+		35270F9715854D99001E0FB2 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35270F9615854D99001E0FB2 /* Background@2x.png */; };
 		352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352E5A0C15069627003DB356 /* OnboardingViewController.m */; };
 		3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
 		3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
@@ -118,6 +123,12 @@
 		35270F881583E1BA001E0FB2 /* MetricCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MetricCell.m; path = ADVProgressBar/MetricCell.m; sourceTree = "<group>"; };
 		35270F8A1583E1CD001E0FB2 /* Metric.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Metric.h; path = ADVProgressBar/Metric.h; sourceTree = "<group>"; };
 		35270F8B1583E1CD001E0FB2 /* Metric.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Metric.m; path = ADVProgressBar/Metric.m; sourceTree = "<group>"; };
+		35270F8D158540C4001E0FB2 /* SanoNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SanoNavigationBar.h; sourceTree = "<group>"; };
+		35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SanoNavigationBar.m; sourceTree = "<group>"; };
+		35270F9015854111001E0FB2 /* CustomNavBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomNavBG@2x.png"; sourceTree = "<group>"; };
+		35270F9115854111001E0FB2 /* CustomNavBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomNavBG.png; sourceTree = "<group>"; };
+		35270F9415854A44001E0FB2 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
+		35270F9615854D99001E0FB2 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		352E5A0B15069627003DB356 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		352E5A0C15069627003DB356 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
 		3541B47514D34E5300F853B9 /* Sano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sano.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -218,6 +229,10 @@
 		35270F641583E096001E0FB2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				35270F9615854D99001E0FB2 /* Background@2x.png */,
+				35270F9415854A44001E0FB2 /* Background.png */,
+				35270F9015854111001E0FB2 /* CustomNavBG@2x.png */,
+				35270F9115854111001E0FB2 /* CustomNavBG.png */,
 				35270F651583E096001E0FB2 /* progress-count.png */,
 				35270F661583E096001E0FB2 /* progress-count@2x.png */,
 				35270F671583E096001E0FB2 /* progress-fill-blue.png */,
@@ -275,6 +290,8 @@
 				3541B48814D34E5300F853B9 /* SanoAppDelegate.h */,
 				3541B48914D34E5300F853B9 /* SanoAppDelegate.m */,
 				3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */,
+				35270F8D158540C4001E0FB2 /* SanoNavigationBar.h */,
+				35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */,
 				35D62B84150533930014C99E /* MyManager.h */,
 				35D62B85150533930014C99E /* MyManager.m */,
 				3541B4B414D3515600F853B9 /* Substance.h */,
@@ -289,6 +306,8 @@
 				35D62B90150598430014C99E /* EditDashboardViewController.m */,
 				351CBFB91506BE5200C99CAD /* AlertsViewController.h */,
 				351CBFBA1506BE5200C99CAD /* AlertsViewController.m */,
+				35270F841583E19F001E0FB2 /* MetricsViewController.h */,
+				35270F851583E19F001E0FB2 /* MetricsViewController.m */,
 				35F1F6D014FDD4E6002A112A /* SubstancesCell.h */,
 				35F1F6D114FDD4E6002A112A /* SubstancesCell.m */,
 				351CBFBC1506D09200C99CAD /* AlertsCell.h */,
@@ -297,8 +316,6 @@
 				35D62B8D150597980014C99E /* EditSubstancesCell.m */,
 				35270F5A1583E096001E0FB2 /* ADVViewController.h */,
 				35270F5B1583E096001E0FB2 /* ADVViewController.m */,
-				35270F841583E19F001E0FB2 /* MetricsViewController.h */,
-				35270F851583E19F001E0FB2 /* MetricsViewController.m */,
 				35270F871583E1BA001E0FB2 /* MetricCell.h */,
 				35270F881583E1BA001E0FB2 /* MetricCell.m */,
 				35270F8A1583E1CD001E0FB2 /* Metric.h */,
@@ -484,6 +501,10 @@
 				35270F811583E096001E0FB2 /* progress-fill-red@2x.png in Resources */,
 				35270F821583E096001E0FB2 /* progress-track.png in Resources */,
 				35270F831583E096001E0FB2 /* progress-track@2x.png in Resources */,
+				35270F9215854111001E0FB2 /* CustomNavBG@2x.png in Resources */,
+				35270F9315854111001E0FB2 /* CustomNavBG.png in Resources */,
+				35270F9515854A44001E0FB2 /* Background.png in Resources */,
+				35270F9715854D99001E0FB2 /* Background@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,6 +556,7 @@
 				35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */,
 				35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */,
 				35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */,
+				35270F8F158540C5001E0FB2 /* SanoNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

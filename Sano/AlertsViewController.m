@@ -35,6 +35,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -115,6 +117,15 @@
     cell.TimeStamp.text = stringFromDate;
     cell.row = indexPath.row;
     cell.Suggestion.text = [current suggestionGrabber];
+    cell.backgroundView.backgroundColor = [UIColor whiteColor];
+    cell.backgroundColor = [UIColor whiteColor];
+    cell.contentView.backgroundColor = [UIColor whiteColor];
+    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    backgroundView.backgroundColor = [ UIColor whiteColor ];
+    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    cell.backgroundView = backgroundView;
+    cell.selectedBackgroundView = selectedBackgroundView;
+    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
     
     return cell;
 }
