@@ -98,7 +98,7 @@
             currentUser.password = passwordField;
             currentUser.email = emailField;
             
-            [currentUser saveInBackground];
+            [currentUser saveEventually];
         }
         else {
             PFUser *user = [PFUser user];
@@ -126,13 +126,10 @@
             
             UISwitch *aSwitch = [self performSelector:s];
             
-            
             [currentUser setObject:[NSNumber numberWithBool:aSwitch.on] forKey:disease];
         }
         [currentUser saveInBackground];
     }
-    
-    
 }
 
 #pragma mark Text Field Delegate

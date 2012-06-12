@@ -66,15 +66,17 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)fetchSubstanceSequence {
-    NSLog(@"fetching");
+
     PFUser *currentUser = [PFUser currentUser];
     NSString *substanceSequenceKey = [self.currentSubstance.name stringByAppendingString:@"_sequence"];
     
-    // PFUsers have an object for each substance sequence
-    // called [name]_sequence. It is an NSArray of 
+    // A substance sequence is an NSArray of 
     // NSDictionaries - each NSDictionary with two keys,
     // "x" and "y" with objects that are a NSDate and a NSNumber
 
+    // PFUsers have an object for each substance sequence
+    // called [name]_sequence. 
+    
     NSArray *fetchedSubstanceSequence = [currentUser objectForKey: substanceSequenceKey];
     
     if (fetchedSubstanceSequence) {
@@ -228,14 +230,10 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.graph.paddingRight  = 0.0;
     self.graph.paddingBottom = 0.0;
     
-    double xLength = [self maxXValue] - [self minXValue];
     double yLength = [self maxYValue] - [self minYValue];
     
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
-
-    NSLog(@"%@", [NSNumber numberWithDouble:[self minXValue]]);
-    NSLog(@"%@", [NSNumber numberWithDouble:xLength]);    
     
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue]) length:CPTDecimalFromFloat((float) 100 + 2)];
@@ -306,9 +304,13 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // right now these are dependent on each other and should 
     // be called in this order:
-    [self generateSubstanceSequence];
+    self.dataForPlot = nil;
+
+    if (!self.substanceSequence) {
+        [self generateSubstanceSequence];
+    }
+
     [self addDataPoint];
-    NSLog(@"%@", self.dataForPlot);
     [self setupGraph];
     [self setupAxes];
     [self setupScatterPlots];
@@ -336,56 +338,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         NSString *key = (fieldEnum == CPTScatterPlotFieldX ? @"x" : @"y");
         num = [[self.dataForPlot objectAtIndex:index] valueForKey:key];
     }
-    else if ( [(NSString *)plot.identifier isEqualToString:SELECTION_PLOT] ) {    
-        CPTXYPlotSpace *thePlotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
-        
-        switch ( fieldEnum ) {
-            case CPTScatterPlotFieldX:
-                switch ( index ) {
-                    case 0:
-                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalXRange.minLimit];
-                        break;
-                        
-                    case 1:
-                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalXRange.maxLimit];
-                        break;
-                        
-                    case 2:
-                    case 3:
-                    case 4:
-                        num = [[self.dataForPlot objectAtIndex:self.selectedIndex] valueForKey:@"x"];
-                        break;
-                        
-                    default:
-                        break;
-                }
-                break;
-                
-            case CPTScatterPlotFieldY:
-                switch ( index ) {
-                    case 0:
-                    case 1:
-                    case 2:
-                        num = [[self.dataForPlot objectAtIndex:self.selectedIndex] valueForKey:@"y"];
-                        break;
-                        
-                    case 3:
-                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalYRange.maxLimit];
-                        break;
-                        
-                    case 4:
-                        num = [NSDecimalNumber decimalNumberWithDecimal:thePlotSpace.globalYRange.minLimit];
-                        break;
-                        
-                    default:
-                        break;
-                }
-                break;
-                
-            default:
-                break;
-        }
-    }
     return num;
 }
 
@@ -396,7 +348,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)addDataPoint {
-
     int unixTime = [[NSDate date] timeIntervalSince1970];
     
     NSNumber *nextY;
@@ -416,9 +367,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     [localArray addObject:[dict copy]];
     self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
-    
-    NSLog(@"%@", dict);
-    NSLog(@"%@", self.dataForPlot);
+
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
 
     // adjust y axis if we go above max value

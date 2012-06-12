@@ -118,7 +118,6 @@
     cell.backgroundView.backgroundColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor whiteColor];
     cell.contentView.backgroundColor = [UIColor whiteColor];
-    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
     UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
     cell.selectedBackgroundView = selectedBackgroundView;
     cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
