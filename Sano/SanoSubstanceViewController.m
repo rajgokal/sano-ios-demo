@@ -243,12 +243,24 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)setupAxes {
+    NSDate *refDate = [NSDate dateWithTimeIntervalSince1970:0];
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;    
     
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
     
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
+
+    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+
+//    dateFormatter.dateStyle = kCFDateFormatterShortStyle;
+//    dateFormatter.timeStyle = kCFDateFormatterShortStyle;
+    dateFormatter.dateFormat = @"H:mm";
+    CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:dateFormatter];
+    timeFormatter.referenceDate = refDate;
+
+    x.labelFormatter = timeFormatter;
     
     x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     x.minorTicksPerInterval       = 2;
