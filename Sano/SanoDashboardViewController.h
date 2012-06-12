@@ -16,5 +16,6 @@
 @interface SanoDashboardViewController : UITableViewController
 
 @property (nonatomic, strong) Substance *currentSubstance;
+@property (nonatomic, weak) Metric *currentMetric;
 
 @end

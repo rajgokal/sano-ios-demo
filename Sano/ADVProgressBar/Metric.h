@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) CGFloat score;
+@property (nonatomic, assign) CGFloat yesterday;
 
 @end

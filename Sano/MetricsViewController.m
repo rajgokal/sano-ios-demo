@@ -10,6 +10,9 @@
 #import "MyManager.h"
 #import "MetricCell.h"
 #import "ADVPercentProgressBar.h"
+#import <QuartzCore/QuartzCore.h>
+#import "SanoDashboardViewController.h"
+#import <UIKit/UIKit.h>
 
 
 @implementation MetricsViewController
@@ -37,6 +40,11 @@
 {
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    UIImage *image = [UIImage imageNamed:@"Logo.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [imageView setFrame:CGRectMake(0, 0, 81, 22)]; 
+    self.navigationItem.titleView = imageView;
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -105,21 +113,44 @@
     Metric *current = [sharedManager.metrics objectAtIndex:indexPath.row];
     cell.Title.text = [current name];
     
-    ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(10, 30, 272, 28) andProgressBarColor:ADVProgressBarBlue];
+    
+    ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
     
     [blueprogressBar setProgress:[current score]];
     
     [cell.contentView addSubview:blueprogressBar];
     
-    cell.backgroundView.backgroundColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
-    backgroundView.backgroundColor = [ UIColor whiteColor ];
-    cell.backgroundView = backgroundView;
-    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
-    cell.selectedBackgroundView = selectedBackgroundView;
-    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];    
+    CGFloat mark;
+    mark=(279-15)*[current yesterday]+15;
+    UIImageView *marker = [[UIImageView alloc] initWithFrame:CGRectMake(mark,27,10,33)];
+    [marker setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Marker.png"]]];
+    [cell.contentView addSubview:marker];
+    UILabel *yesterday = [[UILabel alloc] initWithFrame:CGRectMake(mark-20,60,65,10)];
+    yesterday.textColor=[UIColor blackColor];
+    [yesterday setFont:[UIFont fontWithName:@"Helvetica" size:9]];
+    yesterday.backgroundColor=[UIColor clearColor];
+    yesterday.textAlignment = UITextAlignmentLeft;
+    yesterday.text = @"YESTERDAY";
+    [cell.contentView addSubview:yesterday];
+    
+    
+    
+    //    cell.backgroundView.backgroundColor = [UIColor whiteColor];
+    //    cell.backgroundColor = [UIColor whiteColor];
+    //    cell.contentView.backgroundColor = [UIColor whiteColor];
+    
+    //    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectMake(0, 0, 277, 36)];
+    //    backgroundView.backgroundColor = [ UIColor whiteColor ];
+    //    cell.backgroundView = backgroundView;
+    
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"Panel.png"]]];
+    UIImageView *bgSelect = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"PanelSelect.png"]]];
+    cell.backgroundView = bgView;
+    
+    //    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+    cell.selectedBackgroundView = bgSelect;
+    //    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc]initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
+    //    cell.backgroundView.layer.masksToBounds = YES;
     return cell;
 }
 
@@ -173,6 +204,18 @@
      // Pass the selected object to the new view controller.
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ( [segue.identifier isEqualToString:@"MetricZoom"]) {
+        SanoDashboardViewController *dvc = [segue destinationViewController];
+        MyManager *sharedManager = [MyManager sharedManager];
+        NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
+        int row = [path row];
+        Metric *s = [sharedManager.metrics objectAtIndex:row];
+        dvc.currentMetric = s;
+    }
 }
 
 @end

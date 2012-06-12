@@ -99,8 +99,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Prototype" rowHeight="51" id="5Gs-GG-lZZ" customClass="SubstancesCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="51"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MetricCell" rowHeight="83" id="s9U-h2-Xfh" customClass="MetricCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="83"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="Ao3-ze-ntW">
+                                            <rect key="frame" x="20" y="5" width="260" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <connections>
+                                    <outlet property="Title" destination="Ao3-ze-ntW" id="S4b-wf-eBT"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ZoomCell" rowHeight="51" id="5Gs-GG-lZZ" customClass="SubstancesCell">
+                                <rect key="frame" x="0.0" y="105" width="320" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
@@ -185,7 +206,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLf-2e-0Ck" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Settings" title="Settings" id="0WG-52-NMB" customClass="OnboardingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CZe-Dc-AJG">
-                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" id="4G9-mk-iJE">
@@ -577,17 +598,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Metric" rowHeight="83" id="uvi-mr-3Ac" customClass="MetricCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Metric" rowHeight="83" id="uvi-mr-3Ac" customClass="MetricCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="83"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="82"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="8DT-XJ-1bD">
-                                            <rect key="frame" x="14" y="10" width="260" height="21"/>
+                                            <rect key="frame" x="20" y="5" width="260" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -596,7 +617,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="Title" destination="8DT-XJ-1bD" id="HsP-kU-LGV"/>
-                                    <segue destination="9l0-r5-Tab" kind="push" id="8Kj-sS-fST"/>
+                                    <segue destination="9l0-r5-Tab" kind="push" identifier="MetricZoom" id="8Kj-sS-fST"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -615,7 +636,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2335" y="188"/>
+            <point key="canvasLocation" x="2359" y="197"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cj1-BE-M4v">
@@ -637,9 +658,91 @@
             <point key="canvasLocation" x="1165" y="791"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="AlertsCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Alert" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Suggestion" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="TimeStamp" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="AlertsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsViewController.h"/>
+        </class>
+        <class className="CPTGraphHostingView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
+        </class>
+        <class className="EditDashboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDashboardViewController.h"/>
+        </class>
+        <class className="EditSubstancesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSubstancesCell.h"/>
+            <relationships>
+                <relationship kind="action" name="sliderChanged:"/>
+                <relationship kind="outlet" name="Slider" candidateClass="UISlider"/>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MetricCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="MetricsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricsViewController.h"/>
+        </class>
+        <class className="OnboardingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OnboardingViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="diseaseAnemia" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseAsthma" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseChronicKidney" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseCoronaryArtery" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseDepression" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseDiabetes" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="diseaseHypertension" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="gender" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="height" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="weight" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SanoDashboardViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoDashboardViewController.h"/>
+        </class>
+        <class className="SanoNavigationBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoNavigationBar.h"/>
+        </class>
+        <class className="SanoSubstanceViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoSubstanceViewController.h"/>
+        </class>
+        <class className="SubstancesCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstancesCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="Icon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="State" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="StateStatus" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="ULj-w3-Ab1"/>
+    </inferredMetricsTieBreakers>
 </document>

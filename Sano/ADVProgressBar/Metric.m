@@ -12,5 +12,6 @@
 
 @synthesize name;
 @synthesize score;
+@synthesize yesterday;
 
 @end

@@ -143,30 +143,34 @@ static MyManager *sharedManager = nil;
     Metric *met = [[Metric alloc]init];
     [met setName:@"Energy"];
     [met setScore:0.5];
+    [met setYesterday:(met.score*1.05)];
     
     [self.metrics addObject:met];
     
     met = [[Metric alloc]init];
     [met setName:@"Alertness"];
     [met setScore:0.6];
-    
+    [met setYesterday:(met.score*1.05)];    
     [self.metrics addObject:met];
     
     met = [[Metric alloc]init];
     [met setName:@"Nutrition"];
     [met setScore:0.7];
+    [met setYesterday:(met.score*1.05)];
     
     [self.metrics addObject:met];
     
     met = [[Metric alloc]init];
     [met setName:@"Fitness"];
     [met setScore:0.8];
+    [met setYesterday:(met.score*1.05)];
     
     [self.metrics addObject:met];
     
     met = [[Metric alloc]init];
     [met setName:@"Longevity"];
     [met setScore:0.9];
+    [met setYesterday:(met.score*1.05)];
     
     [self.metrics addObject:met];
     

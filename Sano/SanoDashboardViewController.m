@@ -9,10 +9,14 @@
 #import "SanoDashboardViewController.h"
 #import "SubstancesCell.h"
 #import "MyManager.h"
+#import "Metric.h"
+#import "MetricCell.h"
+#import "ADVPercentProgressBar.h"
 
 @implementation SanoDashboardViewController
 
 @synthesize currentSubstance;
+@synthesize currentMetric;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -35,9 +39,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
-    [super viewDidLoad];
+    self.title = [currentMetric name];
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -89,7 +94,10 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 51;
+    CGFloat height = 0;
+    if (indexPath.row < 1) height = 83;
+    else height = 51;
+    return height;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -101,35 +109,56 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Prototype";
-    
-    SubstancesCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[SubstancesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
     MyManager *sharedManager = [MyManager sharedManager];
-    Substance *current = [sharedManager.substances objectAtIndex:indexPath.row];
-    cell.Title.text = [current name];
-    cell.Icon.image = [UIImage imageNamed:[current iconGrabber]];
-    cell.Value.text = [NSString stringWithFormat:@"%d", [current input]];
-    cell.Value.textColor = [current colorGrabber];
-    cell.State.textColor = [current colorGrabber];
-    cell.Unit.text = [current unit];
-    cell.State.text = [current stateGrabber];
-    cell.StateStatus.text = [current stateStatusGrabber];
-    cell.backgroundView.backgroundColor = [UIColor whiteColor];
-    cell.backgroundColor = [UIColor whiteColor];
-    cell.contentView.backgroundColor = [UIColor whiteColor];
-    UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
-    backgroundView.backgroundColor = [ UIColor whiteColor ];
-    cell.backgroundView = backgroundView;
-    UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
-    cell.selectedBackgroundView = selectedBackgroundView;
-    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
     
-//    for ( UIView* view in cell.contentView.subviews ) 
+    static NSString *ZoomCellIdentifier = @"ZoomCell";
+    static NSString *MetricCellIdentifier = @"MetricCell";
     
-    return cell;
+    //    Bring in single "metric" cell
+    if(indexPath.row < 1) {
+        MetricCell *cell = [tableView dequeueReusableCellWithIdentifier:MetricCellIdentifier];
+        cell.Title.text = [currentMetric name];
+        ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
+        [blueprogressBar setProgress:[currentMetric score]];
+        [cell.contentView addSubview:blueprogressBar];
+        
+        UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"PanelZoom.png"]]];
+        cell.backgroundView = bgView;
+        //        cell.selectedBackgroundView = bgView;
+        cell.backgroundView.layer.masksToBounds = YES;
+        cell.backgroundView.layer.cornerRadius = 0.0;
+        
+        return cell;
+    } else {
+        
+        //  Bring in "zoom" substance cells
+        SubstancesCell *cell = [tableView dequeueReusableCellWithIdentifier:ZoomCellIdentifier];
+        if (cell == nil) {
+            cell = [[SubstancesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZoomCellIdentifier];
+        }
+        Substance *current = [sharedManager.substances objectAtIndex:indexPath.row-1];
+        cell.Title.text = [current name];
+        cell.Icon.image = [UIImage imageNamed:[current iconGrabber]];
+        cell.Value.text = [NSString stringWithFormat:@"%d", [current input]];
+        cell.Value.textColor = [current colorGrabber];
+        cell.State.textColor = [current colorGrabber];
+        cell.Unit.text = [current unit];
+        cell.State.text = [current stateGrabber];
+        cell.StateStatus.text = [current stateStatusGrabber];
+        cell.backgroundView.backgroundColor = [UIColor whiteColor];
+        cell.backgroundColor = [UIColor whiteColor];
+        cell.contentView.backgroundColor = [UIColor whiteColor];
+        UIView* backgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+        backgroundView.backgroundColor = [ UIColor whiteColor ];
+        cell.backgroundView = backgroundView;
+        UIView* selectedBackgroundView = [ [ UIView alloc ] initWithFrame:CGRectZero ];
+        cell.selectedBackgroundView = selectedBackgroundView;
+        cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
+        
+        //    for ( UIView* view in cell.contentView.subviews ) 
+        
+        return cell;
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
