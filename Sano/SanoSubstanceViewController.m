@@ -26,6 +26,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(double) maxYValue;
 -(double) midXValue;
 -(double) midYValue;
+-(double) substanceStart;
+-(double) substanceStep;
+-(double) substanceRange;
 
 @property (nonatomic, readwrite) NSUInteger selectedIndex;
 @property (nonatomic, strong) CPTXYGraph *graph;
@@ -46,10 +49,22 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 @synthesize substanceSequence = _substanceSequence;
 @synthesize timer = _timer;
 
+-(double)substanceStart {
+    return (self.currentSubstance.max + self.currentSubstance.min)/2.0;
+}
+
+-(double)substanceStep {
+    return self.substanceRange/4.0;
+}
+
+-(double)substanceRange {
+    return self.currentSubstance.max - self.currentSubstance.min;
+}
+
 -(void)generateSubstanceSequence {
     
     double start = (double)(int)[[NSDate date] timeIntervalSince1970];
-    double yValue = (self.currentSubstance.max - self.currentSubstance.min)/2.0;
+    double yValue = self.substanceStart;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
     for (int i = 0; i < 3600; i++) {
@@ -59,7 +74,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         
         [localSequence addObject:dict];
         
-        yValue = yValue + (double)rand()/(double)RAND_MAX - 0.5;
+        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
     }
     
     self.substanceSequence = [localSequence copy];
@@ -233,15 +248,13 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.graph.paddingRight  = 0.0;
     self.graph.paddingBottom = 0.0;
     
-    double yLength = [self maxYValue] - [self minYValue];
-    
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minYValue] - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
-//    plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) length:CPTDecimalFromInt(100)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - self.substanceRange) length:CPTDecimalFromDouble(self.substanceRange*2)];
+    plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
     plotSpace.delegate = self;    
 }
 
@@ -291,10 +304,15 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     y.axisLineStyle = whiteLineStyle;
     
     // Create the acceptable threshold guide
-    CPTFill *fill = [CPTFill fillWithColor:[CPTColor grayColor]];
-    CPTPlotRange *fillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble([self midYValue] - 0.2) length:CPTDecimalFromDouble([self midYValue] + 0.2)];
+    CPTColor *guideFillStart = [CPTColor colorWithComponentRed:74.0f/255.0f green:125.0f/255.0f blue:148.0f/255.0f alpha:1.0f];
+    CPTColor *guideFillEnd = [CPTColor colorWithComponentRed:47.0f/255.0f green:100.0f/255.0f blue:125.0f/255.0f alpha:1.0f];    
+    CPTGradient *guideGradient = [CPTGradient gradientWithBeginningColor:guideFillStart endingColor:guideFillEnd];
+    guideGradient.angle = 270.0;
     
-    [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:fillRange fill:fill]];    
+    CPTFill *guideFill = [CPTFill fillWithGradient:guideGradient];
+    CPTPlotRange *guideFillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.currentSubstance.min) length:CPTDecimalFromDouble(self.substanceRange)];
+    
+    [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:guideFillRange fill:guideFill]];
 }
 
 -(void)setupScatterPlots {
