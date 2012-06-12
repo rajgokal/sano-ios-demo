@@ -255,7 +255,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - self.substanceRange) length:CPTDecimalFromDouble(self.substanceRange*2)];
     plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
-    plotSpace.delegate = self;    
+    plotSpace.delegate = self;
 }
 
 -(void)setupAxes {
