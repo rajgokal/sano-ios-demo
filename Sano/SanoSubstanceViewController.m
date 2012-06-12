@@ -236,7 +236,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue]) length:CPTDecimalFromFloat((float) 100 + 2)];
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minYValue] - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
 //    plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) length:CPTDecimalFromInt(100)];
     plotSpace.delegate = self;    
@@ -256,7 +256,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 //    dateFormatter.dateStyle = kCFDateFormatterShortStyle;
 //    dateFormatter.timeStyle = kCFDateFormatterShortStyle;
-    dateFormatter.dateFormat = @"H:mm";
+    dateFormatter.dateFormat = @"H:mm:ss";
     CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:dateFormatter];
     timeFormatter.referenceDate = refDate;
 
