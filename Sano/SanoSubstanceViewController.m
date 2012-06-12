@@ -54,7 +54,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(double)substanceStep {
-    return self.substanceRange/4.0;
+    return self.substanceRange/5.0;
 }
 
 -(double)substanceRange {
@@ -63,11 +63,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(void)generateSubstanceSequence {
     
-    double start = (double)(int)[[NSDate date] timeIntervalSince1970];
+    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 3600;
     double yValue = self.substanceStart;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 3600; i++) {
+    for (int i = 0; i < 7200; i++) {
         NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
         
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
@@ -75,6 +75,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         [localSequence addObject:dict];
         
         yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
+        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
+        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
     }
     
     self.substanceSequence = [localSequence copy];
@@ -253,7 +255,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - self.substanceRange) length:CPTDecimalFromDouble(self.substanceRange*2)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - 2*[[NSNumber numberWithDouble:self.substanceRange] doubleValue]) length:CPTDecimalFromDouble(self.substanceRange*3)];
     plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
     plotSpace.delegate = self;
 }
@@ -310,6 +312,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     guideGradient.angle = 270.0;
     
     CPTFill *guideFill = [CPTFill fillWithGradient:guideGradient];
+    NSLog(@"%@", [NSNumber numberWithDouble:self.currentSubstance.min]);
     CPTPlotRange *guideFillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.currentSubstance.min) length:CPTDecimalFromDouble(self.substanceRange)];
     
     [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:guideFillRange fill:guideFill]];

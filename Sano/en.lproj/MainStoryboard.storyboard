@@ -198,7 +198,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="1557" y="191"/>
+            <point key="canvasLocation" x="1437" y="-110"/>
         </scene>
         <!--Onboarding View Controller - Settings-->
         <scene sceneID="Jhd-Uc-4cU">
