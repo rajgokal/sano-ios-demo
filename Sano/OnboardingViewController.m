@@ -7,6 +7,7 @@
 //
 
 #import "OnboardingViewController.h"
+#import <Parse/Parse.h>
 
 @implementation OnboardingViewController
 
@@ -17,6 +18,13 @@
 @synthesize height;
 @synthesize weight;
 @synthesize gender;
+@synthesize diseaseDepression;
+@synthesize diseaseAnemia;
+@synthesize diseaseAsthma;
+@synthesize diseaseChronicKidney;
+@synthesize diseaseCoronaryArtery;
+@synthesize diseaseHypertension;
+@synthesize diseaseDiabetes;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +33,10 @@
         // Custom initialization
     }
     return self;
+}
+
+- (BOOL) getDiseaseDiabetes {
+    return YES;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,7 +71,6 @@
 
 - (void)viewDidUnload
 {
-    [self setHeight:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -69,6 +80,59 @@
 {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    if ([segue.identifier isEqualToString:@"segueFromUserInfo"]) {
+        
+        PFUser *currentUser = [PFUser currentUser];
+        
+        if (currentUser) {
+            NSString *emailField = self.email.text;
+            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
+            NSString *passwordField = self.password.text;
+            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
+            
+            currentUser.username = emailField;
+            currentUser.password = passwordField;
+            currentUser.email = emailField;
+            
+            [currentUser saveInBackground];
+        }
+        else {
+            PFUser *user = [PFUser user];
+            
+            NSString *emailField = self.email.text;
+            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
+            NSString *passwordField = self.password.text;
+            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
+            
+            user.username = emailField;
+            user.password = passwordField;
+            user.email = emailField;
+            [user signUpInBackground];
+        }
+        
+    }
+    else if ([segue.identifier isEqualToString:@"segueFromDiseaseInfo"]) {
+        PFUser *currentUser = [PFUser currentUser];
+        
+        NSArray *diseasesArray = [NSArray arrayWithObjects:@"diseaseAnemia", @"diseaseDepression", @"diseaseAsthma", nil];
+        
+        for (NSString *disease in diseasesArray) {
+         
+            SEL s = NSSelectorFromString(disease);
+            
+            UISwitch *aSwitch = [self performSelector:s];
+            
+            
+            [currentUser setObject:[NSNumber numberWithBool:aSwitch.on] forKey:disease];
+        }
+        [currentUser saveInBackground];
+    }
+    
+    
 }
 
 #pragma mark Text Field Delegate

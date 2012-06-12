@@ -7,6 +7,7 @@
 //
 
 #import "SanoSubstanceViewController.h"
+#import <Parse/Parse.h>
 
 static NSString *const MAIN_PLOT      = @"Scatter Plot";
 static NSString *const SELECTION_PLOT = @"Selection Plot";
@@ -16,8 +17,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void) addDataPoint;
 -(void) setupGraph;
 -(void) setupAxes;
--(void) initializeData;
 -(void) setupScatterPlots;
+-(void) fetchSubstanceSequence;
 -(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis;
 -(double) minXValue;
 -(double) minYValue;
@@ -30,6 +31,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 @property (nonatomic, strong) CPTXYGraph *graph;
 @property (nonatomic, strong) NSMutableArray *dataForPlot;
 @property (nonatomic, strong) CPTPlotSpaceAnnotation *symbolTextAnnotation;
+@property (atomic, strong) NSMutableArray *substanceSequence;
+@property (nonatomic, strong) NSTimer *timer;
 
 @end
 
@@ -40,6 +43,58 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 @synthesize currentSubstance = _currentSubstance;
 @synthesize selectedIndex = _selectedIndex;
 @synthesize graph = _graph;
+@synthesize substanceSequence = _substanceSequence;
+@synthesize timer = _timer;
+
+-(void)generateSubstanceSequence {
+    
+    double start = (double)(int)[[NSDate date] timeIntervalSince1970];
+    double yValue = (self.currentSubstance.max - self.currentSubstance.min)/2.0;
+    NSMutableArray *localSequence = [[NSMutableArray alloc] init];
+    
+    for (int i = 0; i < 3600; i++) {
+        NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
+        
+        [localSequence addObject:dict];
+        
+        yValue = yValue + (double)rand()/(double)RAND_MAX - 0.5;
+    }
+    
+    self.substanceSequence = [localSequence copy];
+}
+
+-(void)fetchSubstanceSequence {
+    NSLog(@"fetching");
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *substanceSequenceKey = [self.currentSubstance.name stringByAppendingString:@"_sequence"];
+    
+    // PFUsers have an object for each substance sequence
+    // called [name]_sequence. It is an NSArray of 
+    // NSDictionaries - each NSDictionary with two keys,
+    // "x" and "y" with objects that are a NSDate and a NSNumber
+
+    NSArray *fetchedSubstanceSequence = [currentUser objectForKey: substanceSequenceKey];
+    
+    if (fetchedSubstanceSequence) {
+        NSDate *lastDate = [fetchedSubstanceSequence.lastObject objectForKey:@"x"];
+        
+        if (lastDate < [NSDate date]) {
+            // if last timestamp is less than five minutes from now, generate a new sequence and post
+            
+        }
+        else {
+            
+        }
+        
+    }
+    else {
+        [self generateSubstanceSequence];
+        [currentUser setObject:self.substanceSequence forKey:substanceSequenceKey];
+        [currentUser saveInBackground];
+    }
+}
 
 -(void)setSelectedIndex:(NSUInteger)newIndex
 {
@@ -52,6 +107,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     return YES;
+}
+
+-(double)xAxisOffset {
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;    
+    return plotSpace.yRange.lengthDouble * 0.10;
 }
 
 -(void)scatterPlot:(CPTScatterPlot *)plot plotSymbolWasSelectedAtRecordIndex:(NSUInteger)index
@@ -127,7 +187,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         return [[sortedCopy.lastObject objectForKey:axis] doubleValue];
     }
     else {
-        return [[[sortedCopy objectAtIndex:1] objectForKey:axis] doubleValue];
+        return [[[sortedCopy objectAtIndex:0] objectForKey:axis] doubleValue];
     }
 }
 
@@ -155,20 +215,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     return ([self maxXValue] - [self minXValue])/2;
 }
 
--(void) initializeData {
-    NSMutableArray *contentArray = [NSMutableArray arrayWithCapacity:100];
-    NSUInteger i;
-    
-    NSNumber *mid = [NSNumber numberWithDouble:((self.currentSubstance.max - self.currentSubstance.min)/2)];
-    
-    [contentArray addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:0], @"x", mid, @"y", nil]];
-    self.dataForPlot = contentArray;
-    
-    for ( i = 0; i < 20; i++ ) {
-        [self addDataPoint];        
-    }
-}
-
 -(void) setupGraph {
     self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
     CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
@@ -188,22 +234,30 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
 
+    NSLog(@"%@", [NSNumber numberWithDouble:[self minXValue]]);
+    NSLog(@"%@", [NSNumber numberWithDouble:xLength]);    
+    
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue] - 0.5) length:CPTDecimalFromFloat((float) xLength + 2)];
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minXValue]) length:CPTDecimalFromFloat((float) 100 + 2)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromFloat((float) [self minYValue] - 0.5) length:CPTDecimalFromFloat((float) yLength + 1)];
+//    plotSpace.globalXRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(0) length:CPTDecimalFromInt(100)];
     plotSpace.delegate = self;    
 }
 
 -(void)setupAxes {
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;    
+    
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
     CPTXYAxis *x          = axisSet.xAxis;
-    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble([self minYValue] - 0.3);
+    
+    x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
+    
     x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     x.minorTicksPerInterval       = 2;
     x.preferredNumberOfMajorTicks = 6;
     
     CPTXYAxis *y = axisSet.yAxis;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromString(@"0");
+    y.orthogonalCoordinateDecimal = CPTDecimalFromDouble([[NSDate date] timeIntervalSince1970]);
     y.labelOffset                 = -35;
     y.delegate             = self;
     y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
@@ -249,12 +303,21 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-    [self initializeData];
+    
+    // right now these are dependent on each other and should 
+    // be called in this order:
+    [self generateSubstanceSequence];
+    [self addDataPoint];
+    NSLog(@"%@", self.dataForPlot);
     [self setupGraph];
     [self setupAxes];
     [self setupScatterPlots];
     
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
+}
+
+-(void)viewDidUnload {
+    [self.timer invalidate];
 }
 
 #pragma mark -
@@ -333,27 +396,47 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(void)addDataPoint {
-    id x = [[self.dataForPlot lastObject] objectForKey:@"x"];
-    NSNumber *nextX = [NSNumber numberWithDouble:[x doubleValue] + 0.5];
-    id y = [[self.dataForPlot lastObject] objectForKey:@"y"];
-    NSNumber *nextY = [NSNumber numberWithDouble:[y doubleValue] + rand()/(float)RAND_MAX - 0.5];
-    
-    [self.dataForPlot addObject:[NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil]];
 
-    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;        
+    int unixTime = [[NSDate date] timeIntervalSince1970];
+    
+    NSNumber *nextY;
+
+    for (id dict in self.substanceSequence) {
+        if (unixTime == (int)[[dict objectForKey:@"x"] timeIntervalSince1970]) {
+            nextY = [dict objectForKey:@"y"];
+            break;
+        }
+    }
+    
+    NSNumber *nextX = [NSNumber numberWithInt:unixTime];
+    
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil];
+    
+    NSMutableArray *localArray = [[NSMutableArray alloc] initWithArray:self.dataForPlot copyItems:YES];
+
+    [localArray addObject:[dict copy]];
+    self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
+    
+    NSLog(@"%@", dict);
+    NSLog(@"%@", self.dataForPlot);
+    CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
 
     // adjust y axis if we go above max value
     if ([nextY doubleValue] > plotSpace.yRange.maxLimitDouble) {
-        plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:plotSpace.yRange.minLimit length:CPTDecimalFromDouble([nextY doubleValue] - plotSpace.yRange.minLimitDouble + 1)];        
+        plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:plotSpace.yRange.minLimit length:CPTDecimalFromDouble([nextY doubleValue] - plotSpace.yRange.minLimitDouble + 1)];
+        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
+        axisSet.xAxis.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
     }
     
     // adjust y axis if we go below the min value
     if ([nextY doubleValue] < plotSpace.yRange.minLimitDouble) {
         plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:(CPTDecimalFromDouble([nextY doubleValue] - 1)) length:CPTDecimalFromDouble(plotSpace.yRange.lengthDouble + 1)];
+        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
+        axisSet.xAxis.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
     }
     
     // if we're not looking at historical data, bump the graph right.
-    if ( [x doubleValue] < plotSpace.xRange.maxLimitDouble && [nextX doubleValue] + 1 > plotSpace.xRange.maxLimitDouble) {
+    if ( [nextX doubleValue] < plotSpace.xRange.maxLimitDouble && [nextX doubleValue] + 1 > plotSpace.xRange.maxLimitDouble) {
         double newLocation = plotSpace.xRange.locationDouble + 1;
         double newLength = plotSpace.xRange.lengthDouble + 1;
 
@@ -361,7 +444,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         plotSpace.xRange = newRange;
         
         // move the y axis too 
-        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;        
+        CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
         axisSet.yAxis.orthogonalCoordinateDecimal = newRange.location;
     }
     

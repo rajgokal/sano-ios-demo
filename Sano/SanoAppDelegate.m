@@ -7,6 +7,7 @@
 //
 
 #import "SanoAppDelegate.h"
+#import <Parse/Parse.h>
 
 @implementation SanoAppDelegate
 
@@ -14,6 +15,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"Y6DDaEB6vQRMOt6WMLYtx1LtMwNwPQIjzztfpBpx"
+                  clientKey:@"GJm3uvGxRNE1d14AR8N2lDFfkHyCHcQ6jyl89fJT"];    
     // Override point for customization after application launch.
     return YES;
 }

@@ -11,7 +11,7 @@
 
 @implementation Substance
 
-@synthesize name,filename,notes,input,min,max,color,unit,state,stateStatus,timeStamp,goodSuggestion,badSuggestion;
+@synthesize name,filename,notes,input,min,max,color,unit,state,stateStatus,timeStamp,goodSuggestion,badSuggestion,absoluteMax,absoluteMin;
 
 - (UIColor*)colorGrabber
 {

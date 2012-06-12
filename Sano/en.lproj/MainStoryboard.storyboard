@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1938" systemVersion="11D50b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="bQa-2I-bkl">
     <dependencies>
+        <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="933"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
+        <!--Alerts View Controller-->
         <scene sceneID="cze-Be-JnZ">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oA7-h9-6Sb" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="T0X-5m-qzd" customClass="AlertsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="101" sectionHeaderHeight="22" sectionFooterHeight="22" id="k2w-NP-gTT">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -87,12 +89,13 @@
             </objects>
             <point key="canvasLocation" x="1165" y="190"/>
         </scene>
+        <!--Sano Dashboard View Controller - Metabolic Panel-->
         <scene sceneID="DAU-9f-r7l">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOe-Hd-LZp" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Metabolic Panel" id="9l0-r5-Tab" customClass="SanoDashboardViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="54" sectionHeaderHeight="22" sectionFooterHeight="22" id="SwV-kz-AfS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -176,12 +179,13 @@
             </objects>
             <point key="canvasLocation" x="1557" y="191"/>
         </scene>
+        <!--Onboarding View Controller - Settings-->
         <scene sceneID="Jhd-Uc-4cU">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lLf-2e-0Ck" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="Settings" title="Settings" id="0WG-52-NMB" customClass="OnboardingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CZe-Dc-AJG">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" minimumFontSize="17" id="4G9-mk-iJE">
@@ -247,7 +251,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Fqk-Qo-QDf" kind="push" id="5hh-vh-FQC"/>
+                                    <segue destination="Fqk-Qo-QDf" kind="push" identifier="segueFromUserInfo" id="5hh-vh-FQC"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -269,12 +273,13 @@
             </objects>
             <point key="canvasLocation" x="1557" y="791"/>
         </scene>
+        <!--Onboarding View Controller-->
         <scene sceneID="qSq-5a-WI3">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GgB-RW-Ini" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Fqk-Qo-QDf" customClass="OnboardingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KuR-tw-uRC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="8DV-b2-0xx">
@@ -374,7 +379,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="9y4-mq-ykZ" kind="push" id="vTO-jV-adt"/>
+                                    <segue destination="9y4-mq-ykZ" kind="push" identifier="segueFromDiseaseInfo" id="vTO-jV-adt"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="I suffer from..." lineBreakMode="wordWrap" minimumFontSize="17" id="vS8-ct-PHA">
@@ -390,16 +395,26 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="nhe-2a-rfi"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
+                    <connections>
+                        <outlet property="diseaseAnemia" destination="zV2-eg-r9a" id="r5F-R2-5jf"/>
+                        <outlet property="diseaseAsthma" destination="Bt2-BK-Tsx" id="81d-3w-mGl"/>
+                        <outlet property="diseaseChronicKidney" destination="3Hf-Tf-2F3" id="v44-Sy-Cbc"/>
+                        <outlet property="diseaseCoronaryArtery" destination="zcg-NZ-vwR" id="MgJ-gJ-zRQ"/>
+                        <outlet property="diseaseDepression" destination="gUk-V9-XJf" id="Xi3-F7-07C"/>
+                        <outlet property="diseaseDiabetes" destination="8DV-b2-0xx" id="XOK-sD-zZg"/>
+                        <outlet property="diseaseHypertension" destination="eS1-Lq-ais" id="sHu-vE-hDD"/>
+                    </connections>
                 </viewController>
             </objects>
             <point key="canvasLocation" x="1953" y="791"/>
         </scene>
+        <!--View Controller-->
         <scene sceneID="KKe-X9-f98">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hl4-1e-nI5" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="HbH-Lj-ktP" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dIa-08-jgu">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="COZ-vc-Q8r">
@@ -459,12 +474,13 @@
             </objects>
             <point key="canvasLocation" x="1953" y="1399"/>
         </scene>
+        <!--Edit Dashboard View Controller - Edit-->
         <scene sceneID="pA3-aO-btM">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sub-lC-61N" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Edit" id="UON-Kk-Fc8" customClass="EditDashboardViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="49" sectionHeaderHeight="22" sectionFooterHeight="22" id="qmD-9H-Cok">
-                        <rect key="frame" x="0.0" y="64" width="320" height="372"/>
+                        <rect key="frame" x="0.0" y="44" width="320" height="372"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -534,12 +550,13 @@
             </objects>
             <point key="canvasLocation" x="2359" y="1399"/>
         </scene>
+        <!--Sano Substance View Controller-->
         <scene sceneID="gd0-cw-TL9">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RjL-B9-Pdc" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="WrM-dG-lcw" customClass="SanoSubstanceViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="74Z-cT-Acp" customClass="CPTGraphHostingView">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -550,12 +567,13 @@
             </objects>
             <point key="canvasLocation" x="1943" y="191"/>
         </scene>
+        <!--Metrics View Controller-->
         <scene sceneID="NgT-dv-VFW">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JAm-uf-oxs" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="9y4-mq-ykZ" customClass="MetricsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="83" sectionHeaderHeight="22" sectionFooterHeight="22" id="R3A-K2-jUA">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -599,6 +617,7 @@
             </objects>
             <point key="canvasLocation" x="2335" y="188"/>
         </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Cj1-BE-M4v">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aGd-zz-kNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -618,87 +637,9 @@
             <point key="canvasLocation" x="1165" y="791"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="AlertsCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Alert" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Suggestion" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="TimeStamp" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="AlertsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AlertsViewController.h"/>
-        </class>
-        <class className="CPTGraphHostingView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CPTGraphHostingView.h"/>
-        </class>
-        <class className="EditDashboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditDashboardViewController.h"/>
-        </class>
-        <class className="EditSubstancesCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EditSubstancesCell.h"/>
-            <relationships>
-                <relationship kind="action" name="sliderChanged:"/>
-                <relationship kind="outlet" name="Slider" candidateClass="UISlider"/>
-                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MetricCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="MetricsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MetricsViewController.h"/>
-        </class>
-        <class className="OnboardingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/OnboardingViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="email" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="gender" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="height" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastName" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="password" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="weight" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SanoDashboardViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoDashboardViewController.h"/>
-        </class>
-        <class className="SanoNavigationBar" superclassName="UINavigationBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoNavigationBar.h"/>
-        </class>
-        <class className="SanoSubstanceViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SanoSubstanceViewController.h"/>
-        </class>
-        <class className="SubstancesCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SubstancesCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="Icon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="State" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="StateStatus" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Title" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Unit" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="Value" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="ULj-w3-Ab1"/>
-        <segue reference="5hh-vh-FQC"/>
-        <segue reference="8Kj-sS-fST"/>
-        <segue reference="3Ua-lh-iJq"/>
-    </inferredMetricsTieBreakers>
 </document>

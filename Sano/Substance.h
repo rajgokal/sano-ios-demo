@@ -16,6 +16,8 @@
 @property (nonatomic, assign) int input;
 @property (nonatomic, assign) int min;
 @property (nonatomic, assign) int max;
+@property (nonatomic, assign) int absoluteMin;
+@property (nonatomic, assign) int absoluteMax;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSString *unit;
 @property (nonatomic, strong) NSString *state;
