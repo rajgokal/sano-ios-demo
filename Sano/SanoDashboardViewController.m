@@ -168,7 +168,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
     int row = [path row];
-    Substance *s = [sharedManager.substances objectAtIndex:row];
+    Substance *s = [sharedManager.substances objectAtIndex:row - 1];
     dvc.currentSubstance = s;
     }
 }
