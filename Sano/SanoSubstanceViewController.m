@@ -125,7 +125,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup a style for the annotation
     CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
-    hitAnnotationTextStyle.color    = [CPTColor darkGrayColor];
+    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
     hitAnnotationTextStyle.fontSize = 16.0f;
     hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
     
@@ -219,8 +219,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(void) setupGraph {
     self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-    CPTTheme *theme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
     [self.graph applyTheme:theme];
+    CPTFill *fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:26.0f/255.0f green:83.0f/255.0f blue:103.0f/255.0f alpha:1.0f]];
+    self.graph.fill = fill;
+    self.graph.plotAreaFrame.fill = fill;
     CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph     = self.graph;
@@ -245,6 +248,13 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void)setupAxes {
     NSDate *refDate = [NSDate dateWithTimeIntervalSince1970:0];
     
+    // style the graph with white text and lines
+    CPTMutableTextStyle *whiteTextStyle = [[CPTMutableTextStyle alloc] init];
+    whiteTextStyle.color = [CPTColor whiteColor];              
+    CPTMutableLineStyle *whiteLineStyle = [[CPTMutableLineStyle alloc] init];
+    whiteLineStyle.lineColor = [CPTColor whiteColor];
+    whiteLineStyle.lineWidth = 2.0f;
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;    
     
     CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
@@ -253,18 +263,19 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
 
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-
-//    dateFormatter.dateStyle = kCFDateFormatterShortStyle;
-//    dateFormatter.timeStyle = kCFDateFormatterShortStyle;
     dateFormatter.dateFormat = @"H:mm:ss";
     CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:dateFormatter];
     timeFormatter.referenceDate = refDate;
-
     x.labelFormatter = timeFormatter;
     
     x.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     x.minorTicksPerInterval       = 2;
     x.preferredNumberOfMajorTicks = 6;
+    CPTMutableTextStyle *xStyle = x.labelTextStyle.mutableCopy;
+    xStyle.color = [CPTColor whiteColor];
+    x.labelTextStyle = whiteTextStyle;
+    x.axisLineStyle = whiteLineStyle;
+    
     
     CPTXYAxis *y = axisSet.yAxis;
     y.orthogonalCoordinateDecimal = CPTDecimalFromDouble([[NSDate date] timeIntervalSince1970]);
@@ -273,6 +284,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     y.preferredNumberOfMajorTicks = 4;
     y.minorTicksPerInterval       = 5;
+    CPTMutableTextStyle *yStyle = y.labelTextStyle.mutableCopy;
+    yStyle.color = [CPTColor whiteColor];
+    
+    y.labelTextStyle = whiteTextStyle;
+    y.axisLineStyle = whiteLineStyle;
     
     // Create the acceptable threshold guide
     CPTFill *fill = [CPTFill fillWithColor:[CPTColor grayColor]];
@@ -289,7 +305,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     CPTMutableLineStyle *lineStyle = [CPTMutableLineStyle lineStyle];
     lineStyle.miterLimit        = 1.0f;
     lineStyle.lineWidth         = 3.0f;
-    lineStyle.lineColor         = [CPTColor blueColor];
+    lineStyle.lineColor         = [CPTColor whiteColor];
     dataSourceLinePlot.dataLineStyle = lineStyle;
     
     dataSourceLinePlot.dataSource    = self;
@@ -301,9 +317,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     // Add plot symbols
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
-    symbolLineStyle.lineColor = [CPTColor blackColor];
+    symbolLineStyle.lineColor = [CPTColor whiteColor];
     CPTPlotSymbol *plotSymbol = [CPTPlotSymbol ellipsePlotSymbol];
-    plotSymbol.fill          = [CPTFill fillWithColor:[CPTColor blueColor]];
+    plotSymbol.fill          = [CPTFill fillWithColor:[CPTColor whiteColor]];
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(1.0, 1.0);
     dataSourceLinePlot.plotSymbol = plotSymbol;
