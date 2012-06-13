@@ -8,6 +8,7 @@
 
 #import "SanoSubstanceViewController.h"
 #import <Parse/Parse.h>
+#import "SBJson.h"
 
 static NSString *const MAIN_PLOT      = @"Scatter Plot";
 static NSString *const SELECTION_PLOT = @"Selection Plot";
@@ -67,20 +68,34 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 // "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
-    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 360;
-    double yValue = self.substanceStart;
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@%@", self.currentSubstance.name, @"Sequence"];
+        
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
+    NSError *error;
+    NSString *fileString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    NSDictionary *json = [parser objectWithString:fileString];
+    
+    int start = (int)[[NSDate date] timeIntervalSince1970] - 36000;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 720; i++) {
-        NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
-        
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];    
+    for (int i = 0; i < 72000; i++) {
+        NSString *timestamp = [NSString stringWithFormat:@"%i", start + i];
+        if ([json objectForKey:timestamp]) {
+            NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
+            NSNumber *yValue = [f numberFromString:[json objectForKey:timestamp]];
+            
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", yValue, @"y", nil];
         
         [localSequence addObject:dict];
         
-        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
-        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
-        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
+//        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
+//        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
+//        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
+        }
     }
     
     self.substanceSequence = [localSequence copy];

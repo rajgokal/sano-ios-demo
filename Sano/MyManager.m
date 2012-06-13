@@ -43,6 +43,9 @@
 @synthesize stamina;
 @synthesize kidneyHealth;
 @synthesize fertilityLevel;
+@synthesize bunCreatinine;
+@synthesize sleepMetric;
+@synthesize hormoneBalance;
 
 //Stores for different combinations of the data
 @synthesize substances;
@@ -377,6 +380,34 @@ static MyManager *sharedManager = nil;
     
     [self.metrics addObject:self.hydration];
     
+    self.muscleStrength = [[Metric alloc] init];
+    self.muscleStrength.name = @"Muscle Strength";
+    self.muscleStrength.score = 0.89;
+    self.muscleStrength.yesterday = self.muscleStrength.score*0.95;
+    
+    [self.metrics addObject:self.muscleStrength];
+    
+    self.bunCreatinine = [[Metric alloc] init];
+    self.bunCreatinine.name = @"BUN / Creatinine";
+    self.bunCreatinine.score = 0.76;
+    self.bunCreatinine.yesterday = self.bunCreatinine.score*0.8;
+    
+    [self.metrics addObject:self.bunCreatinine];
+    
+    self.sleepMetric = [[Metric alloc] init];
+    self.sleepMetric.name = @"Sleep Score";
+    self.sleepMetric.score = 0.9;
+    self.sleepMetric.yesterday = self.sleepMetric.score*0.9;
+    
+    [self.metrics addObject:self.sleepMetric];
+    
+    self.hormoneBalance = [[Metric alloc] init];
+    self.hormoneBalance.name = @"Hormone Balance";
+    self.hormoneBalance.score = 0.9;
+    self.hormoneBalance.yesterday = self.hormoneBalance.score*1.06;
+    
+    [self.metrics addObject:self.hormoneBalance];
+    
     alerts = [[NSMutableArray alloc] initWithCapacity:1];
     for (id current in self.substances) {
         if ([current input] > [current max] | [current input] < [current min])
@@ -387,7 +418,7 @@ static MyManager *sharedManager = nil;
     
     self.chronicKidney = [[UserType alloc] init];
     self.chronicKidney.name = @"Chronic Kidney Disease";
-    self.chronicKidney.metrics = [NSArray arrayWithObjects:self.energy, self.kidneyHealth, nil];
+    self.chronicKidney.metrics = [NSArray arrayWithObjects:self.energy, self.kidneyHealth, self.sleepMetric, self.bunCreatinine, nil];
     
     [self.userTypes addObject:self.chronicKidney];
     
@@ -399,7 +430,7 @@ static MyManager *sharedManager = nil;
     
     self.fertUser = [[UserType alloc] init];
     self.fertUser.name = @"Fertility";
-    self.fertUser.metrics = [NSArray arrayWithObjects:self.energy, self.nutrition, self.fertilityLevel, nil];
+    self.fertUser.metrics = [NSArray arrayWithObjects:self.energy, self.nutrition, self.fertilityLevel, self.hormoneBalance, nil];
     
     [self.userTypes addObject:self.fertUser];
     
