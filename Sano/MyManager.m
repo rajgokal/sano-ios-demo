@@ -11,15 +11,38 @@
 
 @implementation MyManager
 
+//Various data being captured
 @synthesize someProperty;
 @synthesize glucose;
 @synthesize calcium;
 @synthesize sodium;
 @synthesize potassium;
-@synthesize co2;
+@synthesize CO2;
 @synthesize chloride;
 @synthesize bun;
 @synthesize creatinine;
+@synthesize sleep;
+@synthesize VO2;
+@synthesize lactate;
+@synthesize B1;
+@synthesize B5;
+@synthesize B6;
+@synthesize D;
+@synthesize bloodPressure;
+@synthesize weight;
+
+
+//"Proprietary metrics" generated from various data
+@synthesize energy;
+@synthesize alertness;
+@synthesize fitness;
+@synthesize nutrition;
+@synthesize longevity;
+@synthesize muscleStrength;
+@synthesize hydration;
+@synthesize stamina;
+
+//Stores for different combinations of the data
 @synthesize substances;
 @synthesize alerts;
 @synthesize metrics;
@@ -151,44 +174,171 @@ static MyManager *sharedManager = nil;
     [sub setInput:(sub.min+sub.max)/2];
     [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
     [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
+
+    [self.substances addObject:sub];
+    
+    sub = [[Substance alloc]init];
+    [sub setName:@"Sleep"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Sleep concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
     [self.substances addObject:sub];
     
-    metrics = [[NSMutableArray alloc] initWithCapacity:8];
+    sub = [[Substance alloc]init];
+    [sub setName:@"VO2"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"VO2 concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
-    Metric *met = [[Metric alloc]init];
-    [met setName:@"Energy"];
-    [met setScore:0.5];
-    [met setYesterday:(met.score*1.05)];
+    [self.substances addObject:sub];
     
-    [self.metrics addObject:met];
     
-    met = [[Metric alloc]init];
-    [met setName:@"Alertness"];
-    [met setScore:0.6];
-    [met setYesterday:(met.score*1.05)];    
-    [self.metrics addObject:met];
+    sub = [[Substance alloc]init];
+    [sub setName:@"Lactate"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Lactate concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
-    met = [[Metric alloc]init];
-    [met setName:@"Nutrition"];
-    [met setScore:0.7];
-    [met setYesterday:(met.score*1.05)];
+    [self.substances addObject:sub];
     
-    [self.metrics addObject:met];
+    sub = [[Substance alloc]init];
+    [sub setName:@"Vitamin B1"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Vitamin B1 concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
-    met = [[Metric alloc]init];
-    [met setName:@"Fitness"];
-    [met setScore:0.8];
-    [met setYesterday:(met.score*1.05)];
+    [self.substances addObject:sub];
     
-    [self.metrics addObject:met];
+    sub = [[Substance alloc]init];
+    [sub setName:@"Vitamin B5"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Vitamin B5 concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
     
-    met = [[Metric alloc]init];
-    [met setName:@"Longevity"];
-    [met setScore:0.9];
-    [met setYesterday:(met.score*1.05)];
+    [self.substances addObject:sub];
     
-    [self.metrics addObject:met];
+    sub = [[Substance alloc]init];
+    [sub setName:@"Vitamin B6"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Vitamin B6 concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
+    
+    [self.substances addObject:sub];
+    
+    sub = [[Substance alloc]init];
+    [sub setName:@"Vitamin D"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Vitamin D concentration data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
+    
+    [self.substances addObject:sub];
+    
+    sub = [[Substance alloc]init];
+    [sub setName:@"Blood Pressure"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"Blood Pressure data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
+    
+    [self.substances addObject:sub];
+    
+    sub = [[Substance alloc]init];
+    [sub setName:@"BMI"];
+    [sub setUnit:@"mg/dL"];
+    [sub setNotes:@"BMI data"];
+    [sub setMin:0.75];
+    [sub setMax:1.2];
+    sub.absoluteMin = 0.4;
+    sub.absoluteMax = 1.6;
+    [sub setInput:(sub.min+sub.max)/2];
+    [sub setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.max]];
+    [sub setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",sub.name,sub.min]];
+    
+    [self.substances addObject:sub];
+
+//    metrics = [[NSMutableArray alloc] initWithCapacity:8];
+//    
+//    Metric *met = [[Metric alloc]init];
+//    [met setName:@"Energy"];
+//    [met setScore:0.5];
+//    [met setYesterday:(met.score*1.05)];
+//    
+//    [self.metrics addObject:met];
+//    
+//    met = [[Metric alloc]init];
+//    [met setName:@"Alertness"];
+//    [met setScore:0.6];
+//    [met setYesterday:(met.score*1.05)];    
+//    [self.metrics addObject:met];
+//    
+//    met = [[Metric alloc]init];
+//    [met setName:@"Nutrition"];
+//    [met setScore:0.7];
+//    [met setYesterday:(met.score*1.05)];
+//    
+//    [self.metrics addObject:met];
+//    
+//    met = [[Metric alloc]init];
+//    [met setName:@"Fitness"];
+//    [met setScore:0.8];
+//    [met setYesterday:(met.score*1.05)];
+//    
+//    [self.metrics addObject:met];
+//    
+//    met = [[Metric alloc]init];
+//    [met setName:@"Longevity"];
+//    [met setScore:0.9];
+//    [met setYesterday:(met.score*1.05)];
+//    
+//    [self.metrics addObject:met];
     
     alerts = [[NSMutableArray alloc] initWithCapacity:1];
     for (id current in self.substances) {

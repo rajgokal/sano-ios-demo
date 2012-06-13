@@ -64,12 +64,12 @@
 - (NSString*)stateStatusGrabber
 {
     if (self.input>self.max) {
-        return @"ABOVE TARGET RANGE";
+        return @"ABOVE TARGET";
     }
     if (self.input<self.min) {
-        return @"BELOW TARGET RANGE";
+        return @"BELOW TARGET";
     }
-    return @"WITHIN TARGET RANGE";
+    return @"ON TARGET";
 }
 
 - (void)createAlert
