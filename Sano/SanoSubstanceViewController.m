@@ -362,6 +362,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     [self setupScatterPlots];
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
+    
+    self.title = [self.currentSubstance name];
 }
 
 -(void)viewDidUnload {

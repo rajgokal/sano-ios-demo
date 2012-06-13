@@ -42,6 +42,8 @@
     [super viewDidLoad];
     self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleSingleLine];
+    self.tableView.separatorColor = [[UIColor alloc]initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
+    
     self.title = [currentMetric name];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -95,7 +97,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 0;
-    if (indexPath.row < 1) height = 83;
+    if (indexPath.row < 1) height = 82;
     else height = 51;
     return height;
 }
@@ -127,6 +129,20 @@
         //        cell.selectedBackgroundView = bgView;
         cell.backgroundView.layer.masksToBounds = YES;
         cell.backgroundView.layer.cornerRadius = 0.0;
+        
+        
+        CGFloat mark;
+        mark=(279-15)*[currentMetric yesterday]+15;
+        UIImageView *marker = [[UIImageView alloc] initWithFrame:CGRectMake(mark,27,10,33)];
+        [marker setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Marker.png"]]];
+        [cell.contentView addSubview:marker];
+        UILabel *yesterday = [[UILabel alloc] initWithFrame:CGRectMake(mark-20,60,65,10)];
+        yesterday.textColor=[UIColor blackColor];
+        [yesterday setFont:[UIFont fontWithName:@"Helvetica" size:9]];
+        yesterday.backgroundColor=[UIColor clearColor];
+        yesterday.textAlignment = UITextAlignmentLeft;
+        yesterday.text = @"YESTERDAY";
+        [cell.contentView addSubview:yesterday];
         
         return cell;
     } else {
@@ -168,7 +184,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
     int row = [path row];
-    Substance *s = [sharedManager.substances objectAtIndex:row];
+    Substance *s = [sharedManager.substances objectAtIndex:row-1];
     dvc.currentSubstance = s;
     }
 }
