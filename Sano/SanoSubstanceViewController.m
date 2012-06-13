@@ -19,7 +19,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void) setupGraph;
 -(void) setupAxes;
 -(void) setupScatterPlots;
--(void) fetchSubstanceSequence;
+-(void) pullSubstanceSequence;
 -(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis;
 -(double) minXValue;
 -(double) minYValue;
@@ -86,33 +86,19 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.substanceSequence = [localSequence copy];
 }
 
--(void)fetchSubstanceSequence {
+-(NSString *)substanceSequenceKey { 
+    return [self.currentSubstance.name stringByAppendingString:@"_sequence"];
+}
 
+-(void)pullSubstanceSequence {
     PFUser *currentUser = [PFUser currentUser];
-    NSString *substanceSequenceKey = [self.currentSubstance.name stringByAppendingString:@"_sequence"];
+    self.substanceSequence = [currentUser objectForKey: self.substanceSequenceKey];
+}
 
-    // PFUsers have an object for each substance sequence
-    // called [name]_sequence. 
-    
-    NSArray *fetchedSubstanceSequence = [currentUser objectForKey: substanceSequenceKey];
-    
-    if (fetchedSubstanceSequence) {
-        NSDate *lastDate = [fetchedSubstanceSequence.lastObject objectForKey:@"x"];
-        
-        if (lastDate < [NSDate date]) {
-            // if last timestamp is less than five minutes from now, generate a new sequence and post
-            
-        }
-        else {
-            
-        }
-        
-    }
-    else {
-        [self generateSubstanceSequence];
-        [currentUser setObject:self.substanceSequence forKey:substanceSequenceKey];
-        [currentUser saveInBackground];
-    }
+-(void)pushSubstanceSequence { 
+    PFUser *currentUser = [PFUser currentUser];    
+    [currentUser setObject:self.substanceSequence forKey:self.substanceSequenceKey];
+    [currentUser saveInBackground];
 }
 
 -(void)setSelectedIndex:(NSUInteger)newIndex
@@ -355,7 +341,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.dataForPlot = nil;
 
     if (!self.substanceSequence) {
+        NSLog(@"here");
         [self generateSubstanceSequence];
+        [self pushSubstanceSequence];
     }
 
     [self addPastDataPoints];
@@ -409,16 +397,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
             x = [NSNumber numberWithInt:(int)[[dict objectForKey:@"x"] timeIntervalSince1970]];
             NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
             [localArray addObject:[dict copy]];
-            NSLog(@"%@", x);
-            NSLog(@"%@", y);
-            
         }
     }
-    
     self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
-    NSLog(@"%@", self.dataForPlot);
-
-    
 }
 
 -(void)addDataPoint {
