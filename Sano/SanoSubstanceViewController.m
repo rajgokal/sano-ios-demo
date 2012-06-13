@@ -67,11 +67,11 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 // "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
-    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 3600;
+    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 360;
     double yValue = self.substanceStart;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 7200; i++) {
+    for (int i = 0; i < 720; i++) {
         NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
         
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
@@ -341,7 +341,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.dataForPlot = nil;
 
     if (!self.substanceSequence) {
-        NSLog(@"here");
         [self generateSubstanceSequence];
         [self pushSubstanceSequence];
     }

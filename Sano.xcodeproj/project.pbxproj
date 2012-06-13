@@ -85,6 +85,7 @@
 		A11E235E1586308200D2D3D5 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E235D1586308200D2D3D5 /* MobileCoreServices.framework */; };
 		A11E23601586309500D2D3D5 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E235F1586309500D2D3D5 /* libz.1.1.3.dylib */; };
 		A11E23621586309E00D2D3D5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E23611586309E00D2D3D5 /* Security.framework */; };
+		A1347E77158828F900491EDD /* UserType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347E76158828F900491EDD /* UserType.m */; };
 		A1E7886115751935007A86FE /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E7885D15751904007A86FE /* libCorePlot-CocoaTouch.a */; };
 /* End PBXBuildFile section */
 
@@ -212,6 +213,8 @@
 		A11E235D1586308200D2D3D5 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		A11E235F1586309500D2D3D5 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		A11E23611586309E00D2D3D5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A1347E75158828F900491EDD /* UserType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserType.h; sourceTree = "<group>"; };
+		A1347E76158828F900491EDD /* UserType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserType.m; sourceTree = "<group>"; };
 		A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -354,6 +357,8 @@
 				35270F8B1583E1CD001E0FB2 /* Metric.m */,
 				35270F551583E096001E0FB2 /* ADVProgressBar */,
 				3541B48014D34E5300F853B9 /* Supporting Files */,
+				A1347E75158828F900491EDD /* UserType.h */,
+				A1347E76158828F900491EDD /* UserType.m */,
 			);
 			path = Sano;
 			sourceTree = "<group>";
@@ -625,6 +630,7 @@
 				35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */,
 				35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */,
 				35270F8F158540C5001E0FB2 /* SanoNavigationBar.m in Sources */,
+				A1347E77158828F900491EDD /* UserType.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
