@@ -15,6 +15,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 @interface SanoSubstanceViewController()
 
 -(void) addDataPoint;
+-(void) addPastDataPoints;
 -(void) setupGraph;
 -(void) setupAxes;
 -(void) setupScatterPlots;
@@ -61,6 +62,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     return self.currentSubstance.max - self.currentSubstance.min;
 }
 
+// A substance sequence is an NSArray of 
+// NSDictionaries - each NSDictionary with two keys,
+// "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
     double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 3600;
@@ -86,10 +90,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     PFUser *currentUser = [PFUser currentUser];
     NSString *substanceSequenceKey = [self.currentSubstance.name stringByAppendingString:@"_sequence"];
-    
-    // A substance sequence is an NSArray of 
-    // NSDictionaries - each NSDictionary with two keys,
-    // "x" and "y" with objects that are a NSDate and a NSNumber
 
     // PFUsers have an object for each substance sequence
     // called [name]_sequence. 
@@ -142,7 +142,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup a style for the annotation
     CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
-    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
+    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
     hitAnnotationTextStyle.fontSize = 16.0f;
     hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
     
@@ -312,7 +312,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     guideGradient.angle = 270.0;
     
     CPTFill *guideFill = [CPTFill fillWithGradient:guideGradient];
-    NSLog(@"%@", [NSNumber numberWithDouble:self.currentSubstance.min]);
     CPTPlotRange *guideFillRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.currentSubstance.min) length:CPTDecimalFromDouble(self.substanceRange)];
     
     [y addBackgroundLimitBand:[CPTLimitBand limitBandWithRange:guideFillRange fill:guideFill]];
@@ -359,7 +358,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         [self generateSubstanceSequence];
     }
 
-    [self addDataPoint];
+    [self addPastDataPoints];
     [self setupGraph];
     [self setupAxes];
     [self setupScatterPlots];
@@ -396,6 +395,32 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     return nil;
 }
 
+-(void)addPastDataPoints {
+    int unixTime = [[NSDate date] timeIntervalSince1970];
+    
+    NSNumber *y;
+    NSNumber *x;
+    
+    NSMutableArray *localArray = [[NSMutableArray alloc] init];
+    
+    for (id dict in self.substanceSequence) {
+        if (unixTime > (int)[[dict objectForKey:@"x"] timeIntervalSince1970]) {
+            y = [dict objectForKey:@"y"];
+            x = [NSNumber numberWithInt:(int)[[dict objectForKey:@"x"] timeIntervalSince1970]];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+            [localArray addObject:[dict copy]];
+            NSLog(@"%@", x);
+            NSLog(@"%@", y);
+            
+        }
+    }
+    
+    self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
+    NSLog(@"%@", self.dataForPlot);
+
+    
+}
+
 -(void)addDataPoint {
     int unixTime = [[NSDate date] timeIntervalSince1970];
     
@@ -416,7 +441,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     [localArray addObject:[dict copy]];
     self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
-
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
 
     // adjust y axis if we go above max value
