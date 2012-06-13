@@ -15,6 +15,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 @interface SanoSubstanceViewController()
 
 -(void) addDataPoint;
+-(void) addPastDataPoints;
 -(void) setupGraph;
 -(void) setupAxes;
 -(void) setupScatterPlots;
@@ -54,20 +55,23 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 }
 
 -(double)substanceStep {
-    return self.substanceRange/4.0;
+    return self.substanceRange/5.0;
 }
 
 -(double)substanceRange {
     return self.currentSubstance.max - self.currentSubstance.min;
 }
 
+// A substance sequence is an NSArray of 
+// NSDictionaries - each NSDictionary with two keys,
+// "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
-    double start = (double)(int)[[NSDate date] timeIntervalSince1970];
+    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 3600;
     double yValue = self.substanceStart;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 3600; i++) {
+    for (int i = 0; i < 7200; i++) {
         NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
         
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
@@ -75,6 +79,8 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         [localSequence addObject:dict];
         
         yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
+        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
+        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
     }
     
     self.substanceSequence = [localSequence copy];
@@ -84,10 +90,6 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     PFUser *currentUser = [PFUser currentUser];
     NSString *substanceSequenceKey = [self.currentSubstance.name stringByAppendingString:@"_sequence"];
-    
-    // A substance sequence is an NSArray of 
-    // NSDictionaries - each NSDictionary with two keys,
-    // "x" and "y" with objects that are a NSDate and a NSNumber
 
     // PFUsers have an object for each substance sequence
     // called [name]_sequence. 
@@ -140,7 +142,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup a style for the annotation
     CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
-    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
+    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
     hitAnnotationTextStyle.fontSize = 16.0f;
     hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
     
@@ -253,9 +255,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
-    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - self.substanceRange) length:CPTDecimalFromDouble(self.substanceRange*2)];
+    plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - 2*[[NSNumber numberWithDouble:self.substanceRange] doubleValue]) length:CPTDecimalFromDouble(self.substanceRange*3)];
     plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
-    plotSpace.delegate = self;    
+    plotSpace.delegate = self;
 }
 
 -(void)setupAxes {
@@ -356,7 +358,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
         [self generateSubstanceSequence];
     }
 
-    [self addDataPoint];
+    [self addPastDataPoints];
     [self setupGraph];
     [self setupAxes];
     [self setupScatterPlots];
@@ -395,6 +397,32 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     return nil;
 }
 
+-(void)addPastDataPoints {
+    int unixTime = [[NSDate date] timeIntervalSince1970];
+    
+    NSNumber *y;
+    NSNumber *x;
+    
+    NSMutableArray *localArray = [[NSMutableArray alloc] init];
+    
+    for (id dict in self.substanceSequence) {
+        if (unixTime > (int)[[dict objectForKey:@"x"] timeIntervalSince1970]) {
+            y = [dict objectForKey:@"y"];
+            x = [NSNumber numberWithInt:(int)[[dict objectForKey:@"x"] timeIntervalSince1970]];
+            NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:x, @"x", y, @"y", nil];
+            [localArray addObject:[dict copy]];
+            NSLog(@"%@", x);
+            NSLog(@"%@", y);
+            
+        }
+    }
+    
+    self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
+    NSLog(@"%@", self.dataForPlot);
+
+    
+}
+
 -(void)addDataPoint {
     int unixTime = [[NSDate date] timeIntervalSince1970];
     
@@ -415,7 +443,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     [localArray addObject:[dict copy]];
     self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
-
+    
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
 
     // adjust y axis if we go above max value
