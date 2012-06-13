@@ -344,7 +344,32 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(1.0, 1.0);
     dataSourceLinePlot.plotSymbol = plotSymbol;
-
+    
+    // Setup a style for the annotation
+    CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
+    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
+    hitAnnotationTextStyle.fontSize = 16.0f;
+    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";    
+    
+    CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:@"Lunch" style:hitAnnotationTextStyle];
+    
+    textLayer.fill = [CPTFill fillWithColor:[CPTColor whiteColor]];
+    textLayer.paddingTop = 4.0;
+    textLayer.paddingLeft = 4.0;
+    textLayer.paddingBottom = 4.0;
+    textLayer.paddingRight = 4.0;
+    textLayer.cornerRadius = 2.0;
+    
+    NSUInteger index = [self.dataForPlot count] - 30;
+    // Determine point of symbol in plot coordinates
+    NSNumber *x          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"x"];
+    NSNumber *y          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"y"];
+    NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
+    
+    CPTAnnotation *lunchAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:self.graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    lunchAnnotation.contentLayer = textLayer;
+    lunchAnnotation.displacement = CGPointMake(0.0f, 20.0f);
+    [self.graph.plotAreaFrame.plotArea addAnnotation:lunchAnnotation];
 }
 
 -(void)viewDidLoad
