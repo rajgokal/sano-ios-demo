@@ -342,7 +342,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
     if (!self.substanceSequence) {
         [self generateSubstanceSequence];
-        [self pushSubstanceSequence];
+//        [self pushSubstanceSequence];
     }
 
     [self addPastDataPoints];

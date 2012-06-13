@@ -89,35 +89,34 @@
         PFUser *currentUser = [PFUser currentUser];
         
         if (currentUser) {
-            NSString *emailField = self.email.text;
-            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
-            NSString *passwordField = self.password.text;
-            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
-            
-            currentUser.username = emailField;
-            currentUser.password = passwordField;
-            currentUser.email = emailField;
-            
-            [currentUser saveEventually];
+//            NSString *emailField = self.email.text;
+//            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
+//            NSString *passwordField = self.password.text;
+//            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
+//            
+//            currentUser.username = emailField;
+//            currentUser.password = passwordField;
+//            currentUser.email = emailField;
+//            
+//            [currentUser saveEventually];
         }
         else {
-            PFUser *user = [PFUser user];
+//            PFUser *user = [PFUser user];
             
-            NSString *emailField = self.email.text;
-            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
-            NSString *passwordField = self.password.text;
-            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
-            
-            user.username = emailField;
-            user.password = passwordField;
-            user.email = emailField;
-            [user signUpInBackground];
+//            NSString *emailField = self.email.text;
+//            if ([emailField isEqualToString:@""]) emailField = @"john@sano.com";
+//            NSString *passwordField = self.password.text;
+//            if ([passwordField isEqualToString:@""]) passwordField = @"patientpasswordsano";
+//            
+//            user.username = @"john@sano.com";
+//            user.password = @"patientpasswordsano";
+//            user.email = @"john@sano.com";
+            [PFUser logInWithUsername:@"john@sano.com" password:@"patientpasswordsano"];
         }
         
     }
     else {
         PFUser *currentUser = [PFUser currentUser];
-        NSLog(@"%@", [sender currentTitle]);
         
         [currentUser setObject:[sender currentTitle] forKey:@"userType"];
         [currentUser saveEventually];
