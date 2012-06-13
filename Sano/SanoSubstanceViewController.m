@@ -332,7 +332,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     dataSourceLinePlot.dataSource    = self;
     dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
     dataSourceLinePlot.delegate = self;
-    dataSourceLinePlot.plotSymbolMarginForHitDetection = 7.0;
+    dataSourceLinePlot.plotSymbolMarginForHitDetection = 10.0;
     
     [self.graph addPlot:dataSourceLinePlot];
 
@@ -453,6 +453,10 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
             nextY = [dict objectForKey:@"y"];
             break;
         }
+    }
+    
+    if (!nextY) {
+        return;
     }
     
     NSNumber *nextX = [NSNumber numberWithInt:unixTime];
