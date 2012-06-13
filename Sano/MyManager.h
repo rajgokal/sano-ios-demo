@@ -10,16 +10,14 @@
 #import "Metric.h"
 #import "Substance.h"
 #import "Metric.h"
-
+#import "UserType.h"
 
 @interface MyManager : NSObject {
-    NSString *someProperty;
     NSMutableArray *substances;
     NSMutableArray *alerts;
     NSMutableArray *metrics;
 }
 
-@property (nonatomic, strong) NSString *someProperty;
 @property (nonatomic, strong) NSMutableArray *substances;
 @property (nonatomic, strong) NSMutableArray *alerts;
 @property (nonatomic, strong) NSMutableArray *metrics;
@@ -52,6 +50,9 @@
 @property (nonatomic, strong) Metric *hydration;
 @property (nonatomic, strong) Metric *stamina;
 @property (nonatomic, strong) Metric *kidneyHealth;
+@property (nonatomic, strong) UserType *chronicKidney;
+@property (nonatomic, strong) UserType *cyclist;
+@property (nonatomic, strong) UserType *fertUser;
 
 + (id)sharedManager;
 

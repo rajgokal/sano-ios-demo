@@ -115,20 +115,12 @@
         }
         
     }
-    else if ([segue.identifier isEqualToString:@"segueFromDiseaseInfo"]) {
+    else {
         PFUser *currentUser = [PFUser currentUser];
+        NSLog(@"%@", [sender currentTitle]);
         
-        NSArray *diseasesArray = [NSArray arrayWithObjects:@"diseaseAnemia", @"diseaseDepression", @"diseaseAsthma", nil];
-        
-        for (NSString *disease in diseasesArray) {
-         
-            SEL s = NSSelectorFromString(disease);
-            
-            UISwitch *aSwitch = [self performSelector:s];
-            
-            [currentUser setObject:[NSNumber numberWithBool:aSwitch.on] forKey:disease];
-        }
-        [currentUser saveInBackground];
+        [currentUser setObject:[sender currentTitle] forKey:@"userType"];
+        [currentUser saveEventually];
     }
 }
 

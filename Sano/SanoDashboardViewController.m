@@ -12,6 +12,7 @@
 #import "Metric.h"
 #import "MetricCell.h"
 #import "ADVPercentProgressBar.h"
+#import <Parse/Parse.h>
 
 @implementation SanoDashboardViewController
 
@@ -96,8 +97,11 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    PFUser *currentUser = [PFUser currentUser];    
     CGFloat height = 0;
+
     if (indexPath.row < 1) height = 82;
+    else if (indexPath.row < 1 && [[currentUser objectForKey:@"userType"] isEqualToString:@"Clinical Trial"]) height = 0;
     else height = 51;
     return height;
 }
@@ -117,8 +121,11 @@
     static NSString *MetricCellIdentifier = @"MetricCell";
     
     //    Bring in single "metric" cell
+    PFUser *currentUser = [PFUser currentUser];
+    
     if(indexPath.row < 1) {
         MetricCell *cell = [tableView dequeueReusableCellWithIdentifier:MetricCellIdentifier];
+        if(![[currentUser objectForKey:@"userType"] isEqualToString:@"Clinical Trial"]) {        
         cell.Title.text = [currentMetric name];
         ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
         [blueprogressBar setProgress:[currentMetric score]];
@@ -143,6 +150,10 @@
         yesterday.textAlignment = UITextAlignmentLeft;
         yesterday.text = @"YESTERDAY";
         [cell.contentView addSubview:yesterday];
+        }
+        else {
+            cell.Title.text = @"Your metrics:";
+        }
         
         return cell;
     } else {

@@ -13,7 +13,7 @@
 #import "EditDashboardViewController.h"
 #import "MyManager.h"
 
-@interface SanoDashboardViewController : UITableViewController
+@interface SanoDashboardViewController : UITableViewController <UITableViewDelegate>
 
 @property (nonatomic, strong) Substance *currentSubstance;
 @property (nonatomic, weak) Metric *currentMetric;

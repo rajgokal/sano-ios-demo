@@ -13,7 +13,6 @@
 @implementation MyManager
 
 //Various data being captured
-@synthesize someProperty;
 @synthesize glucose;
 @synthesize calcium;
 @synthesize sodium;
@@ -33,7 +32,6 @@
 @synthesize bloodPressure;
 @synthesize weight;
 
-
 //"Proprietary metrics" generated from various data
 @synthesize energy;
 @synthesize alertness;
@@ -50,7 +48,12 @@
 @synthesize substances;
 @synthesize alerts;
 @synthesize metrics;
-@synthesize userTypes = _userTypes;
+@synthesize userTypes;
+
+// User Types
+@synthesize chronicKidney = _chronicKidney;
+@synthesize cyclist = _cyclist;
+@synthesize fertUser = _fertUser;
 
 #pragma mark Singleton Methods
 
@@ -67,7 +70,7 @@ static MyManager *sharedManager = nil;
 - (id)init {
     self = [super init];
     if (!self) return nil;
-    someProperty = [[NSString alloc] initWithString:@"Default Property Value"];
+
     substances = [[NSMutableArray alloc] initWithCapacity:8];
     
     self.glucose = [[Substance alloc]init];
@@ -358,7 +361,21 @@ static MyManager *sharedManager = nil;
     self.fertilityLevel.score = 0.8;
     self.fertilityLevel.yesterday = self.fertilityLevel.score*1.05;
     
-    [self.metrics addObject:self.fertilityLevel];    
+    [self.metrics addObject:self.fertilityLevel];
+    
+    self.stamina = [[Metric alloc] init];
+    self.stamina.name = @"Stamina";
+    self.stamina.score = 0.76;
+    self.stamina.yesterday = self.stamina.score*0.95;
+    
+    [self.metrics addObject:self.stamina];
+    
+    self.hydration = [[Metric alloc] init];
+    self.hydration.name = @"Hydration";
+    self.hydration.score = 0.55;
+    self.hydration.yesterday = self.hydration.score*1.05;
+    
+    [self.metrics addObject:self.hydration];
     
     alerts = [[NSMutableArray alloc] initWithCapacity:1];
     for (id current in self.substances) {
@@ -366,24 +383,25 @@ static MyManager *sharedManager = nil;
             [current createAlert];
     }
     
-    UserType *chronicKidney = [[UserType alloc] init];
-    chronicKidney.name = @"Chronic Kidney Disease";
-    chronicKidney.metrics = [NSArray arrayWithObjects:self.energy, self.kidneyHealth, self.sleep, self.bun, nil];
+    userTypes = [[NSMutableArray alloc] initWithCapacity:8];
     
-    [self.userTypes addObject:chronicKidney];
+    self.chronicKidney = [[UserType alloc] init];
+    self.chronicKidney.name = @"Chronic Kidney Disease";
+    self.chronicKidney.metrics = [NSArray arrayWithObjects:self.energy, self.kidneyHealth, nil];
     
-    UserType *cyclist = [[UserType alloc] init];
-    cyclist.name = @"Cyclist";
-    cyclist.metrics = [NSArray arrayWithObjects:self.energy, self.stamina, self.hydration, self.muscleStrength, nil];
+    [self.userTypes addObject:self.chronicKidney];
     
-    [self.userTypes addObject:cyclist];
+    self.cyclist = [[UserType alloc] init];
+    self.cyclist.name = @"Cyclist";
+    self.cyclist.metrics = [NSArray arrayWithObjects:self.energy, self.stamina, self.hydration, self.muscleStrength, nil];
     
+    [self.userTypes addObject:self.cyclist];
     
-    UserType *fertUser = [[UserType alloc] init];
-    fertUser.name = @"Fertility";
-    fertUser.metrics = [NSArray arrayWithObjects:self.energy, self.nutrition, self.fertilityLevel, nil];
+    self.fertUser = [[UserType alloc] init];
+    self.fertUser.name = @"Fertility";
+    self.fertUser.metrics = [NSArray arrayWithObjects:self.energy, self.nutrition, self.fertilityLevel, nil];
     
-    [self.userTypes addObject:fertUser];
+    [self.userTypes addObject:self.fertUser];
     
     return self;
 }

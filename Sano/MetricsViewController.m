@@ -13,7 +13,8 @@
 #import <QuartzCore/QuartzCore.h>
 #import "SanoDashboardViewController.h"
 #import <UIKit/UIKit.h>
-
+#import <Parse/Parse.h>
+#import "UserType.h"
 
 @implementation MetricsViewController
 
@@ -98,21 +99,40 @@
 {
     // Return the number of rows in the section.
     MyManager *sharedManager = [MyManager sharedManager];
-    return [sharedManager.metrics count];
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *uTypeString = [currentUser objectForKey:@"userType"];    
+    NSArray *metrics;
+    for (UserType *uType in [sharedManager userTypes]) {
+        if ([uType.name isEqualToString:uTypeString]) {
+            metrics = uType.metrics;
+        }
+    }
+    return metrics.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Metric";
     
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *uTypeString = [currentUser objectForKey:@"userType"];
+    
+    
     MetricCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[MetricCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     MyManager *sharedManager = [MyManager sharedManager];
-    Metric *current = [sharedManager.metrics objectAtIndex:indexPath.row];
-    cell.Title.text = [current name];
+
+    NSArray *metrics;
+    for (UserType *uType in [sharedManager userTypes]) {
+        if ([uType.name isEqualToString:uTypeString]) {
+            metrics = uType.metrics;
+        }
+    }
     
+    Metric *current = [metrics objectAtIndex:indexPath.row];
+    cell.Title.text = [current name];
     
     ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
     
