@@ -240,7 +240,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
     
     plotSpace.allowsUserInteraction = YES;
-    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970]) length:CPTDecimalFromFloat((float) 100 + 2)];
+    plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970] - 180) length:CPTDecimalFromFloat((float) 200)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - 2*[[NSNumber numberWithDouble:self.substanceRange] doubleValue]) length:CPTDecimalFromDouble(self.substanceRange*3)];
     plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
     plotSpace.delegate = self;
@@ -279,7 +279,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     
     CPTXYAxis *y = axisSet.yAxis;
-    y.orthogonalCoordinateDecimal = CPTDecimalFromDouble([[NSDate date] timeIntervalSince1970]);
+    y.orthogonalCoordinateDecimal = CPTDecimalFromDouble([[NSDate date] timeIntervalSince1970] - 180);
     y.labelOffset                 = -35;
     y.delegate             = self;
     y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
