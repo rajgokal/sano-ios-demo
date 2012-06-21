@@ -86,6 +86,35 @@
 		A11E23601586309500D2D3D5 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E235F1586309500D2D3D5 /* libz.1.1.3.dylib */; };
 		A11E23621586309E00D2D3D5 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11E23611586309E00D2D3D5 /* Security.framework */; };
 		A1347E77158828F900491EDD /* UserType.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347E76158828F900491EDD /* UserType.m */; };
+		A1347EB41588C64F00491EDD /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347E9C1588C64F00491EDD /* NSObject+SBJson.m */; };
+		A1347EB51588C64F00491EDD /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347E9F1588C64F00491EDD /* SBJsonParser.m */; };
+		A1347EB61588C64F00491EDD /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EA11588C64F00491EDD /* SBJsonStreamParser.m */; };
+		A1347EB71588C64F00491EDD /* SBJsonStreamParserAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EA31588C64F00491EDD /* SBJsonStreamParserAccumulator.m */; };
+		A1347EB81588C64F00491EDD /* SBJsonStreamParserAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EA51588C64F00491EDD /* SBJsonStreamParserAdapter.m */; };
+		A1347EB91588C64F00491EDD /* SBJsonStreamParserState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EA71588C64F00491EDD /* SBJsonStreamParserState.m */; };
+		A1347EBA1588C64F00491EDD /* SBJsonStreamWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EA91588C64F00491EDD /* SBJsonStreamWriter.m */; };
+		A1347EBB1588C64F00491EDD /* SBJsonStreamWriterAccumulator.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EAB1588C64F00491EDD /* SBJsonStreamWriterAccumulator.m */; };
+		A1347EBC1588C64F00491EDD /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EAD1588C64F00491EDD /* SBJsonStreamWriterState.m */; };
+		A1347EBD1588C64F00491EDD /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EAF1588C64F00491EDD /* SBJsonTokeniser.m */; };
+		A1347EBE1588C64F00491EDD /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EB11588C64F00491EDD /* SBJsonUTF8Stream.m */; };
+		A1347EBF1588C64F00491EDD /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = A1347EB31588C64F00491EDD /* SBJsonWriter.m */; };
+		A1347F0A15891C2700491EDD /* B1Sequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EF915891C2300491EDD /* B1Sequence.json */; };
+		A1347F0B15891C2700491EDD /* B5Sequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFA15891C2300491EDD /* B5Sequence.json */; };
+		A1347F0C15891C2700491EDD /* B6Sequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFB15891C2300491EDD /* B6Sequence.json */; };
+		A1347F0D15891C2700491EDD /* Blood PressureSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFC15891C2400491EDD /* Blood PressureSequence.json */; };
+		A1347F0E15891C2700491EDD /* Blood Urea NitrogenSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFD15891C2400491EDD /* Blood Urea NitrogenSequence.json */; };
+		A1347F0F15891C2700491EDD /* BMISequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFE15891C2400491EDD /* BMISequence.json */; };
+		A1347F1015891C2700491EDD /* CalciumSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347EFF15891C2400491EDD /* CalciumSequence.json */; };
+		A1347F1115891C2700491EDD /* ChlorideSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0015891C2400491EDD /* ChlorideSequence.json */; };
+		A1347F1215891C2700491EDD /* CO2Sequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0115891C2500491EDD /* CO2Sequence.json */; };
+		A1347F1315891C2700491EDD /* CreatinineSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0215891C2500491EDD /* CreatinineSequence.json */; };
+		A1347F1415891C2700491EDD /* DSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0315891C2500491EDD /* DSequence.json */; };
+		A1347F1515891C2700491EDD /* GlucoseSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0415891C2500491EDD /* GlucoseSequence.json */; };
+		A1347F1615891C2700491EDD /* LactateSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0515891C2600491EDD /* LactateSequence.json */; };
+		A1347F1715891C2700491EDD /* PotassiumSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0615891C2600491EDD /* PotassiumSequence.json */; };
+		A1347F1815891C2700491EDD /* SleepSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0715891C2600491EDD /* SleepSequence.json */; };
+		A1347F1915891C2700491EDD /* SodiumSequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0815891C2700491EDD /* SodiumSequence.json */; };
+		A1347F1A15891C2700491EDD /* VO2Sequence.json in Resources */ = {isa = PBXBuildFile; fileRef = A1347F0915891C2700491EDD /* VO2Sequence.json */; };
 		A1E7886115751935007A86FE /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1E7885D15751904007A86FE /* libCorePlot-CocoaTouch.a */; };
 /* End PBXBuildFile section */
 
@@ -215,6 +244,48 @@
 		A11E23611586309E00D2D3D5 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A1347E75158828F900491EDD /* UserType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserType.h; sourceTree = "<group>"; };
 		A1347E76158828F900491EDD /* UserType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserType.m; sourceTree = "<group>"; };
+		A1347E9B1588C64F00491EDD /* NSObject+SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJson.h"; sourceTree = "<group>"; };
+		A1347E9C1588C64F00491EDD /* NSObject+SBJson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJson.m"; sourceTree = "<group>"; };
+		A1347E9D1588C64F00491EDD /* SBJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJson.h; sourceTree = "<group>"; };
+		A1347E9E1588C64F00491EDD /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		A1347E9F1588C64F00491EDD /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		A1347EA01588C64F00491EDD /* SBJsonStreamParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParser.h; sourceTree = "<group>"; };
+		A1347EA11588C64F00491EDD /* SBJsonStreamParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParser.m; sourceTree = "<group>"; };
+		A1347EA21588C64F00491EDD /* SBJsonStreamParserAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAccumulator.h; sourceTree = "<group>"; };
+		A1347EA31588C64F00491EDD /* SBJsonStreamParserAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAccumulator.m; sourceTree = "<group>"; };
+		A1347EA41588C64F00491EDD /* SBJsonStreamParserAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserAdapter.h; sourceTree = "<group>"; };
+		A1347EA51588C64F00491EDD /* SBJsonStreamParserAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserAdapter.m; sourceTree = "<group>"; };
+		A1347EA61588C64F00491EDD /* SBJsonStreamParserState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamParserState.h; sourceTree = "<group>"; };
+		A1347EA71588C64F00491EDD /* SBJsonStreamParserState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamParserState.m; sourceTree = "<group>"; };
+		A1347EA81588C64F00491EDD /* SBJsonStreamWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriter.h; sourceTree = "<group>"; };
+		A1347EA91588C64F00491EDD /* SBJsonStreamWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriter.m; sourceTree = "<group>"; };
+		A1347EAA1588C64F00491EDD /* SBJsonStreamWriterAccumulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterAccumulator.h; sourceTree = "<group>"; };
+		A1347EAB1588C64F00491EDD /* SBJsonStreamWriterAccumulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterAccumulator.m; sourceTree = "<group>"; };
+		A1347EAC1588C64F00491EDD /* SBJsonStreamWriterState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonStreamWriterState.h; sourceTree = "<group>"; };
+		A1347EAD1588C64F00491EDD /* SBJsonStreamWriterState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonStreamWriterState.m; sourceTree = "<group>"; };
+		A1347EAE1588C64F00491EDD /* SBJsonTokeniser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonTokeniser.h; sourceTree = "<group>"; };
+		A1347EAF1588C64F00491EDD /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
+		A1347EB01588C64F00491EDD /* SBJsonUTF8Stream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonUTF8Stream.h; sourceTree = "<group>"; };
+		A1347EB11588C64F00491EDD /* SBJsonUTF8Stream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonUTF8Stream.m; sourceTree = "<group>"; };
+		A1347EB21588C64F00491EDD /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		A1347EB31588C64F00491EDD /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		A1347EF915891C2300491EDD /* B1Sequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B1Sequence.json; sourceTree = "<group>"; };
+		A1347EFA15891C2300491EDD /* B5Sequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B5Sequence.json; sourceTree = "<group>"; };
+		A1347EFB15891C2300491EDD /* B6Sequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = B6Sequence.json; sourceTree = "<group>"; };
+		A1347EFC15891C2400491EDD /* Blood PressureSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Blood PressureSequence.json"; sourceTree = "<group>"; };
+		A1347EFD15891C2400491EDD /* Blood Urea NitrogenSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Blood Urea NitrogenSequence.json"; sourceTree = "<group>"; };
+		A1347EFE15891C2400491EDD /* BMISequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BMISequence.json; sourceTree = "<group>"; };
+		A1347EFF15891C2400491EDD /* CalciumSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CalciumSequence.json; sourceTree = "<group>"; };
+		A1347F0015891C2400491EDD /* ChlorideSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ChlorideSequence.json; sourceTree = "<group>"; };
+		A1347F0115891C2500491EDD /* CO2Sequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CO2Sequence.json; sourceTree = "<group>"; };
+		A1347F0215891C2500491EDD /* CreatinineSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CreatinineSequence.json; sourceTree = "<group>"; };
+		A1347F0315891C2500491EDD /* DSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = DSequence.json; sourceTree = "<group>"; };
+		A1347F0415891C2500491EDD /* GlucoseSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GlucoseSequence.json; sourceTree = "<group>"; };
+		A1347F0515891C2600491EDD /* LactateSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LactateSequence.json; sourceTree = "<group>"; };
+		A1347F0615891C2600491EDD /* PotassiumSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PotassiumSequence.json; sourceTree = "<group>"; };
+		A1347F0715891C2600491EDD /* SleepSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SleepSequence.json; sourceTree = "<group>"; };
+		A1347F0815891C2700491EDD /* SodiumSequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SodiumSequence.json; sourceTree = "<group>"; };
+		A1347F0915891C2700491EDD /* VO2Sequence.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VO2Sequence.json; sourceTree = "<group>"; };
 		A1E7885315751903007A86FE /* CorePlot-CocoaTouch.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "CorePlot-CocoaTouch.xcodeproj"; path = "../core-plot/framework/CorePlot-CocoaTouch.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -309,6 +380,7 @@
 		3541B47814D34E5300F853B9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A1347EC01588C67C00491EDD /* SBJSON */,
 				A11E23551586301600D2D3D5 /* Parse.framework */,
 				35214CE315671D5600430E29 /* QuartzCore.framework */,
 				3541B47914D34E5300F853B9 /* UIKit.framework */,
@@ -322,6 +394,23 @@
 		3541B47F14D34E5300F853B9 /* Sano */ = {
 			isa = PBXGroup;
 			children = (
+				A1347EF915891C2300491EDD /* B1Sequence.json */,
+				A1347EFA15891C2300491EDD /* B5Sequence.json */,
+				A1347EFB15891C2300491EDD /* B6Sequence.json */,
+				A1347EFC15891C2400491EDD /* Blood PressureSequence.json */,
+				A1347EFD15891C2400491EDD /* Blood Urea NitrogenSequence.json */,
+				A1347EFE15891C2400491EDD /* BMISequence.json */,
+				A1347EFF15891C2400491EDD /* CalciumSequence.json */,
+				A1347F0015891C2400491EDD /* ChlorideSequence.json */,
+				A1347F0115891C2500491EDD /* CO2Sequence.json */,
+				A1347F0215891C2500491EDD /* CreatinineSequence.json */,
+				A1347F0315891C2500491EDD /* DSequence.json */,
+				A1347F0415891C2500491EDD /* GlucoseSequence.json */,
+				A1347F0515891C2600491EDD /* LactateSequence.json */,
+				A1347F0615891C2600491EDD /* PotassiumSequence.json */,
+				A1347F0715891C2600491EDD /* SleepSequence.json */,
+				A1347F0815891C2700491EDD /* SodiumSequence.json */,
+				A1347F0915891C2700491EDD /* VO2Sequence.json */,
 				3541B48814D34E5300F853B9 /* SanoAppDelegate.h */,
 				3541B48914D34E5300F853B9 /* SanoAppDelegate.m */,
 				3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */,
@@ -438,6 +527,38 @@
 				35ED130F14D3980300D6E92B /* View.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		A1347EC01588C67C00491EDD /* SBJSON */ = {
+			isa = PBXGroup;
+			children = (
+				A1347E9B1588C64F00491EDD /* NSObject+SBJson.h */,
+				A1347E9C1588C64F00491EDD /* NSObject+SBJson.m */,
+				A1347E9D1588C64F00491EDD /* SBJson.h */,
+				A1347E9E1588C64F00491EDD /* SBJsonParser.h */,
+				A1347E9F1588C64F00491EDD /* SBJsonParser.m */,
+				A1347EA01588C64F00491EDD /* SBJsonStreamParser.h */,
+				A1347EA11588C64F00491EDD /* SBJsonStreamParser.m */,
+				A1347EA21588C64F00491EDD /* SBJsonStreamParserAccumulator.h */,
+				A1347EA31588C64F00491EDD /* SBJsonStreamParserAccumulator.m */,
+				A1347EA41588C64F00491EDD /* SBJsonStreamParserAdapter.h */,
+				A1347EA51588C64F00491EDD /* SBJsonStreamParserAdapter.m */,
+				A1347EA61588C64F00491EDD /* SBJsonStreamParserState.h */,
+				A1347EA71588C64F00491EDD /* SBJsonStreamParserState.m */,
+				A1347EA81588C64F00491EDD /* SBJsonStreamWriter.h */,
+				A1347EA91588C64F00491EDD /* SBJsonStreamWriter.m */,
+				A1347EAA1588C64F00491EDD /* SBJsonStreamWriterAccumulator.h */,
+				A1347EAB1588C64F00491EDD /* SBJsonStreamWriterAccumulator.m */,
+				A1347EAC1588C64F00491EDD /* SBJsonStreamWriterState.h */,
+				A1347EAD1588C64F00491EDD /* SBJsonStreamWriterState.m */,
+				A1347EAE1588C64F00491EDD /* SBJsonTokeniser.h */,
+				A1347EAF1588C64F00491EDD /* SBJsonTokeniser.m */,
+				A1347EB01588C64F00491EDD /* SBJsonUTF8Stream.h */,
+				A1347EB11588C64F00491EDD /* SBJsonUTF8Stream.m */,
+				A1347EB21588C64F00491EDD /* SBJsonWriter.h */,
+				A1347EB31588C64F00491EDD /* SBJsonWriter.m */,
+			);
+			name = SBJSON;
 			sourceTree = "<group>";
 		};
 		A1E7885415751903007A86FE /* Products */ = {
@@ -578,6 +699,23 @@
 				35B382791587DD8A00904286 /* progress-track.png in Resources */,
 				35B3827A1587DD8A00904286 /* progress-track@2x OLD.png in Resources */,
 				35B3827B1587DD8A00904286 /* progress-track@2x.png in Resources */,
+				A1347F0A15891C2700491EDD /* B1Sequence.json in Resources */,
+				A1347F0B15891C2700491EDD /* B5Sequence.json in Resources */,
+				A1347F0C15891C2700491EDD /* B6Sequence.json in Resources */,
+				A1347F0D15891C2700491EDD /* Blood PressureSequence.json in Resources */,
+				A1347F0E15891C2700491EDD /* Blood Urea NitrogenSequence.json in Resources */,
+				A1347F0F15891C2700491EDD /* BMISequence.json in Resources */,
+				A1347F1015891C2700491EDD /* CalciumSequence.json in Resources */,
+				A1347F1115891C2700491EDD /* ChlorideSequence.json in Resources */,
+				A1347F1215891C2700491EDD /* CO2Sequence.json in Resources */,
+				A1347F1315891C2700491EDD /* CreatinineSequence.json in Resources */,
+				A1347F1415891C2700491EDD /* DSequence.json in Resources */,
+				A1347F1515891C2700491EDD /* GlucoseSequence.json in Resources */,
+				A1347F1615891C2700491EDD /* LactateSequence.json in Resources */,
+				A1347F1715891C2700491EDD /* PotassiumSequence.json in Resources */,
+				A1347F1815891C2700491EDD /* SleepSequence.json in Resources */,
+				A1347F1915891C2700491EDD /* SodiumSequence.json in Resources */,
+				A1347F1A15891C2700491EDD /* VO2Sequence.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,6 +769,18 @@
 				35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */,
 				35270F8F158540C5001E0FB2 /* SanoNavigationBar.m in Sources */,
 				A1347E77158828F900491EDD /* UserType.m in Sources */,
+				A1347EB41588C64F00491EDD /* NSObject+SBJson.m in Sources */,
+				A1347EB51588C64F00491EDD /* SBJsonParser.m in Sources */,
+				A1347EB61588C64F00491EDD /* SBJsonStreamParser.m in Sources */,
+				A1347EB71588C64F00491EDD /* SBJsonStreamParserAccumulator.m in Sources */,
+				A1347EB81588C64F00491EDD /* SBJsonStreamParserAdapter.m in Sources */,
+				A1347EB91588C64F00491EDD /* SBJsonStreamParserState.m in Sources */,
+				A1347EBA1588C64F00491EDD /* SBJsonStreamWriter.m in Sources */,
+				A1347EBB1588C64F00491EDD /* SBJsonStreamWriterAccumulator.m in Sources */,
+				A1347EBC1588C64F00491EDD /* SBJsonStreamWriterState.m in Sources */,
+				A1347EBD1588C64F00491EDD /* SBJsonTokeniser.m in Sources */,
+				A1347EBE1588C64F00491EDD /* SBJsonUTF8Stream.m in Sources */,
+				A1347EBF1588C64F00491EDD /* SBJsonWriter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

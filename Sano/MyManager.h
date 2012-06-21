@@ -53,6 +53,9 @@
 @property (nonatomic, strong) Metric *hydration;
 @property (nonatomic, strong) Metric *stamina;
 @property (nonatomic, strong) Metric *kidneyHealth;
+@property (nonatomic, strong) Metric * bunCreatinine;
+@property (nonatomic, strong) Metric * sleepMetric;
+@property (nonatomic, strong) Metric * hormoneBalance;
 @property (nonatomic, strong) UserType *chronicKidney;
 @property (nonatomic, strong) UserType *cyclist;
 @property (nonatomic, strong) UserType *fertUser;

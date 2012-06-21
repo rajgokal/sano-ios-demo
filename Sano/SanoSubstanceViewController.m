@@ -8,6 +8,7 @@
 
 #import "SanoSubstanceViewController.h"
 #import <Parse/Parse.h>
+#import "SBJson.h"
 
 static NSString *const MAIN_PLOT      = @"Scatter Plot";
 static NSString *const SELECTION_PLOT = @"Selection Plot";
@@ -67,20 +68,34 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 // "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
-    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 360;
-    double yValue = self.substanceStart;
+    SBJsonParser *parser = [[SBJsonParser alloc] init];
+    
+    NSString *fileName = [NSString stringWithFormat:@"%@%@", self.currentSubstance.name, @"Sequence"];
+        
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
+    NSError *error;
+    NSString *fileString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+    NSDictionary *json = [parser objectWithString:fileString];
+    
+    int start = (int)[[NSDate date] timeIntervalSince1970] - 36000;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    for (int i = 0; i < 720; i++) {
-        NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
-        
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];    
+    for (int i = 0; i < 72000; i++) {
+        NSString *timestamp = [NSString stringWithFormat:@"%i", start + i];
+        if ([json objectForKey:timestamp]) {
+            NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
+            NSNumber *yValue = [f numberFromString:[json objectForKey:timestamp]];
+            
+            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", yValue, @"y", nil];
         
         [localSequence addObject:dict];
         
-        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
-        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
-        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
+//        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
+//        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
+//        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
+        }
     }
     
     self.substanceSequence = [localSequence copy];
@@ -317,7 +332,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     dataSourceLinePlot.dataSource    = self;
     dataSourceLinePlot.interpolation = CPTScatterPlotInterpolationCurved;
     dataSourceLinePlot.delegate = self;
-    dataSourceLinePlot.plotSymbolMarginForHitDetection = 7.0;
+    dataSourceLinePlot.plotSymbolMarginForHitDetection = 10.0;
     
     [self.graph addPlot:dataSourceLinePlot];
 
@@ -329,7 +344,32 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     plotSymbol.lineStyle     = symbolLineStyle;
     plotSymbol.size          = CGSizeMake(1.0, 1.0);
     dataSourceLinePlot.plotSymbol = plotSymbol;
-
+    
+    // Setup a style for the annotation
+    CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
+    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
+    hitAnnotationTextStyle.fontSize = 16.0f;
+    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";    
+    
+    CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:@"Lunch" style:hitAnnotationTextStyle];
+    
+    textLayer.fill = [CPTFill fillWithColor:[CPTColor whiteColor]];
+    textLayer.paddingTop = 4.0;
+    textLayer.paddingLeft = 4.0;
+    textLayer.paddingBottom = 4.0;
+    textLayer.paddingRight = 4.0;
+    textLayer.cornerRadius = 2.0;
+    
+    NSUInteger index = [self.dataForPlot count] - 30;
+    // Determine point of symbol in plot coordinates
+    NSNumber *x          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"x"];
+    NSNumber *y          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"y"];
+    NSArray *anchorPoint = [NSArray arrayWithObjects:x, y, nil];
+    
+    CPTAnnotation *lunchAnnotation = [[CPTPlotSpaceAnnotation alloc] initWithPlotSpace:self.graph.defaultPlotSpace anchorPlotPoint:anchorPoint];
+    lunchAnnotation.contentLayer = textLayer;
+    lunchAnnotation.displacement = CGPointMake(0.0f, 20.0f);
+    [self.graph.plotAreaFrame.plotArea addAnnotation:lunchAnnotation];
 }
 
 -(void)viewDidLoad
@@ -413,6 +453,10 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
             nextY = [dict objectForKey:@"y"];
             break;
         }
+    }
+    
+    if (!nextY) {
+        return;
     }
     
     NSNumber *nextX = [NSNumber numberWithInt:unixTime];
