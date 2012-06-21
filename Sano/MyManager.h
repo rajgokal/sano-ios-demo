@@ -40,6 +40,9 @@
 @property (nonatomic, strong) Substance *bmi;
 @property (nonatomic, strong) Substance *bloodPressure;
 @property (nonatomic, strong) Substance *weight;
+@property (nonatomic, strong) Substance *iron;
+@property (nonatomic, strong) Substance *zinc;
+@property (nonatomic, strong) Substance *basalTemp;
 @property (nonatomic, strong) Metric *fertilityLevel;
 @property (nonatomic, strong) Metric *energy;
 @property (nonatomic, strong) Metric *alertness;

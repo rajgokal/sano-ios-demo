@@ -17,5 +17,7 @@
 
 @property (nonatomic, strong) Substance *currentSubstance;
 @property (nonatomic, weak) Metric *currentMetric;
+@property (nonatomic, strong) NSMutableArray *substances;
+
 
 @end

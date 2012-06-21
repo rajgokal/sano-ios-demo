@@ -18,6 +18,9 @@
 
 @synthesize currentSubstance;
 @synthesize currentMetric;
+@synthesize substances;
+
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -47,6 +50,51 @@
     
     self.title = [currentMetric name];
     
+    MyManager *sharedManager = [MyManager sharedManager];
+    
+    if (currentMetric.name == @"Energy"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                      sharedManager.glucose,
+                      sharedManager.potassium,
+                           sharedManager.sodium,
+                           sharedManager.chloride,
+                           sharedManager.CO2,
+                      nil];
+    }  else if (currentMetric.name == @"Kidney Health"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.bun,
+                           sharedManager.creatinine,
+                           sharedManager.D,
+                           sharedManager.bmi,
+                           nil];
+    } else if (currentMetric.name == @"Stamina"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.VO2,
+                           sharedManager.lactate,
+                           nil];
+    } else if (currentMetric.name == @"Hydration"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.potassium,
+                           sharedManager.sodium,
+                           nil];
+    } else if (currentMetric.name == @"Muscle Strength"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.B1,
+                           sharedManager.B5,
+                           nil];
+    } else if (currentMetric.name == @"Nutrition"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.D,
+                           sharedManager.zinc,
+                           sharedManager.iron,
+                           sharedManager.calcium,
+                           nil];
+    } else if (currentMetric.name == @"Fertility Level"){
+        self.substances = [[NSMutableArray alloc] initWithObjects:
+                           sharedManager.basalTemp,
+                           nil];
+    }
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -59,6 +107,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    
+    self.substances = nil;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -109,14 +159,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    MyManager *sharedManager = [MyManager sharedManager];
-    return [sharedManager.substances count];
+    return [self.substances count]+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    MyManager *sharedManager = [MyManager sharedManager];
-    
+
     static NSString *ZoomCellIdentifier = @"ZoomCell";
     static NSString *MetricCellIdentifier = @"MetricCell";
     
@@ -163,7 +211,7 @@
         if (cell == nil) {
             cell = [[SubstancesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZoomCellIdentifier];
         }
-        Substance *current = [sharedManager.substances objectAtIndex:indexPath.row-1];
+        Substance *current = [self.substances objectAtIndex:indexPath.row-1];
         cell.Title.text = [current name];
         cell.Icon.image = [UIImage imageNamed:[current iconGrabber]];
         cell.Value.text = [NSString stringWithFormat:@"%d", [current input]];
@@ -192,10 +240,9 @@
 {
     if ( [segue.identifier isEqualToString:@"ShowPhoto"]) {
     SanoSubstanceViewController *dvc = [segue destinationViewController];
-    MyManager *sharedManager = [MyManager sharedManager];
     NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
     int row = [path row];
-    Substance *s = [sharedManager.substances objectAtIndex:row-1];
+    Substance *s = [self.substances objectAtIndex:row-1];
     dvc.currentSubstance = s;
     }
 }

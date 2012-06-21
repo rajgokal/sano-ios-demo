@@ -231,9 +231,17 @@
     if ( [segue.identifier isEqualToString:@"MetricZoom"]) {
         SanoDashboardViewController *dvc = [segue destinationViewController];
         MyManager *sharedManager = [MyManager sharedManager];
+        PFUser *currentUser = [PFUser currentUser];
+        NSString *uTypeString = [currentUser objectForKey:@"userType"];    
+        NSArray *metrics;
+        for (UserType *uType in [sharedManager userTypes]) {
+            if ([uType.name isEqualToString:uTypeString]) {
+                metrics = uType.metrics;
+            }
+        }
         NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
         int row = [path row];
-        Metric *s = [sharedManager.metrics objectAtIndex:row];
+        Metric *s = [metrics objectAtIndex:row];
         dvc.currentMetric = s;
     }
 }

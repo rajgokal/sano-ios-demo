@@ -108,7 +108,7 @@
     MyManager *sharedManager = [MyManager sharedManager];
     Substance *current = [sharedManager.substances objectAtIndex:indexPath.row];
     cell.Title.text = [current name];
-    cell.Value.text = [NSString stringWithFormat:@"%d", [current input]];
+    cell.Value.text = [NSString stringWithFormat:@"%dd", [current input]];
     cell.Value.textColor = [current colorGrabber];
     cell.Unit.text = [current unit];
     cell.Slider.value = [current input];

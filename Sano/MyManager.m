@@ -31,6 +31,9 @@
 @synthesize bmi;
 @synthesize bloodPressure;
 @synthesize weight;
+@synthesize zinc;
+@synthesize iron;
+@synthesize basalTemp;
 
 //"Proprietary metrics" generated from various data
 @synthesize energy;
@@ -106,10 +109,10 @@ static MyManager *sharedManager = nil;
     [self.sodium setName:@"Sodium"];
     [self.sodium setUnit:@"mmol/L"];
     [self.sodium setNotes:@"Sodium concentration data"];
-    [self.sodium setMin:137];
-    [self.sodium setMax:147];
-    self.sodium.absoluteMin = 125;
-    self.sodium.absoluteMax = 155;
+    [self.sodium setMin:135];
+    [self.sodium setMax:145];
+    self.sodium.absoluteMin = 135;
+    self.sodium.absoluteMax = 145;
     [self.sodium setInput:(self.sodium.min+self.sodium.max)/2];
     [self.sodium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to decrease your anabolic steroid dosage.",self.sodium.name,self.sodium.max,self.sodium.unit]];
     [self.sodium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Your doctor may need to decrease your Carbamazepine dosage.",self.sodium.name,self.sodium.min,self.sodium.unit]];
@@ -120,8 +123,8 @@ static MyManager *sharedManager = nil;
     [self.potassium setName:@"Potassium"];
     [self.potassium setUnit:@"mmol/L"];
     [self.potassium setNotes:@"Potassium concentration data"];
-    [self.potassium setMin:3.4];
-    [self.potassium setMax:5.3];
+    [self.potassium setMin:3.7];
+    [self.potassium setMax:5.7];
     self.potassium.absoluteMin = 2;
     self.potassium.absoluteMin = 7;
     [self.potassium setInput:(self.potassium.min+self.potassium.max)/2];
@@ -148,8 +151,8 @@ static MyManager *sharedManager = nil;
     [self.chloride setName:@"Chloride"];
     [self.chloride setUnit:@"mmol/L"];
     [self.chloride setNotes:@"Chloride concentration data"];
-    [self.chloride setMin:99];
-    [self.chloride setMax:108];
+    [self.chloride setMin:96];
+    [self.chloride setMax:106];
     self.chloride.absoluteMin = 90;
     self.chloride.absoluteMax = 120;
     [self.chloride setInput:(self.chloride.min+self.chloride.max)/2];
@@ -312,8 +315,50 @@ static MyManager *sharedManager = nil;
     [self.bmi setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.bmi.name,self.bmi.min]];
     
     [self.substances addObject:self.bmi];
+    
+    self.zinc = [[Substance alloc]init];
+    [self.zinc setName:@"Zinc"];
+    [self.zinc setUnit:@"mg/dL"];
+    [self.zinc setNotes:@"BMI data"];
+    [self.zinc setMin:0.75];
+    [self.zinc setMax:1.2];
+    self.zinc.absoluteMin = 0.4;
+    self.zinc.absoluteMax = 1.6;
+    [self.zinc setInput:(self.zinc.min+self.zinc.max)/2];
+    [self.zinc setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.max]];
+    [self.zinc setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.min]];
+    
+    [self.substances addObject:self.zinc];
+    
+    self.iron = [[Substance alloc]init];
+    [self.iron setName:@"Iron"];
+    [self.iron setUnit:@"mg/dL"];
+    [self.iron setNotes:@"BMI data"];
+    [self.iron setMin:0.75];
+    [self.iron setMax:1.2];
+    self.iron.absoluteMin = 0.4;
+    self.iron.absoluteMax = 1.6;
+    [self.iron setInput:(self.iron.min+self.iron.max)/2];
+    [self.iron setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
+    [self.iron setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.min]];
+    
+    [self.substances addObject:self.iron];
+    
+    self.basalTemp = [[Substance alloc]init];
+    [self.basalTemp setName:@"Basal Temperature"];
+    [self.basalTemp setUnit:@"degrees"];
+    [self.basalTemp setNotes:@"Temperature data"];
+    [self.basalTemp setMin:0.75];
+    [self.basalTemp setMax:1.2];
+    self.basalTemp.absoluteMin = 0.4;
+    self.basalTemp.absoluteMax = 1.6;
+    [self.basalTemp setInput:(self.basalTemp.min+self.basalTemp.max)/2];
+    [self.basalTemp setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
+    [self.basalTemp setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.basalTemp.name,self.basalTemp.min]];
+    
+    [self.substances addObject:self.iron];
 
-    metrics = [[NSMutableArray alloc] initWithCapacity:8];
+    metrics = [[NSMutableArray alloc] initWithCapacity:20];
     
     self.energy = [[Metric alloc] init];
     [self.energy setName:@"Energy"];
