@@ -13,11 +13,11 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *filename;
 @property (nonatomic, strong) NSString *notes;
-@property (nonatomic, assign) int input;
-@property (nonatomic, assign) int min;
-@property (nonatomic, assign) int max;
-@property (nonatomic, assign) int absoluteMin;
-@property (nonatomic, assign) int absoluteMax;
+@property (nonatomic, assign) float input;
+@property (nonatomic, assign) float min;
+@property (nonatomic, assign) float max;
+@property (nonatomic, assign) float absoluteMin;
+@property (nonatomic, assign) float absoluteMax;
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSString *unit;
 @property (nonatomic, strong) NSString *state;

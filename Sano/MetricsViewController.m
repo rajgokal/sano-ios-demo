@@ -132,22 +132,29 @@
     }
     
     Metric *current = [metrics objectAtIndex:indexPath.row];
-    cell.Title.text = [current name];
     
     ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
-    
     [blueprogressBar setProgress:[current score]];
-    
     [cell.contentView addSubview:blueprogressBar];
     
+    // Add cell title
+    UILabel *Title = [[UILabel alloc] initWithFrame:CGRectMake(20,7,260,21)];
+    Title.text = [current name];
+    [Title setFont:[UIFont fontWithName:@"Gotham Medium" size:16.0]];
+    [Title setBackgroundColor:[UIColor clearColor]];
+    [cell.contentView addSubview:Title];
+    
+    // Add marker
     CGFloat mark;
     mark=(279-15)*[current yesterday]+15;
     UIImageView *marker = [[UIImageView alloc] initWithFrame:CGRectMake(mark,27,10,33)];
     [marker setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Marker.png"]]];
     [cell.contentView addSubview:marker];
+
+    // Add "yesterday label
     UILabel *yesterday = [[UILabel alloc] initWithFrame:CGRectMake(mark-20,60,65,10)];
     yesterday.textColor=[UIColor blackColor];
-    [yesterday setFont:[UIFont fontWithName:@"Helvetica" size:9]];
+    [yesterday setFont:[UIFont fontWithName:@"Gotham Light" size:9]];
     yesterday.backgroundColor=[UIColor clearColor];
     yesterday.textAlignment = UITextAlignmentLeft;
     yesterday.text = @"YESTERDAY";

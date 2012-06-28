@@ -89,8 +89,8 @@ static MyManager *sharedManager = nil;
     self.glucose.absoluteMax = 180;
     self.glucose.absoluteMin = 50;
     [self.glucose setInput:(self.glucose.min+self.glucose.max)/2];
-    [self.glucose setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@. If you've eaten recently, this may be normal. Otherwise, your doctor may need to increase your insulin dosage.",self.glucose.name,self.glucose.max,self.glucose.unit]];
-    [self.glucose setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Eating a fruit or drinking juice can restore blood glucose levels.",self.glucose.name,self.glucose.min,self.glucose.unit]];
+    [self.glucose setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@. If you've eaten recently, this may be normal. Otherwise, your doctor may need to increase your insulin dosage.",self.glucose.name,self.glucose.max,self.glucose.unit]];
+    [self.glucose setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Eating a fruit or drinking juice can restore blood glucose levels.",self.glucose.name,self.glucose.min,self.glucose.unit]];
     
     [self.substances addObject:self.glucose];
     
@@ -103,8 +103,8 @@ static MyManager *sharedManager = nil;
     self.calcium.absoluteMin = 8.0;
     self.calcium.absoluteMax = 10.7;
     [self.calcium setInput:(self.calcium.min+self.calcium.max)/2];
-    [self.calcium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to decrease your Acetazolamide dosage.",self.calcium.name,self.calcium.max,self.calcium.unit]];
-    [self.calcium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Dairy is rich in calcium and can promote bone health.",self.calcium.name,self.calcium.min,self.calcium.unit]];
+    [self.calcium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to decrease your Acetazolamide dosage.",self.calcium.name,self.calcium.max,self.calcium.unit]];
+    [self.calcium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Dairy is rich in calcium and can promote bone health.",self.calcium.name,self.calcium.min,self.calcium.unit]];
     
     [self.substances addObject:self.calcium];
     
@@ -117,8 +117,8 @@ static MyManager *sharedManager = nil;
     self.sodium.absoluteMin = 135;
     self.sodium.absoluteMax = 145;
     [self.sodium setInput:(self.sodium.min+self.sodium.max)/2];
-    [self.sodium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to decrease your anabolic steroid dosage.",self.sodium.name,self.sodium.max,self.sodium.unit]];
-    [self.sodium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Your doctor may need to decrease your Carbamazepine dosage.",self.sodium.name,self.sodium.min,self.sodium.unit]];
+    [self.sodium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to decrease your anabolic steroid dosage.",self.sodium.name,self.sodium.max,self.sodium.unit]];
+    [self.sodium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Your doctor may need to decrease your Carbamazepine dosage.",self.sodium.name,self.sodium.min,self.sodium.unit]];
     
     [self.substances addObject:self.sodium];
     
@@ -128,11 +128,11 @@ static MyManager *sharedManager = nil;
     [self.potassium setNotes:@"Potassium concentration data"];
     [self.potassium setMin:3.7];
     [self.potassium setMax:5.7];
-    self.potassium.absoluteMin = 2;
-    self.potassium.absoluteMin = 7;
+    self.potassium.absoluteMin = 2.0;
+    self.potassium.absoluteMax = 7.0;
     [self.potassium setInput:(self.potassium.min+self.potassium.max)/2];
-    [self.potassium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to increase your Acetazolamide dosage.",self.potassium.name,self.potassium.max,self.potassium.unit]];
-    [self.potassium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Your doctor may need to increase your ACE inhibitor dosage.",self.potassium.name,self.potassium.min,self.potassium.unit]];
+    [self.potassium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to increase your Acetazolamide dosage.",self.potassium.name,self.potassium.max,self.potassium.unit]];
+    [self.potassium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Your doctor may need to increase your ACE inhibitor dosage.",self.potassium.name,self.potassium.min,self.potassium.unit]];
     
     [self.substances addObject:self.potassium];
     
@@ -145,8 +145,8 @@ static MyManager *sharedManager = nil;
     self.CO2.absoluteMin = 16;
     self.CO2.absoluteMax = 36;
     [self.CO2 setInput:(self.CO2.min+self.CO2.max)/2];
-    [self.CO2 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@. You may be retaining fluid, which causes an imbalance in your body's electrolytes.",self.CO2.name,self.CO2.max,self.CO2.unit]];
-    [self.CO2 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. You may be dehydrated, which causes an imbalance in your body's electrolytes.",self.CO2.name,self.CO2.min,self.CO2.unit]];
+    [self.CO2 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@. You may be retaining fluid, which causes an imbalance in your body's electrolytes.",self.CO2.name,self.CO2.max,self.CO2.unit]];
+    [self.CO2 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. You may be dehydrated, which causes an imbalance in your body's electrolytes.",self.CO2.name,self.CO2.min,self.CO2.unit]];
     
     [self.substances addObject:self.CO2];
     
@@ -159,8 +159,8 @@ static MyManager *sharedManager = nil;
     self.chloride.absoluteMin = 90;
     self.chloride.absoluteMax = 120;
     [self.chloride setInput:(self.chloride.min+self.chloride.max)/2];
-    [self.chloride setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to decrease your Acetazolamide dosage.",self.chloride.name,self.chloride.max,self.chloride.unit]];
-    [self.chloride setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Your doctor may need to decrease your Aldosterone dosage.",self.chloride.name,self.chloride.min,self.chloride.unit]];
+    [self.chloride setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to decrease your Acetazolamide dosage.",self.chloride.name,self.chloride.max,self.chloride.unit]];
+    [self.chloride setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Your doctor may need to decrease your Aldosterone dosage.",self.chloride.name,self.chloride.min,self.chloride.unit]];
     
     [self.substances addObject:self.chloride];
     
@@ -173,8 +173,8 @@ static MyManager *sharedManager = nil;
     self.bun.absoluteMin = 5;
     self.bun.absoluteMax = 28;
     [self.bun setInput:(self.bun.min+self.bun.max)/2];
-    [self.bun setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to decrease your Allopurinol dosage.",self.bun.name,self.bun.max,self.bun.unit]];
-    [self.bun setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@.  Your doctor may need to decrease your Chloramphenicol dosage.",self.bun.name,self.bun.min,self.bun.unit]];
+    [self.bun setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to decrease your Allopurinol dosage.",self.bun.name,self.bun.max,self.bun.unit]];
+    [self.bun setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Your doctor may need to decrease your Chloramphenicol dosage.",self.bun.name,self.bun.min,self.bun.unit]];
     
     [self.substances addObject:self.bun];
     
@@ -187,8 +187,8 @@ static MyManager *sharedManager = nil;
     self.creatinine.absoluteMin = 0.4;
     self.creatinine.absoluteMax = 1.6;
     [self.creatinine setInput:(self.creatinine.min+self.creatinine.max)/2];
-    [self.creatinine setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.max]];
-    [self.creatinine setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.min]];
+    [self.creatinine setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.max]];
+    [self.creatinine setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.min]];
 
     [self.substances addObject:self.creatinine];
     
@@ -201,8 +201,8 @@ static MyManager *sharedManager = nil;
     self.sleep.absoluteMin = 0.4;
     self.sleep.absoluteMax = 1.6;
     [self.sleep setInput:(self.sleep.min+self.sleep.max)/2];
-    [self.sleep setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.sleep.name,self.sleep.max]];
-    [self.sleep setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.sleep.name,self.sleep.min]];
+    [self.sleep setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.sleep.name,self.sleep.max]];
+    [self.sleep setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.sleep.name,self.sleep.min]];
     
     [self.substances addObject:self.sleep];
     
@@ -215,8 +215,8 @@ static MyManager *sharedManager = nil;
     self.VO2.absoluteMin = 0.4;
     self.VO2.absoluteMax = 1.6;
     [self.VO2 setInput:(self.VO2.min+self.VO2.max)/2];
-    [self.VO2 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.VO2.name,self.VO2.max]];
-    [self.VO2 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.VO2.name,self.VO2.min]];
+    [self.VO2 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.VO2.name,self.VO2.max]];
+    [self.VO2 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.VO2.name,self.VO2.min]];
     
     [self.substances addObject:self.VO2];
     
@@ -230,8 +230,8 @@ static MyManager *sharedManager = nil;
     self.lactate.absoluteMin = 0.4;
     self.lactate.absoluteMax = 1.6;
     [self.lactate setInput:(self.lactate.min+self.lactate.max)/2];
-    [self.lactate setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.lactate.name,self.lactate.max]];
-    [self.lactate setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.lactate.name,self.lactate.min]];
+    [self.lactate setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.lactate.name,self.lactate.max]];
+    [self.lactate setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.lactate.name,self.lactate.min]];
     
     [self.substances addObject:self.lactate];
     
@@ -244,8 +244,8 @@ static MyManager *sharedManager = nil;
     self.B1.absoluteMin = 0.4;
     self.B1.absoluteMax = 1.6;
     [self.B1 setInput:(self.B1.min+self.B1.max)/2];
-    [self.B1 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B1.name,self.B1.max]];
-    [self.B1 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B1.name,self.B1.min]];
+    [self.B1 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B1.name,self.B1.max]];
+    [self.B1 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B1.name,self.B1.min]];
     
     [self.substances addObject:self.B1];
     
@@ -258,8 +258,8 @@ static MyManager *sharedManager = nil;
     self.B5.absoluteMin = 0.4;
     self.B5.absoluteMax = 1.6;
     [self.B5 setInput:(self.B5.min+self.B5.max)/2];
-    [self.B5 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B5.name,self.B5.max]];
-    [self.B5 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B5.name,self.B5.min]];
+    [self.B5 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B5.name,self.B5.max]];
+    [self.B5 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B5.name,self.B5.min]];
     
     [self.substances addObject:self.B5];
     
@@ -272,8 +272,8 @@ static MyManager *sharedManager = nil;
     self.B6.absoluteMin = 0.4;
     self.B6.absoluteMax = 1.6;
     [self.B6 setInput:(self.B6.min+self.B6.max)/2];
-    [self.B6 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B6.name,self.B6.max]];
-    [self.B6 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B6.name,self.B6.min]];
+    [self.B6 setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.B6.name,self.B6.max]];
+    [self.B6 setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.B6.name,self.B6.min]];
     
     [self.substances addObject:self.B6];
     
@@ -286,8 +286,8 @@ static MyManager *sharedManager = nil;
     self.D.absoluteMin = 0.4;
     self.D.absoluteMax = 1.6;
     [self.D setInput:(self.D.min+self.D.max)/2];
-    [self.D setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.D.name,self.D.max]];
-    [self.D setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.D.name,self.D.min]];
+    [self.D setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.D.name,self.D.max]];
+    [self.D setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.D.name,self.D.min]];
     
     [self.substances addObject:self.D];
     
@@ -300,8 +300,8 @@ static MyManager *sharedManager = nil;
     self.bloodPressure.absoluteMin = 0.4;
     self.bloodPressure.absoluteMax = 1.6;
     [self.bloodPressure setInput:(self.bloodPressure.min+self.bloodPressure.max)/2];
-    [self.bloodPressure setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.bloodPressure.name,self.bloodPressure.max]];
-    [self.bloodPressure setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.bloodPressure.name,self.bloodPressure.min]];
+    [self.bloodPressure setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.bloodPressure.name,self.bloodPressure.max]];
+    [self.bloodPressure setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.bloodPressure.name,self.bloodPressure.min]];
     
     [self.substances addObject:self.bloodPressure];
     
@@ -314,8 +314,8 @@ static MyManager *sharedManager = nil;
     self.bmi.absoluteMin = 0.4;
     self.bmi.absoluteMax = 1.6;
     [self.bmi setInput:(self.bmi.min+self.bmi.max)/2];
-    [self.bmi setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.bmi.name,self.bmi.max]];
-    [self.bmi setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.bmi.name,self.bmi.min]];
+    [self.bmi setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.bmi.name,self.bmi.max]];
+    [self.bmi setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.bmi.name,self.bmi.min]];
     
     [self.substances addObject:self.bmi];
     
@@ -328,8 +328,8 @@ static MyManager *sharedManager = nil;
     self.zinc.absoluteMin = 0.4;
     self.zinc.absoluteMax = 1.6;
     [self.zinc setInput:(self.zinc.min+self.zinc.max)/2];
-    [self.zinc setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.max]];
-    [self.zinc setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.min]];
+    [self.zinc setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.max]];
+    [self.zinc setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.zinc.name,self.zinc.min]];
     
     [self.substances addObject:self.zinc];
     
@@ -342,8 +342,8 @@ static MyManager *sharedManager = nil;
     self.iron.absoluteMin = 0.4;
     self.iron.absoluteMax = 1.6;
     [self.iron setInput:(self.iron.min+self.iron.max)/2];
-    [self.iron setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
-    [self.iron setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.min]];
+    [self.iron setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
+    [self.iron setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.min]];
     
     [self.substances addObject:self.iron];
     
@@ -356,8 +356,8 @@ static MyManager *sharedManager = nil;
     self.basalTemp.absoluteMin = 0.4;
     self.basalTemp.absoluteMax = 1.6;
     [self.basalTemp setInput:(self.basalTemp.min+self.basalTemp.max)/2];
-    [self.basalTemp setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %i %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
-    [self.basalTemp setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %i %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.basalTemp.name,self.basalTemp.min]];
+    [self.basalTemp setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.iron.name,self.iron.max]];
+    [self.basalTemp setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.basalTemp.name,self.basalTemp.min]];
     
     [self.substances addObject:self.iron];
 

@@ -68,34 +68,20 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 // "x" and "y" with objects that are a NSDate and a NSNumber
 -(void)generateSubstanceSequence {
     
-    SBJsonParser *parser = [[SBJsonParser alloc] init];
-    
-    NSString *fileName = [NSString stringWithFormat:@"%@%@", self.currentSubstance.name, @"Sequence"];
-        
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:fileName ofType:@"json"];
-    NSError *error;
-    NSString *fileString = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    NSDictionary *json = [parser objectWithString:fileString];
-    
-    int start = (int)[[NSDate date] timeIntervalSince1970] - 36000;
+    double start = (double)(int)[[NSDate date] timeIntervalSince1970] - 360;
+    double yValue = self.substanceStart;
     NSMutableArray *localSequence = [[NSMutableArray alloc] init];
     
-    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
-    [f setNumberStyle:NSNumberFormatterDecimalStyle];    
-    for (int i = 0; i < 72000; i++) {
-        NSString *timestamp = [NSString stringWithFormat:@"%i", start + i];
-        if ([json objectForKey:timestamp]) {
-            NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
-            NSNumber *yValue = [f numberFromString:[json objectForKey:timestamp]];
-            
-            NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", yValue, @"y", nil];
+    for (int i = 0; i < 720; i++) {
+        NSDate *xDate = [NSDate dateWithTimeIntervalSince1970:start + i];
+        
+        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:xDate, @"x", [NSNumber numberWithDouble:yValue], @"y", nil];
         
         [localSequence addObject:dict];
         
-//        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
-//        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
-//        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
-        }
+        yValue = yValue + self.substanceStep*((double)rand()/(double)RAND_MAX - 0.5);
+        if (yValue < self.currentSubstance.absoluteMin) yValue = self.currentSubstance.absoluteMin;
+        if (yValue > self.currentSubstance.absoluteMax) yValue = self.currentSubstance.absoluteMax;
     }
     
     self.substanceSequence = [localSequence copy];
@@ -164,7 +150,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.symbolTextAnnotation.contentLayer = textLayer;
     self.symbolTextAnnotation.displacement = CGPointMake(0.0f, 20.0f);
     [self.graph.plotAreaFrame.plotArea addAnnotation:self.symbolTextAnnotation];
-
+    
 }
 
 -(BOOL)plotSpace:(CPTPlotSpace *)space shouldHandlePointingDeviceDownEvent:(id)event atPoint:(CGPoint)point
@@ -197,7 +183,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(double) extrema:(NSString *)extrema ForAxis:(NSString *)axis {
     NSArray *copy = [self.dataForPlot copy];
-
+    
     NSArray *sortedCopy = [copy sortedArrayUsingComparator:^(id a, id b){
         id first = [a objectForKey:axis];
         id second = [b objectForKey:axis];
@@ -257,7 +243,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970] - 180) length:CPTDecimalFromFloat((float) 200)];
     plotSpace.yRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromDouble(self.substanceStart - 2*[[NSNumber numberWithDouble:self.substanceRange] doubleValue]) length:CPTDecimalFromDouble(self.substanceRange*4)];
-//    plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
+    //    plotSpace.globalYRange = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt(self.currentSubstance.absoluteMin) length:CPTDecimalFromInt(self.currentSubstance.absoluteMax - self.currentSubstance.absoluteMin)];
     plotSpace.delegate = self;
 }
 
@@ -277,7 +263,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     CPTXYAxis *x          = axisSet.xAxis;
     
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
-
+    
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"H:mm:ss";
     CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:dateFormatter];
@@ -335,7 +321,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     dataSourceLinePlot.plotSymbolMarginForHitDetection = 10.0;
     
     [self.graph addPlot:dataSourceLinePlot];
-
+    
     // Add plot symbols
     CPTMutableLineStyle *symbolLineStyle = [CPTMutableLineStyle lineStyle];
     symbolLineStyle.lineColor = [CPTColor whiteColor];
@@ -379,12 +365,12 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     // right now these are dependent on each other and should 
     // be called in this order:
     self.dataForPlot = nil;
-
+    
     if (!self.substanceSequence) {
         [self generateSubstanceSequence];
-//        [self pushSubstanceSequence];
+        //        [self pushSubstanceSequence];
     }
-
+    
     [self addPastDataPoints];
     [self setupGraph];
     [self setupAxes];
@@ -392,7 +378,16 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(addDataPoint) userInfo:nil repeats:YES];
     
-    self.title = [self.currentSubstance name];
+    // Set title
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.font = [UIFont fontWithName:@"Gotham Medium" size:20.0];
+    label.shadowColor = [UIColor colorWithWhite:0.0 alpha:0.5];
+    label.textAlignment = UITextAlignmentCenter;
+    label.textColor = [UIColor whiteColor]; // change this color
+    self.navigationItem.titleView = label;
+    label.text = [_currentSubstance name];
+    [label sizeToFit];
 }
 
 -(void)viewDidUnload {
@@ -447,7 +442,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     int unixTime = [[NSDate date] timeIntervalSince1970];
     
     NSNumber *nextY;
-
+    
     for (id dict in self.substanceSequence) {
         if (unixTime == (int)[[dict objectForKey:@"x"] timeIntervalSince1970]) {
             nextY = [dict objectForKey:@"y"];
@@ -464,12 +459,12 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithObjectsAndKeys:nextX, @"x", nextY, @"y", nil];
     
     NSMutableArray *localArray = [[NSMutableArray alloc] initWithArray:self.dataForPlot copyItems:YES];
-
+    
     [localArray addObject:[dict copy]];
     self.dataForPlot = [[NSMutableArray alloc] initWithArray:localArray copyItems:YES];
     
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
-
+    
     // adjust y axis if we go above max value
     if ([nextY doubleValue] > plotSpace.yRange.maxLimitDouble) {
         plotSpace.yRange = [CPTPlotRange plotRangeWithLocation:plotSpace.yRange.minLimit length:CPTDecimalFromDouble([nextY doubleValue] - plotSpace.yRange.minLimitDouble + 1)];
@@ -488,7 +483,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     if ( [nextX doubleValue] < plotSpace.xRange.maxLimitDouble && [nextX doubleValue] + 1 > plotSpace.xRange.maxLimitDouble) {
         double newLocation = plotSpace.xRange.locationDouble + 1;
         double newLength = plotSpace.xRange.lengthDouble + 1;
-
+        
         CPTPlotRange *newRange = [CPTPlotRange plotRangeWithLocation:(CPTDecimalFromDouble(newLocation)) length:(CPTDecimalFromDouble(newLength))];
         plotSpace.xRange = newRange;
         

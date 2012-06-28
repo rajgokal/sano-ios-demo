@@ -10,13 +10,47 @@
 		351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBA1506BE5200C99CAD /* AlertsViewController.m */; };
 		351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 351CBFBD1506D09200C99CAD /* AlertsCell.m */; };
 		35214CE415671D5600430E29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35214CE315671D5600430E29 /* QuartzCore.framework */; };
-		35270F731583E096001E0FB2 /* ADVViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F5B1583E096001E0FB2 /* ADVViewController.m */; };
 		35270F741583E096001E0FB2 /* ADVPercentProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F5E1583E096001E0FB2 /* ADVPercentProgressBar.m */; };
 		35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F851583E19F001E0FB2 /* MetricsViewController.m */; };
 		35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F881583E1BA001E0FB2 /* MetricCell.m */; };
 		35270F8C1583E1CD001E0FB2 /* Metric.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F8B1583E1CD001E0FB2 /* Metric.m */; };
 		35270F8F158540C5001E0FB2 /* SanoNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */; };
 		352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 352E5A0C15069627003DB356 /* OnboardingViewController.m */; };
+		35335290159B8FBE0059336F /* Gotham-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533528F159B8FBE0059336F /* Gotham-Book.ttf */; };
+		35335291159B95F20059336F /* Gotham-Book.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533528F159B8FBE0059336F /* Gotham-Book.ttf */; };
+		353352A2159B97000059336F /* Gizmo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335292159B97000059336F /* Gizmo.ttf */; };
+		353352A3159B97000059336F /* Gotham-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335293159B97000059336F /* Gotham-Black.ttf */; };
+		353352A4159B97000059336F /* Gotham-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335294159B97000059336F /* Gotham-BlackItalic.ttf */; };
+		353352A5159B97000059336F /* Gotham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335295159B97000059336F /* Gotham-Bold.ttf */; };
+		353352A6159B97000059336F /* Gotham-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335296159B97000059336F /* Gotham-BoldItalic.ttf */; };
+		353352A7159B97000059336F /* Gotham-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335297159B97000059336F /* Gotham-BookItalic.ttf */; };
+		353352A8159B97000059336F /* Gotham-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335298159B97000059336F /* Gotham-Light.ttf */; };
+		353352A9159B97000059336F /* Gotham-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335299159B97000059336F /* Gotham-LightItalic.ttf */; };
+		353352AA159B97000059336F /* Gotham-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529A159B97000059336F /* Gotham-Medium.ttf */; };
+		353352AB159B97000059336F /* Gotham-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529B159B97000059336F /* Gotham-MediumItalic.ttf */; };
+		353352AC159B97000059336F /* Gotham-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529C159B97000059336F /* Gotham-Thin.ttf */; };
+		353352AD159B97000059336F /* Gotham-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529D159B97000059336F /* Gotham-ThinItalic.ttf */; };
+		353352AE159B97000059336F /* Gotham-Ultra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529E159B97000059336F /* Gotham-Ultra.ttf */; };
+		353352AF159B97000059336F /* Gotham-UltraItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529F159B97000059336F /* Gotham-UltraItalic.ttf */; };
+		353352B0159B97000059336F /* Gotham-XLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353352A0159B97000059336F /* Gotham-XLight.ttf */; };
+		353352B1159B97000059336F /* Gotham-XLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353352A1159B97000059336F /* Gotham-XLightItalic.ttf */; };
+		353352B2159B97300059336F /* Gizmo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335292159B97000059336F /* Gizmo.ttf */; };
+		353352B3159B97300059336F /* Gotham-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335293159B97000059336F /* Gotham-Black.ttf */; };
+		353352B4159B97300059336F /* Gotham-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335294159B97000059336F /* Gotham-BlackItalic.ttf */; };
+		353352B5159B97300059336F /* Gotham-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335295159B97000059336F /* Gotham-Bold.ttf */; };
+		353352B6159B97300059336F /* Gotham-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335296159B97000059336F /* Gotham-BoldItalic.ttf */; };
+		353352B7159B97300059336F /* Gotham-BookItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335297159B97000059336F /* Gotham-BookItalic.ttf */; };
+		353352B8159B97300059336F /* Gotham-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335298159B97000059336F /* Gotham-Light.ttf */; };
+		353352B9159B97300059336F /* Gotham-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 35335299159B97000059336F /* Gotham-LightItalic.ttf */; };
+		353352BA159B97300059336F /* Gotham-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529A159B97000059336F /* Gotham-Medium.ttf */; };
+		353352BB159B97300059336F /* Gotham-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529B159B97000059336F /* Gotham-MediumItalic.ttf */; };
+		353352BC159B97300059336F /* Gotham-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529C159B97000059336F /* Gotham-Thin.ttf */; };
+		353352BD159B97300059336F /* Gotham-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529D159B97000059336F /* Gotham-ThinItalic.ttf */; };
+		353352BE159B97310059336F /* Gotham-Ultra.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529E159B97000059336F /* Gotham-Ultra.ttf */; };
+		353352BF159B97310059336F /* Gotham-UltraItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3533529F159B97000059336F /* Gotham-UltraItalic.ttf */; };
+		353352C0159B97310059336F /* Gotham-XLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353352A0159B97000059336F /* Gotham-XLight.ttf */; };
+		353352C1159B97310059336F /* Gotham-XLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 353352A1159B97000059336F /* Gotham-XLightItalic.ttf */; };
+		353352C3159BF1A90059336F /* CustomNavBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 353352C2159BF1A80059336F /* CustomNavBG.png */; };
 		3541B47A14D34E5300F853B9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47914D34E5300F853B9 /* UIKit.framework */; };
 		3541B47C14D34E5300F853B9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47B14D34E5300F853B9 /* Foundation.framework */; };
 		3541B47E14D34E5300F853B9 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3541B47D14D34E5300F853B9 /* CoreGraphics.framework */; };
@@ -37,7 +71,6 @@
 		35B382621587DD8A00904286 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B382481587DD8A00904286 /* Background.png */; };
 		35B382631587DD8A00904286 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B382491587DD8A00904286 /* Background@2x.png */; };
 		35B382641587DD8A00904286 /* Button.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B3824A1587DD8A00904286 /* Button.png */; };
-		35B382651587DD8A00904286 /* CustomNavBG.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B3824B1587DD8A00904286 /* CustomNavBG.png */; };
 		35B382661587DD8A00904286 /* CustomNavBG@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B3824C1587DD8A00904286 /* CustomNavBG@2x.png */; };
 		35B382671587DD8A00904286 /* Divider.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B3824D1587DD8A00904286 /* Divider.png */; };
 		35B382681587DD8A00904286 /* Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 35B3824E1587DD8A00904286 /* Logo.png */; };
@@ -64,16 +97,6 @@
 		35D62B8E150597980014C99E /* EditSubstancesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D62B8D150597980014C99E /* EditSubstancesCell.m */; };
 		35D62B91150598430014C99E /* EditDashboardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 35D62B90150598430014C99E /* EditDashboardViewController.m */; };
 		35E2521B1559A3E0007556AC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 35E2521A1559A3E0007556AC /* libsqlite3.dylib */; };
-		35ED12FA14D365A700D6E92B /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12F914D365A700D6E92B /* Default.png */; };
-		35ED12FF14D3773B00D6E92B /* Sodium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FC14D3773B00D6E92B /* Sodium.png */; };
-		35ED130014D3773B00D6E92B /* Calcium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FD14D3773B00D6E92B /* Calcium.png */; };
-		35ED130114D3773B00D6E92B /* Glucose.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED12FE14D3773B00D6E92B /* Glucose.png */; };
-		35ED130914D3775C00D6E92B /* Creatinine.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130314D3775C00D6E92B /* Creatinine.png */; };
-		35ED130A14D3775C00D6E92B /* BUN.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130414D3775C00D6E92B /* BUN.png */; };
-		35ED130B14D3775C00D6E92B /* Chloride.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130514D3775C00D6E92B /* Chloride.png */; };
-		35ED130C14D3775C00D6E92B /* CO2.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130614D3775C00D6E92B /* CO2.png */; };
-		35ED130D14D3775C00D6E92B /* Potassium.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130714D3775C00D6E92B /* Potassium.png */; };
-		35ED131014D3980300D6E92B /* View.png in Resources */ = {isa = PBXBuildFile; fileRef = 35ED130F14D3980300D6E92B /* View.png */; };
 		35F1F6CA14FDC228002A112A /* Indicator Spot - Yellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */; };
 		35F1F6D214FDD4E6002A112A /* SubstancesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F1F6D114FDD4E6002A112A /* SubstancesCell.m */; };
 		35F1F6D614FDE1B6002A112A /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 35F1F6D514FDE1B6002A112A /* Icon.png */; };
@@ -148,8 +171,6 @@
 		351CBFBC1506D09200C99CAD /* AlertsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertsCell.h; sourceTree = "<group>"; };
 		351CBFBD1506D09200C99CAD /* AlertsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertsCell.m; sourceTree = "<group>"; };
 		35214CE315671D5600430E29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		35270F5A1583E096001E0FB2 /* ADVViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ADVViewController.h; path = ADVProgressBar/ADVViewController.h; sourceTree = "<group>"; };
-		35270F5B1583E096001E0FB2 /* ADVViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ADVViewController.m; path = ADVProgressBar/ADVViewController.m; sourceTree = "<group>"; };
 		35270F5D1583E096001E0FB2 /* ADVPercentProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADVPercentProgressBar.h; sourceTree = "<group>"; };
 		35270F5E1583E096001E0FB2 /* ADVPercentProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADVPercentProgressBar.m; sourceTree = "<group>"; };
 		35270F841583E19F001E0FB2 /* MetricsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MetricsViewController.h; path = Sano/MetricsViewController.h; sourceTree = SOURCE_ROOT; };
@@ -162,6 +183,24 @@
 		35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SanoNavigationBar.m; sourceTree = "<group>"; };
 		352E5A0B15069627003DB356 /* OnboardingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OnboardingViewController.h; sourceTree = "<group>"; };
 		352E5A0C15069627003DB356 /* OnboardingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OnboardingViewController.m; sourceTree = "<group>"; };
+		3533528F159B8FBE0059336F /* Gotham-Book.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.ttf"; sourceTree = "<group>"; };
+		35335292159B97000059336F /* Gizmo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Gizmo.ttf; sourceTree = "<group>"; };
+		35335293159B97000059336F /* Gotham-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Black.ttf"; sourceTree = "<group>"; };
+		35335294159B97000059336F /* Gotham-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BlackItalic.ttf"; sourceTree = "<group>"; };
+		35335295159B97000059336F /* Gotham-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.ttf"; sourceTree = "<group>"; };
+		35335296159B97000059336F /* Gotham-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BoldItalic.ttf"; sourceTree = "<group>"; };
+		35335297159B97000059336F /* Gotham-BookItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-BookItalic.ttf"; sourceTree = "<group>"; };
+		35335298159B97000059336F /* Gotham-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Light.ttf"; sourceTree = "<group>"; };
+		35335299159B97000059336F /* Gotham-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-LightItalic.ttf"; sourceTree = "<group>"; };
+		3533529A159B97000059336F /* Gotham-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.ttf"; sourceTree = "<group>"; };
+		3533529B159B97000059336F /* Gotham-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-MediumItalic.ttf"; sourceTree = "<group>"; };
+		3533529C159B97000059336F /* Gotham-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Thin.ttf"; sourceTree = "<group>"; };
+		3533529D159B97000059336F /* Gotham-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-ThinItalic.ttf"; sourceTree = "<group>"; };
+		3533529E159B97000059336F /* Gotham-Ultra.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Ultra.ttf"; sourceTree = "<group>"; };
+		3533529F159B97000059336F /* Gotham-UltraItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-UltraItalic.ttf"; sourceTree = "<group>"; };
+		353352A0159B97000059336F /* Gotham-XLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLight.ttf"; sourceTree = "<group>"; };
+		353352A1159B97000059336F /* Gotham-XLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-XLightItalic.ttf"; sourceTree = "<group>"; };
+		353352C2159BF1A80059336F /* CustomNavBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomNavBG.png; sourceTree = "<group>"; };
 		3541B47514D34E5300F853B9 /* Sano.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sano.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3541B47914D34E5300F853B9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3541B47B14D34E5300F853B9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -190,7 +229,6 @@
 		35B382481587DD8A00904286 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Background.png; sourceTree = "<group>"; };
 		35B382491587DD8A00904286 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Background@2x.png"; sourceTree = "<group>"; };
 		35B3824A1587DD8A00904286 /* Button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button.png; sourceTree = "<group>"; };
-		35B3824B1587DD8A00904286 /* CustomNavBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CustomNavBG.png; sourceTree = "<group>"; };
 		35B3824C1587DD8A00904286 /* CustomNavBG@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "CustomNavBG@2x.png"; sourceTree = "<group>"; };
 		35B3824D1587DD8A00904286 /* Divider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Divider.png; sourceTree = "<group>"; };
 		35B3824E1587DD8A00904286 /* Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Logo.png; sourceTree = "<group>"; };
@@ -220,21 +258,11 @@
 		35D62B8F150598430014C99E /* EditDashboardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDashboardViewController.h; sourceTree = "<group>"; };
 		35D62B90150598430014C99E /* EditDashboardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDashboardViewController.m; sourceTree = "<group>"; };
 		35E2521A1559A3E0007556AC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		35ED12F914D365A700D6E92B /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		35ED12FC14D3773B00D6E92B /* Sodium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sodium.png; sourceTree = "<group>"; };
-		35ED12FD14D3773B00D6E92B /* Calcium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Calcium.png; sourceTree = "<group>"; };
-		35ED12FE14D3773B00D6E92B /* Glucose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Glucose.png; sourceTree = "<group>"; };
-		35ED130314D3775C00D6E92B /* Creatinine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Creatinine.png; sourceTree = "<group>"; };
-		35ED130414D3775C00D6E92B /* BUN.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BUN.png; sourceTree = "<group>"; };
-		35ED130514D3775C00D6E92B /* Chloride.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Chloride.png; sourceTree = "<group>"; };
-		35ED130614D3775C00D6E92B /* CO2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CO2.png; sourceTree = "<group>"; };
-		35ED130714D3775C00D6E92B /* Potassium.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Potassium.png; sourceTree = "<group>"; };
-		35ED130F14D3980300D6E92B /* View.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = View.png; sourceTree = "<group>"; };
 		35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Indicator Spot - Yellow.png"; sourceTree = "<group>"; };
 		35F1F6D014FDD4E6002A112A /* SubstancesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubstancesCell.h; sourceTree = "<group>"; };
 		35F1F6D114FDD4E6002A112A /* SubstancesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubstancesCell.m; sourceTree = "<group>"; };
-		35F1F6D514FDE1B6002A112A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		35F1F6D714FDE1FD002A112A /* IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IconRetina.png; sourceTree = "<group>"; };
+		35F1F6D514FDE1B6002A112A /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		35F1F6D714FDE1FD002A112A /* IconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IconRetina.png; path = ../IconRetina.png; sourceTree = "<group>"; };
 		A11E23551586301600D2D3D5 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A11E23571586305D00D2D3D5 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		A11E23591586307100D2D3D5 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -351,15 +379,6 @@
 		3541B46A14D34E5300F853B9 = {
 			isa = PBXGroup;
 			children = (
-				A11E23611586309E00D2D3D5 /* Security.framework */,
-				A11E235F1586309500D2D3D5 /* libz.1.1.3.dylib */,
-				A11E235D1586308200D2D3D5 /* MobileCoreServices.framework */,
-				A11E235B1586307A00D2D3D5 /* SystemConfiguration.framework */,
-				A11E23591586307100D2D3D5 /* CFNetwork.framework */,
-				A11E23571586305D00D2D3D5 /* AudioToolbox.framework */,
-				35E2521A1559A3E0007556AC /* libsqlite3.dylib */,
-				35F1F6D714FDE1FD002A112A /* IconRetina.png */,
-				35F1F6D514FDE1B6002A112A /* Icon.png */,
 				3541B47F14D34E5300F853B9 /* Sano */,
 				3541B49D14D34E5300F853B9 /* SanoTests */,
 				3541B47814D34E5300F853B9 /* Frameworks */,
@@ -381,6 +400,11 @@
 			isa = PBXGroup;
 			children = (
 				A1347EC01588C67C00491EDD /* SBJSON */,
+				A11E23611586309E00D2D3D5 /* Security.framework */,
+				A11E235D1586308200D2D3D5 /* MobileCoreServices.framework */,
+				A11E235B1586307A00D2D3D5 /* SystemConfiguration.framework */,
+				A11E23591586307100D2D3D5 /* CFNetwork.framework */,
+				A11E23571586305D00D2D3D5 /* AudioToolbox.framework */,
 				A11E23551586301600D2D3D5 /* Parse.framework */,
 				35214CE315671D5600430E29 /* QuartzCore.framework */,
 				3541B47914D34E5300F853B9 /* UIKit.framework */,
@@ -394,60 +418,18 @@
 		3541B47F14D34E5300F853B9 /* Sano */ = {
 			isa = PBXGroup;
 			children = (
-				A1347EF915891C2300491EDD /* B1Sequence.json */,
-				A1347EFA15891C2300491EDD /* B5Sequence.json */,
-				A1347EFB15891C2300491EDD /* B6Sequence.json */,
-				A1347EFC15891C2400491EDD /* Blood PressureSequence.json */,
-				A1347EFD15891C2400491EDD /* Blood Urea NitrogenSequence.json */,
-				A1347EFE15891C2400491EDD /* BMISequence.json */,
-				A1347EFF15891C2400491EDD /* CalciumSequence.json */,
-				A1347F0015891C2400491EDD /* ChlorideSequence.json */,
-				A1347F0115891C2500491EDD /* CO2Sequence.json */,
-				A1347F0215891C2500491EDD /* CreatinineSequence.json */,
-				A1347F0315891C2500491EDD /* DSequence.json */,
-				A1347F0415891C2500491EDD /* GlucoseSequence.json */,
-				A1347F0515891C2600491EDD /* LactateSequence.json */,
-				A1347F0615891C2600491EDD /* PotassiumSequence.json */,
-				A1347F0715891C2600491EDD /* SleepSequence.json */,
-				A1347F0815891C2700491EDD /* SodiumSequence.json */,
-				A1347F0915891C2700491EDD /* VO2Sequence.json */,
 				3541B48814D34E5300F853B9 /* SanoAppDelegate.h */,
 				3541B48914D34E5300F853B9 /* SanoAppDelegate.m */,
 				3541B48B14D34E5300F853B9 /* MainStoryboard.storyboard */,
-				35270F8D158540C4001E0FB2 /* SanoNavigationBar.h */,
-				35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */,
 				35D62B84150533930014C99E /* MyManager.h */,
 				35D62B85150533930014C99E /* MyManager.m */,
-				3541B4B414D3515600F853B9 /* Substance.h */,
-				3541B4B514D3515600F853B9 /* Substance.m */,
-				352E5A0B15069627003DB356 /* OnboardingViewController.h */,
-				352E5A0C15069627003DB356 /* OnboardingViewController.m */,
-				3541B4B114D3511600F853B9 /* SanoSubstanceViewController.h */,
-				3541B4B214D3511600F853B9 /* SanoSubstanceViewController.m */,
-				3541B4AE14D34F0000F853B9 /* SanoDashboardViewController.h */,
-				3541B4AF14D34F0000F853B9 /* SanoDashboardViewController.m */,
-				35D62B8F150598430014C99E /* EditDashboardViewController.h */,
-				35D62B90150598430014C99E /* EditDashboardViewController.m */,
-				351CBFB91506BE5200C99CAD /* AlertsViewController.h */,
-				351CBFBA1506BE5200C99CAD /* AlertsViewController.m */,
-				35270F841583E19F001E0FB2 /* MetricsViewController.h */,
-				35270F851583E19F001E0FB2 /* MetricsViewController.m */,
-				35F1F6D014FDD4E6002A112A /* SubstancesCell.h */,
-				35F1F6D114FDD4E6002A112A /* SubstancesCell.m */,
-				351CBFBC1506D09200C99CAD /* AlertsCell.h */,
-				351CBFBD1506D09200C99CAD /* AlertsCell.m */,
-				35D62B8C150597980014C99E /* EditSubstancesCell.h */,
-				35D62B8D150597980014C99E /* EditSubstancesCell.m */,
-				35270F5A1583E096001E0FB2 /* ADVViewController.h */,
-				35270F5B1583E096001E0FB2 /* ADVViewController.m */,
-				35270F871583E1BA001E0FB2 /* MetricCell.h */,
-				35270F881583E1BA001E0FB2 /* MetricCell.m */,
-				35270F8A1583E1CD001E0FB2 /* Metric.h */,
-				35270F8B1583E1CD001E0FB2 /* Metric.m */,
-				35270F551583E096001E0FB2 /* ADVProgressBar */,
+				35FF0D6B1593D0BA00F4B892 /* JSON Data */,
+				35FF0D6A1593D0A800F4B892 /* Settings */,
+				35FF0D6C1593D0F400F4B892 /* Plotting */,
+				35FF0D6D1593D11000F4B892 /* Zoom */,
+				35FF0D661593D07500F4B892 /* Alerts */,
+				35FF0D6E1593D13A00F4B892 /* Dashboard */,
 				3541B48014D34E5300F853B9 /* Supporting Files */,
-				A1347E75158828F900491EDD /* UserType.h */,
-				A1347E76158828F900491EDD /* UserType.m */,
 			);
 			path = Sano;
 			sourceTree = "<group>";
@@ -455,32 +437,23 @@
 		3541B48014D34E5300F853B9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				35B382481587DD8A00904286 /* Background.png */,
-				35B382491587DD8A00904286 /* Background@2x.png */,
-				35B3824A1587DD8A00904286 /* Button.png */,
-				35B3824B1587DD8A00904286 /* CustomNavBG.png */,
-				35B3824C1587DD8A00904286 /* CustomNavBG@2x.png */,
-				35B3824D1587DD8A00904286 /* Divider.png */,
-				35B3824E1587DD8A00904286 /* Logo.png */,
-				35B3824F1587DD8A00904286 /* Marker copy.png */,
-				35B382501587DD8A00904286 /* Marker.png */,
-				35B382511587DD8A00904286 /* Panel.png */,
-				35B382521587DD8A00904286 /* PanelSelect.png */,
-				35B382531587DD8A00904286 /* PanelZoom.png */,
-				35B382541587DD8A00904286 /* progress-count.png */,
-				35B382551587DD8A00904286 /* progress-count@2x.png */,
-				35B382561587DD8A00904286 /* progress-fill-blue.png */,
-				35B382571587DD8A00904286 /* progress-fill-blue@2x OLD.png */,
-				35B382581587DD8A00904286 /* progress-fill-blue@2x.png */,
-				35B382591587DD8A00904286 /* progress-fill-brown.png */,
-				35B3825A1587DD8A00904286 /* progress-fill-brown@2x.png */,
-				35B3825B1587DD8A00904286 /* progress-fill-green.png */,
-				35B3825C1587DD8A00904286 /* progress-fill-green@2x.png */,
-				35B3825D1587DD8A00904286 /* progress-fill-red.png */,
-				35B3825E1587DD8A00904286 /* progress-fill-red@2x.png */,
-				35B3825F1587DD8A00904286 /* progress-track.png */,
-				35B382601587DD8A00904286 /* progress-track@2x OLD.png */,
-				35B382611587DD8A00904286 /* progress-track@2x.png */,
+				35335292159B97000059336F /* Gizmo.ttf */,
+				3533528F159B8FBE0059336F /* Gotham-Book.ttf */,
+				35335293159B97000059336F /* Gotham-Black.ttf */,
+				35335294159B97000059336F /* Gotham-BlackItalic.ttf */,
+				35335295159B97000059336F /* Gotham-Bold.ttf */,
+				35335296159B97000059336F /* Gotham-BoldItalic.ttf */,
+				35335297159B97000059336F /* Gotham-BookItalic.ttf */,
+				35335298159B97000059336F /* Gotham-Light.ttf */,
+				35335299159B97000059336F /* Gotham-LightItalic.ttf */,
+				3533529A159B97000059336F /* Gotham-Medium.ttf */,
+				3533529B159B97000059336F /* Gotham-MediumItalic.ttf */,
+				3533529C159B97000059336F /* Gotham-Thin.ttf */,
+				3533529D159B97000059336F /* Gotham-ThinItalic.ttf */,
+				3533529E159B97000059336F /* Gotham-Ultra.ttf */,
+				3533529F159B97000059336F /* Gotham-UltraItalic.ttf */,
+				353352A0159B97000059336F /* Gotham-XLight.ttf */,
+				353352A1159B97000059336F /* Gotham-XLightItalic.ttf */,
 				35ED130E14D3776B00D6E92B /* Images */,
 				3541B48114D34E5300F853B9 /* Sano-Info.plist */,
 				3541B48214D34E5300F853B9 /* InfoPlist.strings */,
@@ -512,26 +485,134 @@
 		35ED130E14D3776B00D6E92B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				353352C2159BF1A80059336F /* CustomNavBG.png */,
+				35F1F6D714FDE1FD002A112A /* IconRetina.png */,
+				35F1F6D514FDE1B6002A112A /* Icon.png */,
+				35B382481587DD8A00904286 /* Background.png */,
+				35B382491587DD8A00904286 /* Background@2x.png */,
+				35B3824A1587DD8A00904286 /* Button.png */,
+				35B3824C1587DD8A00904286 /* CustomNavBG@2x.png */,
+				35B3824D1587DD8A00904286 /* Divider.png */,
+				35B3824E1587DD8A00904286 /* Logo.png */,
+				35B3824F1587DD8A00904286 /* Marker copy.png */,
+				35B382501587DD8A00904286 /* Marker.png */,
+				35B382511587DD8A00904286 /* Panel.png */,
+				35B382521587DD8A00904286 /* PanelSelect.png */,
+				35B382531587DD8A00904286 /* PanelZoom.png */,
+				35B382541587DD8A00904286 /* progress-count.png */,
+				35B382551587DD8A00904286 /* progress-count@2x.png */,
+				35B382561587DD8A00904286 /* progress-fill-blue.png */,
+				35B382571587DD8A00904286 /* progress-fill-blue@2x OLD.png */,
+				35B382581587DD8A00904286 /* progress-fill-blue@2x.png */,
+				35B382591587DD8A00904286 /* progress-fill-brown.png */,
+				35B3825A1587DD8A00904286 /* progress-fill-brown@2x.png */,
+				35B3825B1587DD8A00904286 /* progress-fill-green.png */,
+				35B3825C1587DD8A00904286 /* progress-fill-green@2x.png */,
+				35B3825D1587DD8A00904286 /* progress-fill-red.png */,
+				35B3825E1587DD8A00904286 /* progress-fill-red@2x.png */,
+				35B3825F1587DD8A00904286 /* progress-track.png */,
+				35B382601587DD8A00904286 /* progress-track@2x OLD.png */,
+				35B382611587DD8A00904286 /* progress-track@2x.png */,
 				35F1F6C914FDC228002A112A /* Indicator Spot - Yellow.png */,
 				3585078814FD66BE00D4548B /* Indicator Spot - Green.png */,
 				3585078514FD66A500D4548B /* Indicator Spot - Red.png */,
-				35ED130314D3775C00D6E92B /* Creatinine.png */,
-				35ED130414D3775C00D6E92B /* BUN.png */,
-				35ED130514D3775C00D6E92B /* Chloride.png */,
-				35ED130614D3775C00D6E92B /* CO2.png */,
-				35ED130714D3775C00D6E92B /* Potassium.png */,
-				35ED12FC14D3773B00D6E92B /* Sodium.png */,
-				35ED12FD14D3773B00D6E92B /* Calcium.png */,
-				35ED12FE14D3773B00D6E92B /* Glucose.png */,
-				35ED12F914D365A700D6E92B /* Default.png */,
-				35ED130F14D3980300D6E92B /* View.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		35FF0D661593D07500F4B892 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				351CBFB91506BE5200C99CAD /* AlertsViewController.h */,
+				351CBFBA1506BE5200C99CAD /* AlertsViewController.m */,
+				351CBFBC1506D09200C99CAD /* AlertsCell.h */,
+				351CBFBD1506D09200C99CAD /* AlertsCell.m */,
+			);
+			name = Alerts;
+			sourceTree = "<group>";
+		};
+		35FF0D6A1593D0A800F4B892 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				A1347E75158828F900491EDD /* UserType.h */,
+				A1347E76158828F900491EDD /* UserType.m */,
+				35270F8D158540C4001E0FB2 /* SanoNavigationBar.h */,
+				35270F8E158540C4001E0FB2 /* SanoNavigationBar.m */,
+				352E5A0B15069627003DB356 /* OnboardingViewController.h */,
+				352E5A0C15069627003DB356 /* OnboardingViewController.m */,
+				35D62B8F150598430014C99E /* EditDashboardViewController.h */,
+				35D62B90150598430014C99E /* EditDashboardViewController.m */,
+				35D62B8C150597980014C99E /* EditSubstancesCell.h */,
+				35D62B8D150597980014C99E /* EditSubstancesCell.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		35FF0D6B1593D0BA00F4B892 /* JSON Data */ = {
+			isa = PBXGroup;
+			children = (
+				A1347EF915891C2300491EDD /* B1Sequence.json */,
+				A1347EFA15891C2300491EDD /* B5Sequence.json */,
+				A1347EFB15891C2300491EDD /* B6Sequence.json */,
+				A1347EFC15891C2400491EDD /* Blood PressureSequence.json */,
+				A1347EFD15891C2400491EDD /* Blood Urea NitrogenSequence.json */,
+				A1347EFE15891C2400491EDD /* BMISequence.json */,
+				A1347EFF15891C2400491EDD /* CalciumSequence.json */,
+				A1347F0015891C2400491EDD /* ChlorideSequence.json */,
+				A1347F0115891C2500491EDD /* CO2Sequence.json */,
+				A1347F0215891C2500491EDD /* CreatinineSequence.json */,
+				A1347F0315891C2500491EDD /* DSequence.json */,
+				A1347F0415891C2500491EDD /* GlucoseSequence.json */,
+				A1347F0515891C2600491EDD /* LactateSequence.json */,
+				A1347F0615891C2600491EDD /* PotassiumSequence.json */,
+				A1347F0715891C2600491EDD /* SleepSequence.json */,
+				A1347F0815891C2700491EDD /* SodiumSequence.json */,
+				A1347F0915891C2700491EDD /* VO2Sequence.json */,
+			);
+			name = "JSON Data";
+			sourceTree = "<group>";
+		};
+		35FF0D6C1593D0F400F4B892 /* Plotting */ = {
+			isa = PBXGroup;
+			children = (
+				3541B4B114D3511600F853B9 /* SanoSubstanceViewController.h */,
+				3541B4B214D3511600F853B9 /* SanoSubstanceViewController.m */,
+			);
+			name = Plotting;
+			sourceTree = "<group>";
+		};
+		35FF0D6D1593D11000F4B892 /* Zoom */ = {
+			isa = PBXGroup;
+			children = (
+				3541B4B414D3515600F853B9 /* Substance.h */,
+				3541B4B514D3515600F853B9 /* Substance.m */,
+				3541B4AE14D34F0000F853B9 /* SanoDashboardViewController.h */,
+				3541B4AF14D34F0000F853B9 /* SanoDashboardViewController.m */,
+				35F1F6D014FDD4E6002A112A /* SubstancesCell.h */,
+				35F1F6D114FDD4E6002A112A /* SubstancesCell.m */,
+			);
+			name = Zoom;
+			sourceTree = "<group>";
+		};
+		35FF0D6E1593D13A00F4B892 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				35270F841583E19F001E0FB2 /* MetricsViewController.h */,
+				35270F851583E19F001E0FB2 /* MetricsViewController.m */,
+				35270F871583E1BA001E0FB2 /* MetricCell.h */,
+				35270F881583E1BA001E0FB2 /* MetricCell.m */,
+				35270F8A1583E1CD001E0FB2 /* Metric.h */,
+				35270F8B1583E1CD001E0FB2 /* Metric.m */,
+				35270F551583E096001E0FB2 /* ADVProgressBar */,
+			);
+			name = Dashboard;
 			sourceTree = "<group>";
 		};
 		A1347EC01588C67C00491EDD /* SBJSON */ = {
 			isa = PBXGroup;
 			children = (
+				A11E235F1586309500D2D3D5 /* libz.1.1.3.dylib */,
+				35E2521A1559A3E0007556AC /* libsqlite3.dylib */,
 				A1347E9B1588C64F00491EDD /* NSObject+SBJson.h */,
 				A1347E9C1588C64F00491EDD /* NSObject+SBJson.m */,
 				A1347E9D1588C64F00491EDD /* SBJson.h */,
@@ -656,18 +737,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				353352B2159B97300059336F /* Gizmo.ttf in Resources */,
+				353352B3159B97300059336F /* Gotham-Black.ttf in Resources */,
+				353352B4159B97300059336F /* Gotham-BlackItalic.ttf in Resources */,
+				353352B5159B97300059336F /* Gotham-Bold.ttf in Resources */,
+				353352B6159B97300059336F /* Gotham-BoldItalic.ttf in Resources */,
+				353352B7159B97300059336F /* Gotham-BookItalic.ttf in Resources */,
+				353352B8159B97300059336F /* Gotham-Light.ttf in Resources */,
+				353352B9159B97300059336F /* Gotham-LightItalic.ttf in Resources */,
+				353352BA159B97300059336F /* Gotham-Medium.ttf in Resources */,
+				353352BB159B97300059336F /* Gotham-MediumItalic.ttf in Resources */,
+				353352BC159B97300059336F /* Gotham-Thin.ttf in Resources */,
+				353352BD159B97300059336F /* Gotham-ThinItalic.ttf in Resources */,
+				353352BE159B97310059336F /* Gotham-Ultra.ttf in Resources */,
+				353352BF159B97310059336F /* Gotham-UltraItalic.ttf in Resources */,
+				353352C0159B97310059336F /* Gotham-XLight.ttf in Resources */,
+				353352C1159B97310059336F /* Gotham-XLightItalic.ttf in Resources */,
+				35335291159B95F20059336F /* Gotham-Book.ttf in Resources */,
 				3541B48414D34E5300F853B9 /* InfoPlist.strings in Resources */,
 				3541B48D14D34E5300F853B9 /* MainStoryboard.storyboard in Resources */,
-				35ED12FA14D365A700D6E92B /* Default.png in Resources */,
-				35ED12FF14D3773B00D6E92B /* Sodium.png in Resources */,
-				35ED130014D3773B00D6E92B /* Calcium.png in Resources */,
-				35ED130114D3773B00D6E92B /* Glucose.png in Resources */,
-				35ED130914D3775C00D6E92B /* Creatinine.png in Resources */,
-				35ED130A14D3775C00D6E92B /* BUN.png in Resources */,
-				35ED130B14D3775C00D6E92B /* Chloride.png in Resources */,
-				35ED130C14D3775C00D6E92B /* CO2.png in Resources */,
-				35ED130D14D3775C00D6E92B /* Potassium.png in Resources */,
-				35ED131014D3980300D6E92B /* View.png in Resources */,
 				3585078614FD66A500D4548B /* Indicator Spot - Red.png in Resources */,
 				3585078914FD66BE00D4548B /* Indicator Spot - Green.png in Resources */,
 				35F1F6CA14FDC228002A112A /* Indicator Spot - Yellow.png in Resources */,
@@ -676,7 +764,6 @@
 				35B382621587DD8A00904286 /* Background.png in Resources */,
 				35B382631587DD8A00904286 /* Background@2x.png in Resources */,
 				35B382641587DD8A00904286 /* Button.png in Resources */,
-				35B382651587DD8A00904286 /* CustomNavBG.png in Resources */,
 				35B382661587DD8A00904286 /* CustomNavBG@2x.png in Resources */,
 				35B382671587DD8A00904286 /* Divider.png in Resources */,
 				35B382681587DD8A00904286 /* Logo.png in Resources */,
@@ -716,6 +803,7 @@
 				A1347F1815891C2700491EDD /* SleepSequence.json in Resources */,
 				A1347F1915891C2700491EDD /* SodiumSequence.json in Resources */,
 				A1347F1A15891C2700491EDD /* VO2Sequence.json in Resources */,
+				353352C3159BF1A90059336F /* CustomNavBG.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,6 +812,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				3541B4A214D34E5300F853B9 /* InfoPlist.strings in Resources */,
+				35335290159B8FBE0059336F /* Gotham-Book.ttf in Resources */,
+				353352A2159B97000059336F /* Gizmo.ttf in Resources */,
+				353352A3159B97000059336F /* Gotham-Black.ttf in Resources */,
+				353352A4159B97000059336F /* Gotham-BlackItalic.ttf in Resources */,
+				353352A5159B97000059336F /* Gotham-Bold.ttf in Resources */,
+				353352A6159B97000059336F /* Gotham-BoldItalic.ttf in Resources */,
+				353352A7159B97000059336F /* Gotham-BookItalic.ttf in Resources */,
+				353352A8159B97000059336F /* Gotham-Light.ttf in Resources */,
+				353352A9159B97000059336F /* Gotham-LightItalic.ttf in Resources */,
+				353352AA159B97000059336F /* Gotham-Medium.ttf in Resources */,
+				353352AB159B97000059336F /* Gotham-MediumItalic.ttf in Resources */,
+				353352AC159B97000059336F /* Gotham-Thin.ttf in Resources */,
+				353352AD159B97000059336F /* Gotham-ThinItalic.ttf in Resources */,
+				353352AE159B97000059336F /* Gotham-Ultra.ttf in Resources */,
+				353352AF159B97000059336F /* Gotham-UltraItalic.ttf in Resources */,
+				353352B0159B97000059336F /* Gotham-XLight.ttf in Resources */,
+				353352B1159B97000059336F /* Gotham-XLightItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -762,7 +867,6 @@
 				352E5A0D15069627003DB356 /* OnboardingViewController.m in Sources */,
 				351CBFBB1506BE5200C99CAD /* AlertsViewController.m in Sources */,
 				351CBFBE1506D09200C99CAD /* AlertsCell.m in Sources */,
-				35270F731583E096001E0FB2 /* ADVViewController.m in Sources */,
 				35270F741583E096001E0FB2 /* ADVPercentProgressBar.m in Sources */,
 				35270F861583E19F001E0FB2 /* MetricsViewController.m in Sources */,
 				35270F891583E1BA001E0FB2 /* MetricCell.m in Sources */,

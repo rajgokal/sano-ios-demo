@@ -22,53 +22,8 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Alert" lineBreakMode="tailTruncation" minimumFontSize="10" id="6XR-om-J4P">
-                                            <rect key="frame" x="6" y="3" width="301" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100" lineBreakMode="tailTruncation" minimumFontSize="10" id="86Y-HT-2Wd">
-                                            <rect key="frame" x="6" y="21" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unit" lineBreakMode="tailTruncation" minimumFontSize="10" id="4lx-5D-Vro">
-                                            <rect key="frame" x="32" y="21" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Time Stamp" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="zky-J6-FTl">
-                                            <rect key="frame" x="153" y="21" width="135" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" lineBreakMode="tailTruncation" numberOfLines="3" minimumFontSize="10" id="93H-Iy-V3a">
-                                            <rect key="frame" x="6" y="40" width="308" height="60"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <string key="text">type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here type suggestions here</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="0.0" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <connections>
-                                    <outlet property="Alert" destination="6XR-om-J4P" id="tLC-Ud-Bpe"/>
-                                    <outlet property="Suggestion" destination="93H-Iy-V3a" id="Jqv-J5-tTZ"/>
-                                    <outlet property="TimeStamp" destination="zky-J6-FTl" id="1tC-Ou-sXm"/>
-                                    <outlet property="Unit" destination="4lx-5D-Vro" id="mT8-80-v1S"/>
-                                    <outlet property="Value" destination="86Y-HT-2Wd" id="uxB-ml-xP1"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -114,57 +69,10 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="KU5-fJ-YOd">
-                                            <rect key="frame" x="52" y="5" width="168" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="70x-up-Sxp">
-                                            <rect key="frame" x="9" y="7" width="35" height="35"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="100" lineBreakMode="tailTruncation" minimumFontSize="10" id="izQ-zS-iMd">
-                                            <rect key="frame" x="52" y="23" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Unit" lineBreakMode="tailTruncation" minimumFontSize="10" id="aCg-qe-BB1">
-                                            <rect key="frame" x="78" y="23" width="42" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="State Status" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="Kmv-sY-Ur9">
-                                            <rect key="frame" x="157" y="23" width="135" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="State" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="Mm9-kv-Pu2">
-                                            <rect key="frame" x="170" y="5" width="122" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="Icon" destination="70x-up-Sxp" id="oZE-KA-GMM"/>
-                                    <outlet property="State" destination="Mm9-kv-Pu2" id="FTJ-cM-qiB"/>
-                                    <outlet property="StateStatus" destination="Kmv-sY-Ur9" id="pfY-E2-HLR"/>
-                                    <outlet property="Title" destination="KU5-fJ-YOd" id="JJp-NK-v9x"/>
-                                    <outlet property="Unit" destination="aCg-qe-BB1" id="Vh0-zk-OcW"/>
-                                    <outlet property="Value" destination="izQ-zS-iMd" id="6Zp-78-l5p"/>
                                     <segue destination="WrM-dG-lcw" kind="push" identifier="ShowPhoto" id="beO-aB-Snd"/>
                                 </connections>
                             </tableViewCell>
@@ -524,19 +432,9 @@
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" minimumFontSize="10" id="8DT-XJ-1bD">
-                                            <rect key="frame" x="20" y="5" width="260" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
-                                    <outlet property="Title" destination="8DT-XJ-1bD" id="HsP-kU-LGV"/>
                                     <segue destination="9l0-r5-Tab" kind="push" identifier="MetricZoom" id="8Kj-sS-fST"/>
                                 </connections>
                             </tableViewCell>
@@ -556,7 +454,7 @@
                     </navigationItem>
                 </tableViewController>
             </objects>
-            <point key="canvasLocation" x="2359" y="197"/>
+            <point key="canvasLocation" x="2419" y="190"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cj1-BE-M4v">

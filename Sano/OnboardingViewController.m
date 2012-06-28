@@ -67,6 +67,10 @@
     [password setDelegate:self];
     [height setDelegate:self];
     [weight setDelegate:self];
+    UIImage *image = [UIImage imageNamed:@"Logo.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    [imageView setFrame:CGRectMake(0, 0, 81, 22)]; 
+    self.navigationItem.titleView = imageView;
 }
 
 - (void)viewDidUnload

@@ -106,17 +106,59 @@
     if (current.input > current.max)
         aboveBelow = @"above";
     else aboveBelow = @"below";
-    cell.Alert.text = [NSString stringWithFormat:@"%@ level %@ target",current.name, aboveBelow];
-    cell.Value.text = [NSString stringWithFormat:@"%d", [current input]];
-    cell.Value.textColor = [current colorGrabber];
-    cell.Unit.text = [current unit];
+
+    //  Add Alert
+    UILabel *Alert = [[UILabel alloc] initWithFrame:CGRectMake(6,3,308,21)];
+    [Alert setTextAlignment:UITextAlignmentLeft];
+    [Alert setText:[NSString stringWithFormat:@"%@ level %@ target",current.name, aboveBelow]];
+    [Alert setTextColor:[current colorGrabber]];
+    [Alert setFont:[UIFont fontWithName:@"Gotham Medium" size:15.0]];
+    [Alert setBackgroundColor:[UIColor clearColor]];
+    [cell.contentView addSubview:Alert];
+    
+    //  Add Value
+    UILabel *Value = [[UILabel alloc] initWithFrame:CGRectMake(6,21,80,21)];
+    NSString *displayInput = [[NSString alloc] init];
+    if ([current input]>=100)
+        displayInput = @"%.0f";
+    else if ([current input]>=10)
+        displayInput = @"%.1f";
+    else
+        displayInput = @"%.2f";
+    Value.text = [NSString stringWithFormat:displayInput, [current input]];
+    [Value setFont:[UIFont fontWithName:@"Gotham Light" size:14.0]];
+    [Value setTextColor:[UIColor blackColor]];
+    [Value setBackgroundColor:[UIColor clearColor]];
+    [cell.contentView addSubview:Value];
+
+    //  Add Unit
+    UILabel *Unit = [[UILabel alloc] initWithFrame:CGRectMake(39,21,80,21)];
+    [Unit setText:[current unit]];
+    [Unit setTextColor:[UIColor lightGrayColor]];
+    [Unit setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
+    [Unit setBackgroundColor:[UIColor clearColor]];
+    [cell.contentView addSubview:Unit];
+    
+    // Add TimeStamp
+    UILabel *TimeStamp = [[UILabel alloc]initWithFrame:CGRectMake(173, 21, 135, 21)];
+    [TimeStamp setTextAlignment:UITextAlignmentRight];
+    [TimeStamp setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
+    [TimeStamp setTextColor:[UIColor lightGrayColor]];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM/dd hh:mm"];
-    //[formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    [formatter setDateFormat:@"hh:mm"];
     NSString *stringFromDate = [formatter stringFromDate:[current timeStamp]];
-    cell.TimeStamp.text = stringFromDate;
-    cell.row = indexPath.row;
-    cell.Suggestion.text = [current suggestionGrabber];
+    [TimeStamp setText:stringFromDate];
+    [cell.contentView addSubview:TimeStamp];
+    
+    // Add Suggestion
+    UILabel *Suggestion = [[UILabel alloc]initWithFrame:CGRectMake(6, 40, 308, 60)];
+    [Suggestion setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
+    [Suggestion setTextColor:[UIColor grayColor]];
+    [Suggestion setText:[current suggestionGrabber]];
+    [Suggestion setLineBreakMode:UILineBreakModeWordWrap];
+    [Suggestion setNumberOfLines:4];
+    [cell.contentView addSubview:Suggestion];
+    
     cell.backgroundView.backgroundColor = [UIColor whiteColor];
     cell.backgroundColor = [UIColor whiteColor];
     cell.contentView.backgroundColor = [UIColor whiteColor];
@@ -126,6 +168,8 @@
     cell.backgroundView = backgroundView;
     cell.selectedBackgroundView = selectedBackgroundView;
     cell.selectedBackgroundView.backgroundColor = [[UIColor alloc] initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
+    
+    cell.row = indexPath.row;
     
     return cell;
 }

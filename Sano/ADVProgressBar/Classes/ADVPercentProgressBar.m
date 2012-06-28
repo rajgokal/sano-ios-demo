@@ -69,7 +69,7 @@
         [percentLabel setTag:1];
         [percentLabel setText:@"0%"];
         [percentLabel setBackgroundColor:[UIColor clearColor]];
-        [percentLabel setFont:[UIFont boldSystemFontOfSize:13]];
+        [percentLabel setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
         [percentLabel setTextAlignment:UITextAlignmentCenter];
         [percentLabel setAdjustsFontSizeToFitWidth:YES];
         

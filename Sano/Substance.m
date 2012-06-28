@@ -21,7 +21,7 @@
     if (input<min) {
         return [UIColor colorWithRed:1 green:0.729 blue:0 alpha:1] /*#ffba00*/;
     }
-    return [UIColor colorWithRed:0.522 green:0.773 blue:0.533 alpha:1] /*#85c588*/;
+    return [UIColor colorWithRed:33.0f/255.0f green:149.0f/255.0f blue:39.0f/255.0f alpha:1.0f] /*#85c588*/;
 }
 
 - (NSString*)iconGrabber
