@@ -13,6 +13,8 @@
 #import "MetricCell.h"
 #import "ADVPercentProgressBar.h"
 #import <Parse/Parse.h>
+#import "AlertsViewController.h"
+#import "SanoSubstanceViewController.h"
 
 @implementation SanoDashboardViewController
 
@@ -44,10 +46,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Bokeh.png"]];
     self.tableView.separatorColor = [UIColor blackColor];
     [self.tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
+    
+    UIBarButtonItem *alertsButton = [[UIBarButtonItem alloc] initWithTitle:@"Alerts" style:UIBarButtonItemStylePlain target:self action:@selector(revealAlerts:)]; 
+    self.navigationItem.rightBarButtonItem = alertsButton;
+    
     // Set title
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
@@ -58,6 +63,13 @@
     self.navigationItem.titleView = label;
     label.text = [currentMetric name];
     [label sizeToFit];
+    
+    // Add Circle
+//    UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake(280,10,16,16)];
+//    circleView.alpha = 1;
+//    circleView.layer.cornerRadius = 8;
+//    circleView.backgroundColor = [UIColor redColor];
+//    [self.navigationController.navigationBar addSubview:circleView];
     
     // Set which substances show depending on disease
     MyManager *sharedManager = [MyManager sharedManager];
@@ -112,7 +124,6 @@
                            sharedManager.creatinine,
                            nil];
     }
-
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -188,13 +199,12 @@
     static NSString *MetricCellIdentifier = @"MetricCell";
     
     //    Bring in single "metric" cell
-    PFUser *currentUser = [PFUser currentUser];
-    
     if(indexPath.row < 1) {
         MetricCell *cell = [tableView dequeueReusableCellWithIdentifier:MetricCellIdentifier];
-        if(![[currentUser objectForKey:@"userType"] isEqualToString:@"Clinical Trial"]) {        
-            cell.Title.text = [currentMetric name];
-            ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
+        if (cell == nil) {
+            cell = [[MetricCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MetricCellIdentifier];
+        
+        ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:[currentMetric score]];
             [blueprogressBar setProgress:[currentMetric score]];
             [cell.contentView addSubview:blueprogressBar];
             
@@ -203,7 +213,6 @@
             //        cell.selectedBackgroundView = bgView;
             cell.backgroundView.layer.masksToBounds = YES;
             cell.backgroundView.layer.cornerRadius = 0.0;
-            
             
             CGFloat mark;
             mark=(279-15)*[currentMetric yesterday]+15;
@@ -217,19 +226,15 @@
             yesterday.textAlignment = UITextAlignmentLeft;
             yesterday.text = @"YESTERDAY";
             [cell.contentView addSubview:yesterday];
-        }
-        else {
-            cell.Title.text = @"Your metrics:";
-        }
-        
-        return cell;
+            }
+            return cell;
     } else {
         
         //  Bring in "zoom" substance cell
         SubstancesCell *cell = [tableView dequeueReusableCellWithIdentifier:ZoomCellIdentifier];
         if (cell == nil) {
             cell = [[SubstancesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ZoomCellIdentifier];
-        }
+        
         Substance *current = [self.substances objectAtIndex:indexPath.row-1];
         
         cell.Icon.image = [UIImage imageNamed:[current iconGrabber]];
@@ -245,12 +250,19 @@
         //  Add Value
         UILabel *Value = [[UILabel alloc] initWithFrame:CGRectMake(52,23,43,21)];
         NSString *displayInput = [[NSString alloc] init];
-        if ([current input]>=100)
+        int unitOffset;
+        if ([current input]>=100){
             displayInput = @"%.0f";
-        else if ([current input]>=10)
+            unitOffset = -7;
+        }
+        else if ([current input]>=10){
             displayInput = @"%.1f";
-        else
+            unitOffset = -3;
+        }
+        else {
             displayInput = @"%.2f";
+            unitOffset = -0;
+        }
         Value.text = [NSString stringWithFormat:displayInput, [current input]];
         [Value setFont:[UIFont fontWithName:@"Gotham Light" size:14.0]];
         [Value setTextColor:[UIColor blackColor]];
@@ -265,12 +277,12 @@
         [State setFont:[UIFont fontWithName:@"Gotham Medium" size:17.0]];
         [State setBackgroundColor:[UIColor clearColor]];
         [cell.contentView addSubview:State];
-
+        
         //  Add Unit
-        UILabel *Unit = [[UILabel alloc] initWithFrame:CGRectMake(85,23,122,21)];
+        UILabel *Unit = [[UILabel alloc] initWithFrame:CGRectMake(85+unitOffset,23,122,21)];
         [Unit setText:[current unit]];
         [Unit setTextColor:[UIColor lightGrayColor]];
-        [Unit setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
+        [Unit setFont:[UIFont fontWithName:@"Gotham Medium" size:11.0]];
         [Unit setBackgroundColor:[UIColor clearColor]];
         [cell.contentView addSubview:Unit];
         
@@ -279,7 +291,7 @@
         [StateStatus setTextAlignment:UITextAlignmentRight];
         [StateStatus setText:[current stateStatusGrabber]];
         [StateStatus setTextColor:[UIColor lightGrayColor]];
-        [StateStatus setFont:[UIFont fontWithName:@"Gotham Light" size:11.0]];
+        [StateStatus setFont:[UIFont fontWithName:@"Gotham Medium" size:11.0]];
         [StateStatus setBackgroundColor:[UIColor clearColor]];
         [cell.contentView addSubview:StateStatus];
         
@@ -301,26 +313,29 @@
         circleView.backgroundColor = [current colorGrabber];
         [cell.contentView addSubview:circleView];
         
-        UIView *lineView = [[UIView alloc] initWithFrame:CGRectMake(0,51,320,1)];
+        // Add Bottom Border
+        UIImageView *lineView = [[UIImageView alloc] initWithFrame:CGRectMake(0,51,320,1)];
+        lineView.image = [UIImage imageNamed:@"CustomNavBG.png"];
         lineView.alpha = 1;
         lineView.layer.cornerRadius = 0;
         lineView.backgroundColor = [UIColor blackColor];
         [cell.contentView addSubview:lineView];
         
         return cell;
+        }
     }
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [segue.identifier isEqualToString:@"ShowPhoto"]) {
-        SanoSubstanceViewController *dvc = [segue destinationViewController];
-        NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
-        int row = [path row];
-        Substance *s = [self.substances objectAtIndex:row-1];
-        dvc.currentSubstance = s;
-    }
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ( [segue.identifier isEqualToString:@"ShowPhoto"]) {
+//        SanoSubstanceViewController *dvc = [segue destinationViewController];
+//        NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
+//        int row = [path row];
+//        Substance *s = [self.substances objectAtIndex:row-1];
+//        dvc.currentSubstance = s;
+//    }
+//}
 
 /*
  // Override to support conditional editing of the table view.
@@ -366,12 +381,24 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    SanoSubstanceViewController *detailViewController = [[SanoSubstanceViewController alloc] init];
+    
+    // Return the number of rows in the section.
+    int row = indexPath.row;
+    detailViewController.currentSubstance = [self.substances objectAtIndex:row-1];
+    [self.navigationController pushViewController:detailViewController animated:YES];
+}
+
+- (void)revealAlerts:(id)sender {
+    // Create the root view controller for the navigation controller
+    // The new view controller configures a Cancel and Done button for the
+    // navigation bar.
+    AlertsViewController *newViewController = [[AlertsViewController alloc]init];
+    
+    // Create the navigation controller and present it.
+    UINavigationController *navigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:newViewController];
+    [self presentViewController:navigationController animated:YES completion: nil];
 }
 
 @end

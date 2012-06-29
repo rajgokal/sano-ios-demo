@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "UserType.h"
+#import "AlertsViewController.h"
 
 @implementation MetricsViewController
 
@@ -40,18 +41,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Background.png"]];
+    self.tableView.backgroundColor = [[UIColor alloc] initWithPatternImage:[UIImage imageNamed:@"Bokeh.png"]];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     UIImage *image = [UIImage imageNamed:@"Logo.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     [imageView setFrame:CGRectMake(0, 0, 81, 22)]; 
     self.navigationItem.titleView = imageView;
-
+    
+    UIBarButtonItem *alertsButton = [[UIBarButtonItem alloc] initWithTitle:@"Alerts" style:UIBarButtonItemStylePlain target:self action:@selector(revealAlerts:)]; 
+    self.navigationItem.rightBarButtonItem = alertsButton;
+    
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+
+//    PFUser *currentUser = [PFUser currentUser];
 }
 
 - (void)viewDidUnload
@@ -89,6 +96,11 @@
 
 #pragma mark - Table view data source
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 83;
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
@@ -121,7 +133,7 @@
     MetricCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
         cell = [[MetricCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
+    
     MyManager *sharedManager = [MyManager sharedManager];
 
     NSArray *metrics;
@@ -133,12 +145,12 @@
     
     Metric *current = [metrics objectAtIndex:indexPath.row];
     
-    ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 27, 267, 28) andProgressBarColor:ADVProgressBarBlue];
+    ADVPercentProgressBar *blueprogressBar = [[ADVPercentProgressBar alloc] initWithFrame:CGRectMake(20, 32, 267, 28) andProgressBarColor:[current score]];
     [blueprogressBar setProgress:[current score]];
     [cell.contentView addSubview:blueprogressBar];
     
     // Add cell title
-    UILabel *Title = [[UILabel alloc] initWithFrame:CGRectMake(20,7,260,21)];
+    UILabel *Title = [[UILabel alloc] initWithFrame:CGRectMake(20,12,260,21)];
     Title.text = [current name];
     [Title setFont:[UIFont fontWithName:@"Gotham Medium" size:16.0]];
     [Title setBackgroundColor:[UIColor clearColor]];
@@ -147,20 +159,18 @@
     // Add marker
     CGFloat mark;
     mark=(279-15)*[current yesterday]+15;
-    UIImageView *marker = [[UIImageView alloc] initWithFrame:CGRectMake(mark,27,10,33)];
+    UIImageView *marker = [[UIImageView alloc] initWithFrame:CGRectMake(mark,32,10,33)];
     [marker setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Marker.png"]]];
     [cell.contentView addSubview:marker];
 
     // Add "yesterday label
-    UILabel *yesterday = [[UILabel alloc] initWithFrame:CGRectMake(mark-20,60,65,10)];
+    UILabel *yesterday = [[UILabel alloc] initWithFrame:CGRectMake(mark-20,65,65,10)];
     yesterday.textColor=[UIColor blackColor];
     [yesterday setFont:[UIFont fontWithName:@"Gotham Light" size:9]];
     yesterday.backgroundColor=[UIColor clearColor];
     yesterday.textAlignment = UITextAlignmentLeft;
     yesterday.text = @"YESTERDAY";
     [cell.contentView addSubview:yesterday];
-    
-    
     
     //    cell.backgroundView.backgroundColor = [UIColor whiteColor];
     //    cell.backgroundColor = [UIColor whiteColor];
@@ -178,6 +188,7 @@
     cell.selectedBackgroundView = bgSelect;
     //    cell.selectedBackgroundView.backgroundColor = [[UIColor alloc]initWithRed:193.0 / 255 green:243.0 / 255 blue:255.0 / 255 alpha:1.0];
     //    cell.backgroundView.layer.masksToBounds = YES;
+    }
     return cell;
 }
 
@@ -224,33 +235,53 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    SanoDashboardViewController *detailViewController = [[SanoDashboardViewController alloc] init];
+    
+    // Return the number of rows in the section.
+    MyManager *sharedManager = [MyManager sharedManager];
+    PFUser *currentUser = [PFUser currentUser];
+    NSString *uTypeString = [currentUser objectForKey:@"userType"];    
+    NSArray *metrics;
+    for (UserType *uType in [sharedManager userTypes]) {
+        if ([uType.name isEqualToString:uTypeString]) {
+            metrics = uType.metrics;
+        }
+    }
+    int row = indexPath.row;
+    detailViewController.currentMetric = [metrics objectAtIndex:row];
+    [self.navigationController pushViewController:detailViewController animated:YES];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ( [segue.identifier isEqualToString:@"MetricZoom"]) {
-        SanoDashboardViewController *dvc = [segue destinationViewController];
-        MyManager *sharedManager = [MyManager sharedManager];
-        PFUser *currentUser = [PFUser currentUser];
-        NSString *uTypeString = [currentUser objectForKey:@"userType"];    
-        NSArray *metrics;
-        for (UserType *uType in [sharedManager userTypes]) {
-            if ([uType.name isEqualToString:uTypeString]) {
-                metrics = uType.metrics;
-            }
-        }
-        NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
-        int row = [path row];
-        Metric *s = [metrics objectAtIndex:row];
-        dvc.currentMetric = s;
-    }
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    if ( [segue.identifier isEqualToString:@"MetricZoom"]) {
+//        SanoDashboardViewController *dvc = [segue destinationViewController];
+//        MyManager *sharedManager = [MyManager sharedManager];
+//        PFUser *currentUser = [PFUser currentUser];
+//        NSString *uTypeString = [currentUser objectForKey:@"userType"];    
+//        NSArray *metrics;
+//        for (UserType *uType in [sharedManager userTypes]) {
+//            if ([uType.name isEqualToString:uTypeString]) {
+//                metrics = uType.metrics;
+//            }
+//        }
+//        NSIndexPath *path =  [self.tableView indexPathForSelectedRow];
+//        int row = [path row];
+//        Metric *s = [metrics objectAtIndex:row];
+//        dvc.currentMetric = s;
+//    }
+//}
+
+
+- (void)revealAlerts:(id)sender {
+    // Create the root view controller for the navigation controller
+    // The new view controller configures a Cancel and Done button for the
+    // navigation bar.
+    AlertsViewController *newViewController = [[AlertsViewController alloc]init];
+    
+    // Create the navigation controller and present it.
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:newViewController];
+    [self presentViewController:navigationController animated:YES completion: nil];
 }
 
 @end

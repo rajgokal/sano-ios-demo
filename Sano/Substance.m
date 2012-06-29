@@ -76,6 +76,10 @@
 {
     MyManager *sharedManager = [MyManager sharedManager];
     [self setTimeStamp:[NSDate date]];
+    if ([[sharedManager alerts] count]==0)
+    {
+        [sharedManager.alerts addObject:[self duplicate]];
+    }
     if ([[sharedManager alerts] count]>=1)
     {
         if ([[[[sharedManager alerts] objectAtIndex:[sharedManager.alerts count]-1] name] isEqualToString:[self name]])
@@ -96,6 +100,7 @@
     [substanceCopy setNotes:notes];
     [substanceCopy setInput:input];
     [substanceCopy setMin:min];
+    [substanceCopy setMax:max];
     substanceCopy.color=color;
     substanceCopy.unit=unit;
     substanceCopy.state=state;

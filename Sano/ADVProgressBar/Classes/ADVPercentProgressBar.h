@@ -52,8 +52,8 @@ typedef enum
 
 @property (nonatomic, readwrite, assign) CGFloat progress;
 
-- (id)initWithFrame:(CGRect)frame andProgressBarColor:(ADVProgressBarColor)barColor;
+- (id)initWithFrame:(CGRect)frame andProgressBarColor:(float)value;
 
--(NSString*)getImageNameFromBarDefinition:(ADVProgressBarColor)barDef;
+-(NSString*)getImageNameFromBarDefinition:(float)barDef;
 
 @end

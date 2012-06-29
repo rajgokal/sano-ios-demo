@@ -29,7 +29,7 @@
  */
 
 #define LEFT_PADDING 5.0f
-#define RIGHT_PADDING 3.0f
+#define RIGHT_PADDING 5.0f
 
 #import "ADVPercentProgressBar.h"
 
@@ -38,13 +38,13 @@
 @synthesize progress;
 
 
-- (id)initWithFrame:(CGRect)frame andProgressBarColor:(ADVProgressBarColor)barColor
+- (id)initWithFrame:(CGRect)frame andProgressBarColor:(float)value
 {
     
     if (self = [super initWithFrame:frame]) 
     {
         
-        NSString* progressFillStr = [self getImageNameFromBarDefinition:barColor];
+        NSString* progressFillStr = [self getImageNameFromBarDefinition:value];
         
         progressFillImage = [UIImage imageNamed:progressFillStr];
         
@@ -97,11 +97,11 @@
             
             CGRect frame = progressImageView.frame;
             
-            frame.origin.x = 2;
-            frame.origin.y = 2;
-            frame.size.height = bgImageView.frame.size.height - 4;
+            frame.origin.x = 0;
+            frame.origin.y = 0;
+            frame.size.height = bgImageView.frame.size.height - 0;
             
-            frame.size.width = (bgImageView.frame.size.width - 4) * progress;
+            frame.size.width = (bgImageView.frame.size.width - 0) * progress;
             
             progressImageView.frame = frame;
             
@@ -120,27 +120,21 @@
     }
 }
 
--(NSString*)getImageNameFromBarDefinition:(ADVProgressBarColor)barDef
+-(NSString*)getImageNameFromBarDefinition:(float)barDef
 {
     NSString* imageName;
     
-    switch (barDef) {
-        case ADVProgressBarBlue:
-            imageName = @"progress-fill-blue.png";
-            break;
-        case ADVProgressBarRed:
-            imageName = @"progress-fill-red.png";
-            break;
-        case ADVProgressBarBrown:
-            imageName = @"progress-fill-brown.png";
-            break;
-        case ADVProgressBarGreen:
-            imageName = @"progress-fill-green.png";
-            break;
-        default:
-            imageName = @"progress-fill-green.png";
-            break;
-    }
+    if(barDef>=1)
+        imageName = @"progress-fill-blue.png";
+    else if(barDef>=.85)
+        imageName = @"progress-fill-green.png";
+    else if(barDef>=.75)
+        imageName = @"progress-fill-yellow.png";
+    else if(barDef>=.65)
+        imageName = @"progress-fill-orange.png";
+    else if(barDef>=.55)
+        imageName = @"progress-fill-red.png";
+    else imageName = @"progress-fill-red.png";
     
     return imageName;
 }

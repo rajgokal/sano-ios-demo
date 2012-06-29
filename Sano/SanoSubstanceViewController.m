@@ -129,9 +129,9 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup a style for the annotation
     CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
-    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
+    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
     hitAnnotationTextStyle.fontSize = 16.0f;
-    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";
+    hitAnnotationTextStyle.fontName = @"Gotham Medium";
     
     // Determine point of symbol in plot coordinates
     NSNumber *x          = [[self.dataForPlot objectAtIndex:index] valueForKey:@"x"];
@@ -223,12 +223,12 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 
 -(void) setupGraph {
     self.graph = [[CPTXYGraph alloc] initWithFrame:CGRectZero];
-    CPTTheme *theme = [CPTTheme themeNamed:kCPTSlateTheme];
-    [self.graph applyTheme:theme];
     CPTFill *fill = [CPTFill fillWithColor:[CPTColor colorWithComponentRed:26.0f/255.0f green:83.0f/255.0f blue:103.0f/255.0f alpha:1.0f]];
     self.graph.fill = fill;
     self.graph.plotAreaFrame.fill = fill;
-    CPTGraphHostingView *hostingView = (CPTGraphHostingView *)self.view;
+
+    CPTGraphHostingView *hostingView = [[CPTGraphHostingView alloc] initWithFrame:CGRectMake(0, -40, 320, 480)];
+    [self.view addSubview:hostingView];
     hostingView.collapsesLayers = NO; // Setting to YES reduces GPU memory usage, but can slow drawing/scrolling
     hostingView.hostedGraph     = self.graph;
     
@@ -239,6 +239,15 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup plot space
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;
+    // 'graph' is your CPTXYGraph object
+    CPTXYAxisSet *axisSet = (CPTXYAxisSet *)self.graph.axisSet;
+    // move axis to the rightmost position
+    axisSet.yAxis.axisConstraints = [CPTConstraints constraintWithUpperOffset:0];
+    // put ticks on the right hand side of the axis
+    axisSet.yAxis.tickDirection = CPTSignPositive;
+    // add some padding to the right so that labels are actually visible
+    self.graph.plotAreaFrame.paddingRight = 40.0f;
+
     
     plotSpace.allowsUserInteraction = YES;
     plotSpace.xRange                = [CPTPlotRange plotRangeWithLocation:CPTDecimalFromInt([[NSDate date] timeIntervalSince1970] - 180) length:CPTDecimalFromFloat((float) 200)];
@@ -250,12 +259,30 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
 -(void)setupAxes {
     NSDate *refDate = [NSDate dateWithTimeIntervalSince1970:0];
     
-    // style the graph with white text and lines
+    // Style light white text
     CPTMutableTextStyle *whiteTextStyle = [[CPTMutableTextStyle alloc] init];
-    whiteTextStyle.color = [CPTColor whiteColor];              
+    whiteTextStyle.color = [CPTColor whiteColor];
+    whiteTextStyle.fontName = @"Gotham Light";
+
+    // Style thin white lines
     CPTMutableLineStyle *whiteLineStyle = [[CPTMutableLineStyle alloc] init];
     whiteLineStyle.lineColor = [CPTColor whiteColor];
-    whiteLineStyle.lineWidth = 2.0f;
+    whiteLineStyle.lineWidth = 1.0f;
+    
+    // Style bold white text
+    CPTMutableTextStyle *whiteHeavyStyle = [[CPTMutableTextStyle alloc] init];
+    whiteHeavyStyle.color = [CPTColor whiteColor];
+    whiteHeavyStyle.fontName = @"Gotham Medium";
+
+    // Style thick white lines
+    CPTMutableLineStyle *whiteThickStyle = [[CPTMutableLineStyle alloc] init];
+    whiteThickStyle.lineColor = [CPTColor whiteColor];
+    whiteThickStyle.lineWidth = 3.0f;
+    
+    // Style blank lines
+    CPTMutableLineStyle *blankLineStyle = [[CPTMutableLineStyle alloc] init];
+    blankLineStyle.lineColor = [CPTColor whiteColor];
+    blankLineStyle.lineWidth = 0.0f;
     
     CPTXYPlotSpace *plotSpace = (CPTXYPlotSpace *)self.graph.defaultPlotSpace;    
     
@@ -265,7 +292,7 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     x.orthogonalCoordinateDecimal = CPTDecimalFromDouble(plotSpace.yRange.locationDouble + [self xAxisOffset]);
     
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateFormat = @"H:mm:ss";
+    dateFormatter.dateFormat = @"h:mm a";
     CPTTimeFormatter *timeFormatter = [[CPTTimeFormatter alloc] initWithDateFormatter:dateFormatter];
     timeFormatter.referenceDate = refDate;
     x.labelFormatter = timeFormatter;
@@ -277,11 +304,16 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     xStyle.color = [CPTColor whiteColor];
     x.labelTextStyle = whiteTextStyle;
     x.axisLineStyle = whiteLineStyle;
-    
-    
+    x.majorTickLength = 400;
+    x.minorTickLineStyle = blankLineStyle;
+    x.majorTickLineStyle = whiteLineStyle;
+    x.majorGridLineStyle = blankLineStyle;
+    x.axisLineStyle = blankLineStyle;
+    x.tickDirection = CPTSignPositive;
+    x.labelOffset = -x.majorTickLength-20;
     CPTXYAxis *y = axisSet.yAxis;
     y.orthogonalCoordinateDecimal = CPTDecimalFromDouble([[NSDate date] timeIntervalSince1970] - 180);
-    y.labelOffset                 = -35;
+    y.labelOffset                 = -7;
     y.delegate             = self;
     y.labelingPolicy = CPTAxisLabelingPolicyAutomatic;
     y.preferredNumberOfMajorTicks = 4;
@@ -289,8 +321,12 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     CPTMutableTextStyle *yStyle = y.labelTextStyle.mutableCopy;
     yStyle.color = [CPTColor whiteColor];
     
-    y.labelTextStyle = whiteTextStyle;
-    y.axisLineStyle = whiteLineStyle;
+    y.labelTextStyle = whiteHeavyStyle;
+    y.axisLineStyle = blankLineStyle;
+    y.minorGridLineStyle = blankLineStyle;
+    y.majorGridLineStyle = blankLineStyle;
+    y.minorTickLineStyle = blankLineStyle;
+    y.majorTickLineStyle = blankLineStyle;
     
     // Create the acceptable threshold guide
     CPTColor *guideFillStart = [CPTColor colorWithComponentRed:74.0f/255.0f green:125.0f/255.0f blue:148.0f/255.0f alpha:1.0f];
@@ -333,18 +369,23 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     
     // Setup a style for the annotation
     CPTMutableTextStyle *hitAnnotationTextStyle = [CPTMutableTextStyle textStyle];
-    hitAnnotationTextStyle.color    = [CPTColor lightGrayColor];
+    hitAnnotationTextStyle.color    = [CPTColor whiteColor];
     hitAnnotationTextStyle.fontSize = 16.0f;
-    hitAnnotationTextStyle.fontName = @"Helvetica-Bold";    
+    hitAnnotationTextStyle.fontName = @"Gotham Medium";    
     
     CPTTextLayer *textLayer = [[CPTTextLayer alloc] initWithText:@"Lunch" style:hitAnnotationTextStyle];
     
-    textLayer.fill = [CPTFill fillWithColor:[CPTColor whiteColor]];
-    textLayer.paddingTop = 4.0;
+    textLayer.paddingTop = 1.0;
     textLayer.paddingLeft = 4.0;
     textLayer.paddingBottom = 4.0;
     textLayer.paddingRight = 4.0;
-    textLayer.cornerRadius = 2.0;
+    textLayer.cornerRadius = 3.0;
+    CPTColor *annotationFillStart = [CPTColor colorWithComponentRed:51.0f/255.0f green:180.0f/255.0f blue:216.0f/255.0f alpha:1.0f];
+    CPTColor *annotationFillEnd = [CPTColor colorWithComponentRed:41.0f/255.0f green:144.0f/255.0f blue:169.0f/255.0f alpha:1.0f];  
+    CPTGradient *annotationGradient = [CPTGradient gradientWithBeginningColor:annotationFillStart endingColor:annotationFillEnd];
+    annotationGradient.angle = 270.0;
+    CPTFill *annotationFill = [CPTFill fillWithGradient:annotationGradient];
+    textLayer.fill = annotationFill;
     
     NSUInteger index = [self.dataForPlot count] - 30;
     // Determine point of symbol in plot coordinates
@@ -388,8 +429,24 @@ static NSString *const SELECTION_PLOT = @"Selection Plot";
     self.navigationItem.titleView = label;
     label.text = [_currentSubstance name];
     [label sizeToFit];
+    
+    //Detect orientation change
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(detectOrientation) name:@"UIDeviceOrientationDidChangeNotification" object:nil];
+    
 }
 
+-(void)detectOrientation{
+        if (UIInterfaceOrientationIsLandscape([[UIDevice currentDevice] orientation])) 
+            {
+                [self.graph setFrame:CGRectMake(0, 170, 480, 320)];    
+            }
+        else {
+            [self.graph setFrame:CGRectMake(0, 0, 320, 480)];
+        }
+
+}
+    
 -(void)viewDidUnload {
     [self.timer invalidate];
 }

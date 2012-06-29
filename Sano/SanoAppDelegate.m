@@ -8,6 +8,7 @@
 
 #import "SanoAppDelegate.h"
 #import <Parse/Parse.h>
+#import "OnboardingViewController.h"
 
 @implementation SanoAppDelegate
 
@@ -18,6 +19,13 @@
     [Parse setApplicationId:@"Y6DDaEB6vQRMOt6WMLYtx1LtMwNwPQIjzztfpBpx"
                   clientKey:@"GJm3uvGxRNE1d14AR8N2lDFfkHyCHcQ6jyl89fJT"];    
     // Override point for customization after application launch.
+    [application setStatusBarStyle:UIStatusBarStyleBlackOpaque];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//        UINavigationController *nav = [[UINavigationController alloc] init];
+//
+//    OnboardingViewController *rvc = [[OnboardingViewController alloc]init];
+//    self.window.rootViewController = rvc;
+//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rvc];
     return YES;
 }
 	

@@ -4,34 +4,20 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Gotham-Book.ttf</string>
-		<string>Gizmo.ttf</string>
-		<string>Gotham-Black.ttf</string>
-		<string>Gotham-BlackItalic.ttf</string>
-		<string>Gotham-Bold.ttf</string>
-		<string>Gotham-BoldItalic.ttf</string>
-		<string>Gotham-BookItalic.ttf</string>
-		<string>Gotham-Light.ttf</string>
-		<string>Gotham-LightItalic.ttf</string>
-		<string>Gotham-Medium.ttf</string>
-		<string>Gotham-MediumItalic.ttf</string>
-		<string>Gotham-Thin.ttf</string>
-		<string>Gotham-ThinItalic.ttf</string>
-		<string>Gotham-Ultra.ttf</string>
-		<string>Gotham-UltraItalic.ttf</string>
-		<string>Gotham-XLight.ttf</string>
-		<string>Gotham-XLightItalic.ttf</string>
-	</array>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>UIStatusBarHidden</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackOpaque</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>Icon.png</string>
 		<string>IconRetina.png</string>
+		<string>Default@2x.png</string>
+		<string>Default.png</string>
 	</array>
 	<key>CFBundleIcons</key>
 	<dict>
@@ -41,6 +27,8 @@
 			<array>
 				<string>Icon.png</string>
 				<string>IconRetina.png</string>
+				<string>Default@2x.png</string>
+				<string>Default.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>
@@ -62,6 +50,26 @@
 	<string>1.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Gotham-Book.ttf</string>
+		<string>Gizmo.ttf</string>
+		<string>Gotham-Black.ttf</string>
+		<string>Gotham-BlackItalic.ttf</string>
+		<string>Gotham-Bold.ttf</string>
+		<string>Gotham-BoldItalic.ttf</string>
+		<string>Gotham-BookItalic.ttf</string>
+		<string>Gotham-Light.ttf</string>
+		<string>Gotham-LightItalic.ttf</string>
+		<string>Gotham-Medium.ttf</string>
+		<string>Gotham-MediumItalic.ttf</string>
+		<string>Gotham-Thin.ttf</string>
+		<string>Gotham-ThinItalic.ttf</string>
+		<string>Gotham-Ultra.ttf</string>
+		<string>Gotham-UltraItalic.ttf</string>
+		<string>Gotham-XLight.ttf</string>
+		<string>Gotham-XLightItalic.ttf</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>

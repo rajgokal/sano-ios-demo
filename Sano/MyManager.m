@@ -88,7 +88,7 @@ static MyManager *sharedManager = nil;
     [self.glucose setMax:99];
     self.glucose.absoluteMax = 180;
     self.glucose.absoluteMin = 50;
-    [self.glucose setInput:(self.glucose.min+self.glucose.max)/2];
+    [self.glucose setInput:180];
     [self.glucose setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@. If you've eaten recently, this may be normal. Otherwise, your doctor may need to increase your insulin dosage.",self.glucose.name,self.glucose.max,self.glucose.unit]];
     [self.glucose setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Eating a fruit or drinking juice can restore blood glucose levels.",self.glucose.name,self.glucose.min,self.glucose.unit]];
     
@@ -130,7 +130,7 @@ static MyManager *sharedManager = nil;
     [self.potassium setMax:5.7];
     self.potassium.absoluteMin = 2.0;
     self.potassium.absoluteMax = 7.0;
-    [self.potassium setInput:(self.potassium.min+self.potassium.max)/2];
+    [self.potassium setInput:2.5];
     [self.potassium setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to increase your Acetazolamide dosage.",self.potassium.name,self.potassium.max,self.potassium.unit]];
     [self.potassium setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@.  Your doctor may need to increase your ACE inhibitor dosage.",self.potassium.name,self.potassium.min,self.potassium.unit]];
     
@@ -186,7 +186,7 @@ static MyManager *sharedManager = nil;
     [self.creatinine setMax:1.2];
     self.creatinine.absoluteMin = 0.4;
     self.creatinine.absoluteMax = 1.6;
-    [self.creatinine setInput:(self.creatinine.min+self.creatinine.max)/2];
+    [self.creatinine setInput:0.72];
     [self.creatinine setBadSuggestion:[NSString stringWithFormat:@"Your %@ is above your target maximum, %.2f %@.  Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.max]];
     [self.creatinine setGoodSuggestion:[NSString stringWithFormat:@"Your %@ is below your target minimum, %.2f %@. Your doctor may need to adjust your Aminoglycosides dosage.",self.creatinine.name,self.creatinine.min]];
 
@@ -456,7 +456,7 @@ static MyManager *sharedManager = nil;
     alerts = [[NSMutableArray alloc] initWithCapacity:1];
     for (id current in self.substances) {
         if ([current input] > [current max] | [current input] < [current min])
-            [current createAlert];
+            [self.alerts addObject:current];
     }
     
     userTypes = [[NSMutableArray alloc] initWithCapacity:8];

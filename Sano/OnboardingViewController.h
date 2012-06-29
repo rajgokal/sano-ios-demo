@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SanoButton.h"
+#import "MetricsViewController.h"
 
 @interface OnboardingViewController : UIViewController <UITextFieldDelegate>
 
